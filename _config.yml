@@ -71,3 +71,4 @@ deploy:
   type: git
   repo: git@github.com:hunter199129/blog.git
   branch: master
+  message: "Push articles"

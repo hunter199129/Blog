@@ -2,7 +2,7 @@ title: 使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇
 date: 2017-03-13 13:39:00
 tags: [hexo, Travis CI, GitHub]
 ---
-先上參考網址: <https://levirve.github.io/2016/hexo-deploy-through-travisci/> 
+先上參考網址: <https://levirve.github.io/2016/hexo-deploy-through-travisci/>
 
 幾乎全部都是照這篇文章做的。
 
@@ -24,7 +24,7 @@ tags: [hexo, Travis CI, GitHub]
 
 **scope**只要選**public_repo**就好
 
-[!img](img.src)
+![Public Access Tokens setting](http://imgur.com/I8fsFrV)
 
 - 這個token是用來給第三方使用者的權限，不要任意公布
 
@@ -39,7 +39,7 @@ tags: [hexo, Travis CI, GitHub]
 
 這邊設定的Variable Name等等會用到，要記下來
 
-[!img](img.src)
+![Travis CI console setting](http://imgur.com/3N1p0KA)
 
 ## package.json Setting
 
@@ -49,7 +49,7 @@ tags: [hexo, Travis CI, GitHub]
 		"build": "hexo generate",
 		"deploy": "hexo deploy"
 	}
-	
+
 這個node，等等要讓Travis CI的script去做build的動作。
 
 
@@ -91,9 +91,11 @@ Variable
   branches:
     only:
       - raw
-```	  
-	  
+```
+
 這樣設定完就完成了，可以push一次後到[Travis CI](https://travis-ci.org/)上看看log，看有沒有成功！
+
+![build success](http://imgur.com/Edyb5lZ)
 
 ## 安全性相關
 

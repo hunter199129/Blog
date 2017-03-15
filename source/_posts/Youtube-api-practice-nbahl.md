@@ -49,7 +49,7 @@ HTML的code就是把iframe塞進去，然後剛開始隱藏，用placehold的圖
 會公開也是覺得因為我用超過就超過了，目前也沒什麼利益的考量，反正也不是一定要用，加上我覺得Google的機制不會這麼容易被破，也不會有人這麼無聊來駭我一個小小的api-key。
 
 講這麼多廢話還沒講到重點，在[console](https://console.developers.google.com)裡面有一個只能透過http存取。
-![Imgur](https://i.imgur.com/iCTF6qX.png)
+![Api-Key setting](https://i.imgur.com/iCTF6qX.png)
 剛好很符合我的需求，加上可以配合網址，這也是為什麼我說我相信Google的機制不會這麼容易被破解的原因，哈哈。打上網址，就只有透過那個網址的api call會通過，其他都會被隔絕，所以我才會直接公開api-key，不過也是因為懶的繞啦。
 
 ## 後續

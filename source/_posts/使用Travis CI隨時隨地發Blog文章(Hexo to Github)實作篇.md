@@ -68,31 +68,31 @@ tags: [hexo, Travis CI, GitHub]
 - `after_success`: 成功build之後，把產生出來的靜態網頁push回master branch
 
 
-  .travis.yml
+    .travis.yml
 
-  language: node_js
-  node_js:
-    - "6"
-  cache:
-    directories:
-    - node_modules
-  before_script:
-    - git clone --branch master https://github.com/hunter199129/blog.git public
-  script:
-    - npm run build
-  after_success:
-    - cd public
-    - git config user.name "hunter199129"
-    - git config user.email "hunter199129@gmail.com"
-    - git add --all .
-    - git commit -m "Travis CI Auto Builder"
-    - git push https://$DEPLOY_TOKEN@github.com/hunter199129/blog.git master
-    Variable
-  branches:
-    only:
-    - raw
+    language: node_js
+      node_js:
+        - "6"
+    cache:
+      directories:
+        - node_modules
+    before_script:
+      - git clone --branch master https://github.com/hunter199129/blog.git public
+    script:
+      - npm run build
+    after_success:
+      - cd public
+      - git config user.name "hunter199129"
+      - git config user.email "hunter199129@gmail.com"
+      - git add --all .
+      - git commit -m "Travis CI Auto Builder"
+      - git push https://$DEPLOY_TOKEN@github.com/hunter199129/blog.git master
+    Variable
+      branches:
+        only:
+          - raw
 		
-這樣設定完就完成了，可以push一次後到Travis CI上看看log，看有沒有成功！
+這樣設定完就完成了，可以push一次後到[Travis CI](https://travis-ci.org/)上看看log，看有沒有成功！
 
 ## 安全性相關
 

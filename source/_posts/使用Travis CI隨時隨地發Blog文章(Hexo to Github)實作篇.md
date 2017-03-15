@@ -24,7 +24,7 @@ tags: [hexo, Travis CI, GitHub]
 
 **scope**只要選**public_repo**就好
 
-![Public Access Tokens setting](http://imgur.com/I8fsFrV)
+![Public Access Tokens setting](http://imgur.com/I8fsFrV.png)
 
 - 這個token是用來給第三方使用者的權限，不要任意公布
 
@@ -39,7 +39,7 @@ tags: [hexo, Travis CI, GitHub]
 
 這邊設定的Variable Name等等會用到，要記下來
 
-![Travis CI console setting](http://imgur.com/3N1p0KA)
+![Travis CI console setting](http://imgur.com/3N1p0KA.png)
 
 ## package.json Setting
 
@@ -95,7 +95,7 @@ Variable
 
 這樣設定完就完成了，可以push一次後到[Travis CI](https://travis-ci.org/)上看看log，看有沒有成功！
 
-![build success](http://imgur.com/Edyb5lZ)
+![build success](http://imgur.com/Edyb5lZ.png)
 
 ## 安全性相關
 

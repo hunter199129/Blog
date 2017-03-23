@@ -1,3 +1,4 @@
+---
 title: Ubuntu目錄中文改英文
 date: 2016-10-06 16:05:07
 tags: [Ubuntu]
@@ -9,7 +10,7 @@ tags: [Ubuntu]
 在Terminal打
 
 	LANG=C xdg-user-dirs-gtk-update
-	
+
 這個指令然後會跳出一個視窗，選Update Names就可以了。
 
 這樣所有已經本地化的目錄名字都會變成英文，但留意之前保存在中文目錄下的檔案，是**不會自行改變位置**的，你需要手動將原來目錄下的檔案移至新目錄，例如將「圖片」下的內容移到 Pictures 目錄下。

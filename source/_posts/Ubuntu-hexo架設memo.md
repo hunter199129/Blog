@@ -1,3 +1,4 @@
+---
 title: Ubuntu hexo架設memo
 date: 2016-10-06 15:43:05
 tags: [hexo, blog, Ubuntu]

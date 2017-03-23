@@ -1,3 +1,4 @@
+---
 title: Lubuntu上新酷音的問題
 date: 2017-03-09 13:39:00
 tags: [Ubuntu, 輸入法, 新酷音]

@@ -5,13 +5,13 @@ tags: [ASP.NET, SqlDependency, SignalR, Work]
 ---
 近期老闆想弄一個像是**Dashboard**和**Messenger**的服務，所以我就趁勢研究了一下這東西在asp.net中該怎麼做，主要是透過兩個asp.net的元件: 
 
-* [SqlDependency](https://msdn.microsoft.com/zh-tw/library/62xk7953(v=vs.110).aspx): 用Sql**監視**DB中的資料，若資料變更則觸發動作。
+* [SqlDependency](https://msdn.microsoft.com/zh-tw/library/62xk7953.aspx): 用Sql**監視**DB中的資料，若資料變更則觸發動作。
 
 * [SignalR](https://www.asp.net/signalr): Microsoft專為asp.net出的real-time的連線框架，簡化WebSocket, long-polling等real-time方法的連線過程。且會找到client端能用的最佳連線方式，若client端browser支援WebSocket就用WebSocket，否則就用long-polling。
 
 實作的是一個登入就會通知的WebApp。登入時Sql的資料就會變動，這時候就可以藉由LoginTime的update當作SqlDependency的Trigger，在透過SignalR傳送通知到Web browser。
 
-#SqlDependency
+## SqlDependency
 
 先附上一小段實作的code
     
@@ -85,7 +85,7 @@ tags: [ASP.NET, SqlDependency, SignalR, Work]
 
 * 在`OnChangeEventHandler`的函式要再去呼叫這支監視程式。
 
-# SignalR
+## SignalR
 
 `MyHub1.cs`
 

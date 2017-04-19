@@ -1,5 +1,5 @@
 ---
-title: [ASP.NET] SqlDependency+SignalR memo
+title: '[ASP.NET] SqlDependency+SignalR memo'
 date: 2017-04-19 10:07:00
 tags: [ASP.NET, SqlDependency, SignalR, Work]
 ---

@@ -156,7 +156,7 @@ SignalR的部分沒什麼特別的，就不多說。
 
 - [Youtube - Database Change Notifications in ASP NET using SignalR and SqlDependency](https://www.youtube.com/watch?v=30m-7wpmbrc)
 
-- [使用 SqlDependency 來偵測變更](https://msdn.microsoft.com/zh-tw/library/62xk7953(v=vs.110).aspx)
+- [使用 SqlDependency 來偵測變更](https://msdn.microsoft.com/zh-tw/library/62xk7953.aspx)
 
 - [Raymond Chu .NET - SignalR 與 SqlDependency 建立ASP.NET realtime應用
 ](https://dotblogs.com.tw/hznraymond/2014/01/24/142134)

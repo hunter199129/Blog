@@ -66,7 +66,7 @@ tags: [Ubuntu]
 
 這樣裝下來大部分的東西都還在，其實還滿方便的，希望之後不要遇到什麼大bug就好。
 
-ref:
+## Ref:
 
 - [2 Ways to Upgrade From Ubuntu 16.10 to Ubuntu 17.04 (Graphical & Terminal)](https://www.linuxbabe.com/ubuntu/upgrade-ubuntu-16-10-to-17-04)
 

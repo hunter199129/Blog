@@ -48,6 +48,22 @@ tags: [Ubuntu]
     
 然後再下安裝指令就可以裝了！
 
+## 查看版本
+
+查看版本的指令是
+
+    lsb_release -a
+    
+這是linux內建的，不過我喜歡另一個
+
+安裝**neofetch**
+
+    sudo apt install neofetch
+    
+再執行`neofetch`
+
+why? 因為這個比較fency阿!
+
 ## 裝好之後，Desktop壞了！？
 
 既然很明顯是Desktop壞了，就直接對症下藥吧

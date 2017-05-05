@@ -59,10 +59,10 @@ tags: [Ubuntu]
 安裝**neofetch**
 
     sudo apt install neofetch
-    
+
 再執行`neofetch`
 
-why? 因為這個比較fency阿!
+why? 因為這個比較fency阿! XD
 
 ## 裝好之後，Desktop壞了！？
 

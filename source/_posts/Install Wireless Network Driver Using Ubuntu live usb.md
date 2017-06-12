@@ -27,5 +27,5 @@ P.S.灌了16.04果然穩定很多，以後還是不要亂裝更新好了，畢�
 不過有興趣的話倒是滿值得玩玩學學的。
 
 ---
-Ref:
+## Ref:
 [askubnutu - how can i install and download drivers without internet](https://askubuntu.com/questions/146425/how-can-i-install-and-download-drivers-without-internet)

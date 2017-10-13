@@ -1,7 +1,7 @@
 ---
 title: 使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇
 date: 2017-03-13 13:39:00
-tags: [hexo, Travis CI, GitHub]
+tags: [hexo, Travis CI, Github]
 ---
 之前架好Hexo之後，沒事就可以很開心的用我的筆電無聊寫寫一些blog文，`hexo new`建template、寫好之後`hexo g -d`建立發佈，輕鬆方便。
 

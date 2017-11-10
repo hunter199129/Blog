@@ -1,6 +1,6 @@
 ---
 title: '解決npm "...error errno -4048..."的問題'
-date: 2017-03-23 19:41:00
+date: 2017-11-10 15:40:00
 tags: [npm, nodejs]
 ---
 

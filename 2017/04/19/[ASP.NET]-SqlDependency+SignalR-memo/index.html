@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[ASP.NET] SqlDependency+SignalR memo - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="近期老闆想弄一個像是Dashboard和Messenger的服務，所以我就趁勢研究了一下這東西在asp.net中該怎麼做，主要是透過兩個asp.net的元件:">
+<meta name="keywords" content="ASP.NET,SqlDependency,SignalR,Work">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[ASP.NET] SqlDependency+SignalR memo">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2017/04/19/[ASP.NET]-SqlDependency+SignalR-memo/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="近期老闆想弄一個像是Dashboard和Messenger的服務，所以我就趁勢研究了一下這東西在asp.net中該怎麼做，主要是透過兩個asp.net的元件:">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-05-17T08:38:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[ASP.NET] SqlDependency+SignalR memo">
+<meta name="twitter:description" content="近期老闆想弄一個像是Dashboard和Messenger的服務，所以我就趁勢研究了一下這東西在asp.net中該怎麼做，主要是透過兩個asp.net的元件:">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-[ASP.NET]-SqlDependency+SignalR-memo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [ASP.NET] SqlDependency+SignalR memo
+      <small class=article-detail-date-index>&nbsp; 2017-04-19</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2017/04/19/[ASP.NET]-SqlDependency+SignalR-memo/" class="article-date">
+  <time datetime="2017-04-19T10:07:00.000Z" itemprop="datePublished">2017-04-19</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2017/04/19/[ASP.NET]-SqlDependency+SignalR-memo/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>近期老闆想弄一個像是<strong>Dashboard</strong>和<strong>Messenger</strong>的服務，所以我就趁勢研究了一下這東西在asp.net中該怎麼做，主要是透過兩個asp.net的元件: </p>
+<a id="more"></a>
+<ul>
+<li><p><a href="https://msdn.microsoft.com/zh-tw/library/62xk7953.aspx" target="_blank" rel="noopener">SqlDependency</a>: 用Sql<strong>監視</strong>DB中的資料，若資料變更則觸發動作。</p>
+</li>
+<li><p><a href="https://www.asp.net/signalr" target="_blank" rel="noopener">SignalR</a>: Microsoft專為asp.net出的real-time的連線框架，簡化WebSocket, long-polling等real-time方法的連線過程，且會找到client端能用的最佳連線方式。若client端browser支援WebSocket就用WebSocket，否則就用long-polling。</p>
+</li>
+</ul>
+<p>實作的是一個登入就會通知的WebApp。登入時Sql的資料就會變動，這時候就可以藉由LoginTime的update當作SqlDependency的Trigger，在透過SignalR傳送通知到Web browser。</p>
+<h2 id="SqlDependency"><a href="#SqlDependency" class="headerlink" title="SqlDependency"></a>SqlDependency</h2><p>先附上一小段實作的code</p>
+<p><code>Default.aspx.cs</code></p>
+<pre><code>public static void SqlListener()
+    {
+        string sql = @&quot;select UserID, LoginTime from dbo.UserTable&quot;;
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            using (SqlCommand command = new SqlCommand(sql, conn))
+            {
+                try
+                {
+                    SqlDependency dependency = new SqlDependency(command);
+
+                    dependency.OnChange += new OnChangeEventHandler(NotificationFunc);
+
+                    if (conn.State == System.Data.ConnectionState.Closed)
+                        conn.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+    }
+
+
+ static void NotificationFunc(object sender, SqlNotificationEventArgs e)
+    {
+        MyHub1 nHub = new MyHub1();
+
+        string sql = &quot;select top 1 UserID, LoginTime from dbo.UserTable order by login_t desc&quot;;
+
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            using (SqlCommand command = new SqlCommand(sql, conn))
+            {
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    nHub.Send(String.Format(&quot;User: {0}登入! 登入時間為: {1}&quot;, reader.GetString(0), reader.GetDateTimeOffset(1)));
+                }
+            }
+        }
+
+        //要再呼叫一次SqlListener();
+        SqlListener();
+    }
+</code></pre><ul>
+<li><p>要用SqlDependency前一定要看DB有沒有開啟Service Broker設定</p>
+<pre><code>SELECT name, is_broker_enabled FROM sys.databases
+</code></pre><p>若沒有開就用下面的Sql指令打開</p>
+<pre><code>ALTER DATABASE DBNAME SET ENABLE_BROKER
+</code></pre><p>若速度太慢，可以加上<code>WITH ROLLBACK IMMEDIATE</code>，但要注意若這時有在做Transaction就會被取消。</p>
+</li>
+<li><p>要監視的Sql command不能用*去做篩選，否則會無止境刷新，但是可以用全部的欄位。</p>
+</li>
+<li><p>Sql用的Table一定要是完整名稱，即<code>dbo.UserTable</code>。</p>
+</li>
+<li><p>在<code>OnChangeEventHandler</code>的函式要再去呼叫這支監視程式。</p>
+</li>
+</ul>
+<h2 id="SignalR"><a href="#SignalR" class="headerlink" title="SignalR"></a>SignalR</h2><p><code>MyHub1.cs</code></p>
+<pre><code>public class MyHub1 : Hub
+{
+    public void Send(string message)
+    {
+        IHubContext context = GlobalHost.ConnectionManager.GetHubContext&lt;MyHub1&gt;();
+        context.Clients.All.GetMessage(message);
+    }
+}
+</code></pre><p><code>Startup.cs</code></p>
+<pre><code>public class Startup
+{
+    public void Configuration(IAppBuilder app)
+    {
+        app.MapSignalR();
+    }
+}
+</code></pre><p><code>Default.aspx</code></p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function () {
+        var notification = $.connection.myHub1;
+        //debugger;
+        notification.client.getMessage = function (message) {
+            document.getElementById(&apos;text&apos;).innerHTML += message + &quot;&lt;br&gt;&quot;;
+        };
+        $.connection.hub.start().done(function () {
+            notification.server.send(&quot;Hello&quot;);
+        });
+    });
+&lt;/script&gt;
+</code></pre><p>SignalR的部分沒什麼特別的，就不多說。</p>
+<p><code>Global.asax.cs</code></p>
+<pre><code>protected void Application_Start(object sender, EventArgs e)
+{
+    System.Data.SqlClient.SqlDependency.Start(connectionString);
+
+    //若在Page_Load呼叫，reload後會重複建立好幾個SqlDependency物件，就會有重覆通知的bug
+    WebForm1.SqlListener();
+}
+protected void Application_End(object sender, EventArgs e)
+{
+    System.Data.SqlClient.SqlDependency.Stop(connectionString);
+
+}
+</code></pre><p>這邊就是設定當WebApp打開的時候要開啟監視，關閉時要停止。</p>
+<p>值得一提的是，若把SqlListener()函式在Page_Load時就呼叫，會有一個BUG，就是Reload過後會產生多個SqlDependency物件，當觸發一次登入條件時，會產生多個通知訊息。</p>
+<p>所以這邊才要用<code>Static</code>把它包起來，丟到<code>Application_Start</code>裡面執行，這樣就能確保他只有一個物件會產生。</p>
+<p>總之這個練習就是熟悉一下SignalR跟SqlDependency的運作，現在比較了解是要怎麼實作了，不然這兩個東西網路上資源實在不好懂…。</p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref:"></a>Ref:</h2><ul>
+<li><p><a href="http://techbrij.com/database-change-notifications-asp-net-signalr-sqldependency" target="_blank" rel="noopener">Database Change Notifications in ASP.NET using SignalR and SqlDependency</a></p>
+</li>
+<li><p><a href="http://terryweng2050.blogspot.tw/2016/08/c-sqldependency-change.html" target="_blank" rel="noopener">Terry 筆記本 - [C#] 監聽資料庫更新狀態 (SqlDependency)</a></p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=30m-7wpmbrc" target="_blank" rel="noopener">Youtube - Database Change Notifications in ASP NET using SignalR and SqlDependency</a></p>
+</li>
+<li><p><a href="https://msdn.microsoft.com/zh-tw/library/62xk7953.aspx" target="_blank" rel="noopener">使用 SqlDependency 來偵測變更</a></p>
+</li>
+<li><p><a href="https://dotblogs.com.tw/hznraymond/2014/01/24/142134" target="_blank" rel="noopener">Raymond Chu .NET - SignalR 與 SqlDependency 建立ASP.NET realtime應用
+</a></p>
+</li>
+</ul>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SqlDependency"><span class="toc-text">SqlDependency</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SignalR"><span class="toc-text">SignalR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-text">Ref:</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/ASP-NET/">ASP.NET</a><span></span><a class="article-tag-link" href="/blog/tags/SignalR/">SignalR</a><span></span><a class="article-tag-link" href="/blog/tags/SqlDependency/">SqlDependency</a><span></span><a class="article-tag-link" href="/blog/tags/Work/">Work</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2017/04/27/目前下載百度網盤的最佳解/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          目前下載百度網盤的最佳解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/04/03/關於寫Blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">關於寫Blog&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2017/04/19/[ASP.NET]-SqlDependency+SignalR-memo/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

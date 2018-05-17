@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Learning code from codebases - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天早上看到了一篇滿有趣的文章: Interest Codebases。 內容分為兩個部分。">
+<meta name="keywords" content="Learning,Code Skill,Github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning code from codebases">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2017/10/03/Learning code from codebases/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="今天早上看到了一篇滿有趣的文章: Interest Codebases。 內容分為兩個部分。">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-05-17T08:36:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learning code from codebases">
+<meta name="twitter:description" content="今天早上看到了一篇滿有趣的文章: Interest Codebases。 內容分為兩個部分。">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-Learning code from codebases" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Learning code from codebases
+      <small class=article-detail-date-index>&nbsp; 2017-10-03</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2017/10/03/Learning code from codebases/" class="article-date">
+  <time datetime="2017-10-03T13:11:00.000Z" itemprop="datePublished">2017-10-03</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Personal/">Personal</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2017/10/03/Learning code from codebases/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天早上看到了一篇滿有趣的文章: <a href="https://medium.com/@markpapadakis/interesting-codebases-159fec5a8cc" target="_blank" rel="noopener">Interest Codebases</a>。</p>
+<p>內容分為兩個部分。  </p>
+<a id="more"></a>
+<p>第一部分是作者在講述他喜歡從別人的code裡面看一些好的Code design, algorithms, tricks等等。<br>第二部分就是列出一些他覺得不錯的Codebases，並寫一些簡短的原因。<br>不過其實內容講述的有點少，剛好他有附上<a href="https://news.ycombinator.com/item?id=15371597" target="_blank" rel="noopener">HackerNews</a>上的連結，就也進去看了一下。</p>
+<p>HackerNews裡面的討論就稍微有些內容了，有些人會提出一些問題或是想法，有些會推薦哪些是適合入門或是很有架構的，下面列出一些我覺得比較有討論價值的</p>
+<ul>
+<li><p>我讀codebases遇到最大的問題是，如果我不熟悉全部的語言或是某個語言的架構，我該從哪裡開始？最終我只會浪費很多時間讀那些可能不是主要運作的程式。….</p>
+<ul>
+<li>作者回應: 通常我會有特定想要了解的部分，像是以<a href="https://github.com/scylladb/seastar" target="_blank" rel="noopener">Seastar</a>為例，我想了解他們的reactor設計和實作，所以我會找到他們實作這個部分的地方，然後從這開始，再展開到其他的檔案。–通常或會開很多vim視窗，然後做筆記。<br>如果沒有特定想了解的部分，我會選一個資料夾，然後依檔案大小排序(e.g ls -lShr *.{h,cpp,hh,cc,java})。我通常從小到大排序，可是有時候從大到小開始看會更合理，我就從這開始。然後我如果找到什麼其他的東西我就會開新視窗去看，然後再回到原來的檔案。  <ul>
+<li>或是看看最多更動的檔案  </li>
+</ul>
+</li>
+<li>如果有問題，<code>grep -r -- &#39;main[ ]*(&#39;</code>  </li>
+<li>最先要做的事，clone and build。如果你沒辦法clone, build，然後在一小時內弄好它，基本上這東西就是垃圾。(開發者應該要讓他們的projects盡量簡單)。build完之後就可以做一些小改動去驗證你的理解。</li>
+</ul>
+</li>
+<li><p>推薦書籍: <a href="http://aosabook.org/en/index.html" target="_blank" rel="noopener">The Architecture of Open Source Applications</a>，每個章節都是不同open-source project的歷史敘述跟架構。</p>
+</li>
+<li><p><a href="https://github.com/antirez/redis" target="_blank" rel="noopener">Redis</a>是讓我印象最深刻的code base。簡單來說，有可讀的函式跟註解使它很容易學習。</p>
+</li>
+</ul>
+<p>也有些人質疑他根本不了解全部的code，他的回應是說沒錯，但也不需要全部了解，只需要了解有興趣的內容。我覺得code本質也是這樣，如果全部都要學全絕對是不可能的事，而且資訊的東西進展得這麼快，針對某個有興趣的領域去讀是一定的，不然包山包海，能針對特定領域了解透徹就已經是很了不起的事了!</p>
+<p>整篇讀下來最多被Reference到的就是<a href="https://github.com/" target="_blank" rel="noopener">Github</a>了。由此可見Github對於開發者的重要性，沒事的時候去Github挖挖寶，看看別人的架構(尤其是很多大公司像<a href="https://github.com/google" target="_blank" rel="noopener">Google</a>, <a href="https://github.com/facebook" target="_blank" rel="noopener">facebook</a>)的code，對學習一定是很有幫助的!</p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Personal/">Personal</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/Code-Skill/">Code Skill</a><span></span><a class="article-tag-link" href="/blog/tags/Github/">Github</a><span></span><a class="article-tag-link" href="/blog/tags/Learning/">Learning</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2017/10/06/[Windows] 右鍵選單加入Powershell/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          [Windows] 右鍵選單加入Powershell
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/09/29/關於費曼學習技巧/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">關於費曼學習技巧&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2017/10/03/Learning code from codebases/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="之前架好Hexo之後，沒事就可以很開心的用我的筆電無聊寫寫一些blog文，hexo new建template、寫好之後hexo g -d建立發佈，輕鬆方便。 但是之後發現這會有一個問題，就是當筆電不在我身邊的時候我就沒辦法發佈文章了。除非我有我hexo框架和文章的原始碼，就算在家裡另一台電腦我也沒辦法做。所以就誕生了這篇文章。">
+<meta name="keywords" content="hexo,Github,Travis CI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="之前架好Hexo之後，沒事就可以很開心的用我的筆電無聊寫寫一些blog文，hexo new建template、寫好之後hexo g -d建立發佈，輕鬆方便。 但是之後發現這會有一個問題，就是當筆電不在我身邊的時候我就沒辦法發佈文章了。除非我有我hexo框架和文章的原始碼，就算在家裡另一台電腦我也沒辦法做。所以就誕生了這篇文章。">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-05-17T08:38:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇">
+<meta name="twitter:description" content="之前架好Hexo之後，沒事就可以很開心的用我的筆電無聊寫寫一些blog文，hexo new建template、寫好之後hexo g -d建立發佈，輕鬆方便。 但是之後發現這會有一個問題，就是當筆電不在我身邊的時候我就沒辦法發佈文章了。除非我有我hexo框架和文章的原始碼，就算在家裡另一台電腦我也沒辦法做。所以就誕生了這篇文章。">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇
+      <small class=article-detail-date-index>&nbsp; 2017-03-13</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇/" class="article-date">
+  <time datetime="2017-03-13T13:39:00.000Z" itemprop="datePublished">2017-03-13</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前架好Hexo之後，沒事就可以很開心的用我的筆電無聊寫寫一些blog文，<code>hexo new</code>建template、寫好之後<code>hexo g -d</code>建立發佈，輕鬆方便。</p>
+<p>但是之後發現這會有一個問題，就是當筆電不在我身邊的時候我就沒辦法發佈文章了。除非我有我hexo框架和文章的原始碼，就算在家裡另一台電腦我也沒辦法做。所以就誕生了這篇文章。</p>
+<a id="more"></a>
+<h2 id="Problem-Scope"><a href="#Problem-Scope" class="headerlink" title="Problem Scope"></a>Problem Scope</h2><p>要解決的問題主要就是能夠在其他環境下發文。</p>
+<h2 id="最基本的想法"><a href="#最基本的想法" class="headerlink" title="最基本的想法"></a>最基本的想法</h2><p>要達成這個目的最簡單的想法就是把hexo的原始碼push到github上的其他branch或repo，當每次要發佈文章的時候就下<code>git pull</code>，然後再做hexo的動作，最後再<code>git push</code>回去。</p>
+<p>當然這是個好方法，而且也可以明確的解決問題，但是會有其他的需求產生。</p>
+<ol>
+<li>如果少做到<code>git pull</code>或<code>git push</code>，那文章的同步性就會出問題，在下次寫文章的時候會有代價。</li>
+<li>我必須要在有 <em>git</em> 的環境下才能發佈。</li>
+</ol>
+<h2 id="導入Travis-CI"><a href="#導入Travis-CI" class="headerlink" title="導入Travis CI"></a>導入Travis CI</h2><p>絕對不是只有我有這樣的需求，所以我就找了一下相關的解法，本來也做好要換別的blog的打算了，但最後找到了一個很好的方法可以很好的解決以上的需求，就決定來測試看看。</p>
+<p><a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>是一個持續整合的服務，一個測試code的服務。簡單來說就是會隨你的git push去抓你的code，然後跑寫好的script作測試。</p>
+<p>所以以這個需求來說，就是讓測試跑<code>hexo g -d</code>這一行script，這樣一來就可以完成上述的需求。</p>
+<p>那大部分的概念想法就是這樣，下一篇再詳述實作的部分。</p>
+<p>P.S. 配合上Github可以Web就可以做<code>git push</code>，直接在Web甚至手機就可以發blog啦！</p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-Scope"><span class="toc-text">Problem Scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最基本的想法"><span class="toc-text">最基本的想法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#導入Travis-CI"><span class="toc-text">導入Travis CI</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/Github/">Github</a><span></span><a class="article-tag-link" href="/blog/tags/Travis-CI/">Travis CI</a><span></span><a class="article-tag-link" href="/blog/tags/hexo/">hexo</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2017/03/23/防止vim產生un~檔案/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          防止vim產生un~檔案
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

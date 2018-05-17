@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解決網頁混合內容(Mixed Content)的問題 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="寫過前端的都知道，http跟https在同一個頁面上不能混用 否則就會造成混合內容(Mixed Content)的問題">
+<meta name="keywords" content="http,web,CSP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解決網頁混合內容(Mixed Content)的問題">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2017/11/14/解決網頁混合內容(Mixed Content)的問題/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="寫過前端的都知道，http跟https在同一個頁面上不能混用 否則就會造成混合內容(Mixed Content)的問題">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-05-17T08:39:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解決網頁混合內容(Mixed Content)的問題">
+<meta name="twitter:description" content="寫過前端的都知道，http跟https在同一個頁面上不能混用 否則就會造成混合內容(Mixed Content)的問題">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-解決網頁混合內容(Mixed Content)的問題" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      解決網頁混合內容(Mixed Content)的問題
+      <small class=article-detail-date-index>&nbsp; 2017-11-14</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2017/11/14/解決網頁混合內容(Mixed Content)的問題/" class="article-date">
+  <time datetime="2017-11-14T09:06:00.000Z" itemprop="datePublished">2017-11-14</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2017/11/14/解決網頁混合內容(Mixed Content)的問題/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>寫過前端的都知道，http跟https在同一個頁面上不能混用</p>
+<p>否則就會造成<a href="https://developer.mozilla.org/zh-TW/docs/Security/MixedContent" target="_blank" rel="noopener">混合內容(Mixed Content)</a>的問題</p>
+<a id="more"></a>
+<p>這個問題說好解很好解，因為只要把網頁全部Request改成http或https其中一個就好了</p>
+<p>但是說不好解也很難解</p>
+<p>像我遇到的問題就是，我的api endpoint是別人丟在npm上的</p>
+<p>他是用http存取<a href="http://stats.nba.com" target="_blank" rel="noopener">NBA</a>的api</p>
+<p>我雖然可以改code再重build(該套件基於<a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a>)，但一來要花時間了解，二來如果npm上套件更新我又要手動再弄一次</p>
+<p>那把deploy那端改成http呢？</p>
+<p>也沒辦法，因為想要發在<a href="https://pages.github.com/" target="_blank" rel="noopener">Github page</a>上</p>
+<p>所以需要其他的解法</p>
+<p>找了很久終於找到正確的解法了…</p>
+<p>只能說是基礎功不夠，因為是個很基本的東西: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank" rel="noopener">Content Security Policy (CSP)</a></p>
+<p>CSP簡介： CSP是額外的安全層，用以防護特定攻擊，像是跨頁腳本<a href="https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting" target="_blank" rel="noopener">(XSS)</a>和內容注入攻擊(data injection attacks)，從資料盜取、網頁內容汙染到散布惡意軟體，這都是主要的攻擊手段</p>
+<p>在CSP裡面，有一個<a href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/fixing-mixed-content#upgrading_insecure_requests" target="_blank" rel="noopener">upgrade insecure requests</a></p>
+<p>就是把你全部網頁中的Request全部升級成https</p>
+<p>只要在<code>&lt;head&gt;</code>裡面加一個<code>&lt;meta&gt;</code> tag</p>
+<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
+</code></pre><p>就能立馬解掉混合內容的問題</p>
+<p>CSP裡面還有其他的東西可以用，可以參照:</p>
+<ul>
+<li><a href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/fixing-mixed-content#upgrading_insecure_requests" target="_blank" rel="noopener">Preventing Mixed Content | Web Fundamentals | Google Developers</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank" rel="noopener">Content Security Policy (CSP) - HTTP | MDN</a></li>
+</ul>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/CSP/">CSP</a><span></span><a class="article-tag-link" href="/blog/tags/http/">http</a><span></span><a class="article-tag-link" href="/blog/tags/web/">web</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/05/17/Hexo-theme-settings/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Hexo theme settings
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/11/10/解決npm _...error errno -4048..._的問題/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">解決npm &quot;...error errno -4048...&quot;的問題&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2017/11/14/解決網頁混合內容(Mixed Content)的問題/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

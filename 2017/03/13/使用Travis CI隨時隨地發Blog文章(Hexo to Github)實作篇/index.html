@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="先上參考網址: https://levirve.github.io/2016/hexo-deploy-through-travisci/ 幾乎全部都是照這篇文章做的。">
+<meta name="keywords" content="hexo,Github,Travis CI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="先上參考網址: https://levirve.github.io/2016/hexo-deploy-through-travisci/ 幾乎全部都是照這篇文章做的。">
+<meta property="og:locale" content="Chinese">
+<meta property="og:image" content="http://imgur.com/I8fsFrV.png">
+<meta property="og:image" content="http://imgur.com/3N1p0KA.png">
+<meta property="og:image" content="http://imgur.com/Edyb5lZ.png">
+<meta property="og:updated_time" content="2018-05-17T08:37:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇">
+<meta name="twitter:description" content="先上參考網址: https://levirve.github.io/2016/hexo-deploy-through-travisci/ 幾乎全部都是照這篇文章做的。">
+<meta name="twitter:image" content="http://imgur.com/I8fsFrV.png">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇
+      <small class=article-detail-date-index>&nbsp; 2017-03-13</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇/" class="article-date">
+  <time datetime="2017-03-13T13:39:00.000Z" itemprop="datePublished">2017-03-13</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先上參考網址: <a href="https://levirve.github.io/2016/hexo-deploy-through-travisci/" target="_blank" rel="noopener">https://levirve.github.io/2016/hexo-deploy-through-travisci/</a></p>
+<p>幾乎全部都是照這篇文章做的。</p>
+<a id="more"></a>
+<h2 id="New-Branch"><a href="#New-Branch" class="headerlink" title="New Branch"></a>New Branch</h2><p>一開始要先到source folder建一個branch(這邊branch的名稱用raw)</p>
+<pre><code>$ git init
+$ git checkout -b raw #切換branch
+$ git add .
+$ git commit -m &quot;Push blog source code to github&quot;
+$ git push origin raw
+</code></pre><h2 id="Generator-Github’s-Public-Access-Tokens"><a href="#Generator-Github’s-Public-Access-Tokens" class="headerlink" title="Generator Github’s Public Access Tokens"></a>Generator Github’s Public Access Tokens</h2><p>進到<a href="github.com">Github</a> &gt; Settings &gt; Personal Access Token</p>
+<p><strong>scope</strong>只要選<strong>public_repo</strong>就好</p>
+<p><img src="http://imgur.com/I8fsFrV.png" alt="Public Access Tokens setting"></p>
+<ul>
+<li>這個token是用來給第三方使用者的權限，不要任意公布</li>
+</ul>
+<h2 id="Travis-CI-Web-Setting"><a href="#Travis-CI-Web-Setting" class="headerlink" title="Travis CI Web Setting"></a>Travis CI Web Setting</h2><p>這邊就是利要用剛才在Github拿到的Public Access Token去給Travis CI一個可以<strong>access public repo</strong>的權限</p>
+<p>進到<a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>，到對應的repo &gt; Settings</p>
+<p>設定<strong>Services</strong>和<strong>Environment Variables</strong></p>
+<p>這邊設定的Variable Name等等會用到，要記下來</p>
+<p><img src="http://imgur.com/3N1p0KA.png" alt="Travis CI console setting"></p>
+<h2 id="package-json-Setting"><a href="#package-json-Setting" class="headerlink" title="package.json Setting"></a>package.json Setting</h2><p>在<strong>package.json</strong>中加上</p>
+<pre><code>&quot;scripts&quot;: {
+    &quot;build&quot;: &quot;hexo generate&quot;,
+    &quot;deploy&quot;: &quot;hexo deploy&quot;
+}
+</code></pre><p>這個node，等等要讓Travis CI的script去做build的動作。</p>
+<h2 id="Travis-CI-Script-File-travis-yml-Configuration"><a href="#Travis-CI-Script-File-travis-yml-Configuration" class="headerlink" title="Travis CI Script File (.travis.yml) Configuration"></a>Travis CI Script File (.travis.yml) Configuration</h2><p>這邊我是用上面文章的設定</p>
+<blockquote>
+<p>整個建構流程分三步：取得歷史（fetch old commits history），產生檔案（hexo generate static files），發布結果（git push changes of static files to master）</p>
+</blockquote>
+<p>要寫文章時仔細看才發現，這邊是用<code>hexo g</code>建立好之後自己push到master branch，而不是用<code>hexo d</code>去做發佈。我是覺得讓script去自己做<code>hexo d</code>應該也可以，不過沒有測試過。</p>
+<ul>
+<li><p><code>before_script</code>: 先把master branch的東西clone到<code>./public</code>資料夾底下</p>
+</li>
+<li><p><code>script</code>: 跑<code>hexo g</code></p>
+</li>
+<li><p><code>after_success</code>: 成功build之後，把產生出來的靜態網頁push回master branch</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.travis.yml</span><br><span class="line"></span><br><span class="line">language: node_js</span><br><span class="line">  node_js:</span><br><span class="line">    - &quot;6&quot;</span><br><span class="line">cache:</span><br><span class="line">  directories:</span><br><span class="line">    - node_modules</span><br><span class="line">before_script:</span><br><span class="line">  - git clone --branch master https://github.com/hunter199129/blog.git public</span><br><span class="line">script:</span><br><span class="line">  - npm run build</span><br><span class="line">after_success:</span><br><span class="line">  - cd public</span><br><span class="line">  - git config user.name &quot;hunter199129&quot;</span><br><span class="line">  - git config user.email &quot;hunter199129@gmail.com&quot;</span><br><span class="line">  - git add --all .</span><br><span class="line">  - git commit -m &quot;Travis CI Auto Builder&quot;</span><br><span class="line">  - git push https://$DEPLOY_TOKEN@github.com/hunter199129/blog.git master</span><br><span class="line">Variable</span><br><span class="line">  branches:</span><br><span class="line">    only:</span><br><span class="line">      - raw</span><br></pre></td></tr></table></figure>
+<p>這樣設定完就完成了，可以push一次後到<a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>上看看log，看有沒有成功！</p>
+<p><img src="http://imgur.com/Edyb5lZ.png" alt="build success"></p>
+<h2 id="安全性相關"><a href="#安全性相關" class="headerlink" title="安全性相關"></a>安全性相關</h2><p>安全性的東西在上面的Ref中有相關的概念，我是覺得目前我的Blog沒什麼重要的東西要注意的啦</p>
+<p>不過其中有一點是Personal Access Token是提供給<strong>全repo</strong>的權限，這是最需要注意的。</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>有了這個方式之後，只要能Access到<a href="https://github.com/" target="_blank" rel="noopener">Github</a>網頁就可以發文啦！用手機平板都能，所以之後可以多寫很多廢文了(誤。</p>
+<p>另外就是因為在網頁發文不能new出一個template，所以可以放個template的file在source底下，這樣發文就更方便了。</p>
+<p>而且也概念上理解了一些<a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>的用法和操作，也算是個不錯的練習。</p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#New-Branch"><span class="toc-text">New Branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-Github’s-Public-Access-Tokens"><span class="toc-text">Generator Github’s Public Access Tokens</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Travis-CI-Web-Setting"><span class="toc-text">Travis CI Web Setting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#package-json-Setting"><span class="toc-text">package.json Setting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Travis-CI-Script-File-travis-yml-Configuration"><span class="toc-text">Travis CI Script File (.travis.yml) Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全性相關"><span class="toc-text">安全性相關</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#後記"><span class="toc-text">後記</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/Github/">Github</a><span></span><a class="article-tag-link" href="/blog/tags/Travis-CI/">Travis CI</a><span></span><a class="article-tag-link" href="/blog/tags/hexo/">hexo</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/03/09/Lubuntu上新酷音的問題/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Lubuntu上新酷音的問題&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)實作篇/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

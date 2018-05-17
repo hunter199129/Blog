@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>防止vim產生un~檔案 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="vim本身預設會在自己的資料夾下建立.~和.un~的檔案，目的是用來做更改紀錄和備份。但有時候就覺得這檔案有點煩，要複製資料夾的時候會複製到也很不方便，所以就要去vimrc改config把他改掉">
+<meta name="keywords" content="vim,ide,vimrc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="防止vim產生un~檔案">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2017/03/23/防止vim產生un~檔案/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="vim本身預設會在自己的資料夾下建立.~和.un~的檔案，目的是用來做更改紀錄和備份。但有時候就覺得這檔案有點煩，要複製資料夾的時候會複製到也很不方便，所以就要去vimrc改config把他改掉">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-05-17T08:40:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="防止vim產生un~檔案">
+<meta name="twitter:description" content="vim本身預設會在自己的資料夾下建立.~和.un~的檔案，目的是用來做更改紀錄和備份。但有時候就覺得這檔案有點煩，要複製資料夾的時候會複製到也很不方便，所以就要去vimrc改config把他改掉">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-防止vim產生un~檔案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      防止vim產生un~檔案
+      <small class=article-detail-date-index>&nbsp; 2017-03-23</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2017/03/23/防止vim產生un~檔案/" class="article-date">
+  <time datetime="2017-03-23T19:41:00.000Z" itemprop="datePublished">2017-03-23</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Linux/">Linux</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2017/03/23/防止vim產生un~檔案/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>vim本身預設會在自己的資料夾下建立<code>.~</code>和<code>.un~</code>的檔案，目的是用來做更改紀錄和備份。<br>但有時候就覺得這檔案有點煩，要複製資料夾的時候會複製到也很不方便，所以就要去<code>vimrc</code>改config把他改掉</p>
+<a id="more"></a>
+<h2 id="vimrc設定"><a href="#vimrc設定" class="headerlink" title="vimrc設定"></a>vimrc設定</h2><pre><code>set noundofile
+set nobackup
+set noswapfile
+</code></pre><p>這三行就是設定把他全部關掉，如果想保留到其他資料夾下，可以用</p>
+<pre><code>undodir=~/.undodir
+</code></pre><p>其他其實在設定文件裡也寫得很明顯，就花點時間看看</p>
+<h2 id="buftype設定"><a href="#buftype設定" class="headerlink" title="buftype設定"></a>buftype設定</h2><p>另外存檔如果遇到報錯<em>E382: Cannot write, ‘buftype’ option is set</em></p>
+<p>可以在vim裡面下<code>:verbose set buftype</code>去看，當buftype=nofile的時候不能存檔；當buftype=<em>null</em>的時候才可以存檔</p>
+<p>可以用<code>:setlocal buftype=</code>改buftype就可以存檔了</p>
+<p>如果要回復就下<code>:setlocal buftype=nofile</code></p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vimrc設定"><span class="toc-text">vimrc設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#buftype設定"><span class="toc-text">buftype設定</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Linux/">Linux</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/ide/">ide</a><span></span><a class="article-tag-link" href="/blog/tags/vim/">vim</a><span></span><a class="article-tag-link" href="/blog/tags/vimrc/">vimrc</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2017/04/03/關於寫Blog/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          關於寫Blog
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2017/03/23/防止vim產生un~檔案/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

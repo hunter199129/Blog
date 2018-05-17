@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo theme settings - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="好久沒有來寫blog，看到之前灌的theme裡面code block的部分真是越看越怪 想說最近應該有新的theme可以用了，就來順手換一下">
+<meta name="keywords" content="hexo,blairos,hexo theme">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo theme settings">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/05/17/Hexo-theme-settings/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="好久沒有來寫blog，看到之前灌的theme裡面code block的部分真是越看越怪 想說最近應該有新的theme可以用了，就來順手換一下">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-05-17T08:34:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo theme settings">
+<meta name="twitter:description" content="好久沒有來寫blog，看到之前灌的theme裡面code block的部分真是越看越怪 想說最近應該有新的theme可以用了，就來順手換一下">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-Hexo-theme-settings" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hexo theme settings
+      <small class=article-detail-date-index>&nbsp; 2018-05-17</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2018/05/17/Hexo-theme-settings/" class="article-date">
+  <time datetime="2018-05-17T11:06:46.000Z" itemprop="datePublished">2018-05-17</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2018/05/17/Hexo-theme-settings/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>好久沒有來寫blog，看到之前灌的theme裡面code block的部分真是越看越怪</p>
+<p>想說最近應該有新的theme可以用了，就來順手換一下</p>
+<a id="more"></a>
+<p>最後找到一個不錯的theme: <a href="https://github.com/52binge/hexo-theme-blairos" target="_blank" rel="noopener">blairos</a></p>
+<p>看起來很簡單也很順眼，就試著設定一下，這邊就記一下設定hexo一些眉眉角角的地方</p>
+<h2 id="Favicon"><a href="#Favicon" class="headerlink" title="Favicon"></a>Favicon</h2><p>在theme的<code>_config.yml</code>最下面就有favicon可以設定</p>
+<p>但是不知道為什麼，檔案路徑怎麼抓就是抓不到</p>
+<p>最後直接丟上傳到github的url給他就好了</p>
+<h2 id="Categories"><a href="#Categories" class="headerlink" title="Categories"></a>Categories</h2><h3 id="Categories-page-amp-Tags-page"><a href="#Categories-page-amp-Tags-page" class="headerlink" title="Categories page &amp; Tags page"></a>Categories page &amp; Tags page</h3><p>我的blog本來是沒有categories的，所以現在要把他加上去</p>
+<ol>
+<li>要先建出一個categories的page</li>
+</ol>
+<pre><code>hexo new page categories
+</code></pre><ol start="2">
+<li>把剛剛建的page類型設為categories</li>
+</ol>
+<pre><code>---
+title: categories
+date: 2018-05-17 10:47:04
+type: &quot;categories&quot;
+---
+</code></pre><p>  <em>Note:</em> Discus評論記得要關掉</p>
+<pre><code>---
+title: categories
+date: 2018-05-17 10:47:04
+type: &quot;categories&quot;
+comments: false
+---
+</code></pre><ol start="3">
+<li>這時候雖然會有分類，但是categories page應該是空的<br>所以要再加上 <code>layout: categories</code> 讓這個page套用theme的規則</li>
+</ol>
+<pre><code>---
+title: categories
+date: 2018-05-17 10:47:04
+layout: categories
+type: &quot;categories&quot;
+comments: false
+---
+</code></pre><p>tag也是一樣的步驟，只是把<strong>categories</strong>都換成<strong>tags</strong></p>
+<h3 id="Post"><a href="#Post" class="headerlink" title="Post"></a>Post</h3><p>文章的部分就是在標頭加上tags跟categories</p>
+<pre><code>---
+title: Hexo theme settings
+date: 2018-05-17 11:06:46
+tags: [hexo, blairos, hexo theme]
+categories: Blog
+---
+</code></pre><h2 id="Table-of-Content"><a href="#Table-of-Content" class="headerlink" title="Table of Content"></a>Table of Content</h2><p>這個主題預設就有toc(Table of Content)了</p>
+<p>不過預設會有標數字，要把自動標數字關掉要找到 <code>article.ejs</code></p>
+<p>把裡面的 <code>&lt;%- toc(post.content) %&gt;</code> 改成 <code>&lt;%- toc(post.content, {list_number:false}) %&gt;</code> 即可</p>
+<h2 id="Read-more"><a href="#Read-more" class="headerlink" title="Read more"></a>Read more</h2><p>這個就比較簡單，只要在文章要顯示read more的地方加上 <code>&lt;!--More--&gt;</code> 即可</p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Favicon"><span class="toc-text">Favicon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Categories"><span class="toc-text">Categories</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Categories-page-amp-Tags-page"><span class="toc-text">Categories page &amp; Tags page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Post"><span class="toc-text">Post</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table-of-Content"><span class="toc-text">Table of Content</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Read-more"><span class="toc-text">Read more</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/blairos/">blairos</a><span></span><a class="article-tag-link" href="/blog/tags/hexo/">hexo</a><span></span><a class="article-tag-link" href="/blog/tags/hexo-theme/">hexo theme</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2017/11/14/解決網頁混合內容(Mixed Content)的問題/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">解決網頁混合內容(Mixed Content)的問題&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/05/17/Hexo-theme-settings/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

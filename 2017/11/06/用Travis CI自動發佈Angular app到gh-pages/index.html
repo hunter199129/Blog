@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用Travis CI自動發佈Angular app到gh-pages - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="持續整合(continuous integrations)在現代軟體開發中是不可或缺的技術，而也有很多公司提供這方面的服務，其中跟Github最緊密的就是Travis CI了。">
+<meta name="keywords" content="Github,Travis CI,Github pages,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Travis CI自動發佈Angular app到gh-pages">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2017/11/06/用Travis CI自動發佈Angular app到gh-pages/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="持續整合(continuous integrations)在現代軟體開發中是不可或缺的技術，而也有很多公司提供這方面的服務，其中跟Github最緊密的就是Travis CI了。">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-05-17T08:42:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Travis CI自動發佈Angular app到gh-pages">
+<meta name="twitter:description" content="持續整合(continuous integrations)在現代軟體開發中是不可或缺的技術，而也有很多公司提供這方面的服務，其中跟Github最緊密的就是Travis CI了。">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-用Travis CI自動發佈Angular app到gh-pages" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用Travis CI自動發佈Angular app到gh-pages
+      <small class=article-detail-date-index>&nbsp; 2017-11-06</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2017/11/06/用Travis CI自動發佈Angular app到gh-pages/" class="article-date">
+  <time datetime="2017-11-06T09:11:00.000Z" itemprop="datePublished">2017-11-06</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Devops/">Devops</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2017/11/06/用Travis CI自動發佈Angular app到gh-pages/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>持續整合(continuous integrations)在現代軟體開發中是不可或缺的技術，而也有很多公司提供這方面的服務，其中跟Github最緊密的就是<a href="travis-ci.org">Travis CI</a>了。</p>
+<a id="more"></a>
+<p>Travis CI提供了在Github上只要是open-source的專案就可以免費使用的方案，所以也很適合拿來做CI的config練習。CI在這些平台的支援之下，也只是做configuration的調整而已。</p>
+<h2 id="Preconditions"><a href="#Preconditions" class="headerlink" title="Preconditions"></a>Preconditions</h2><ul>
+<li>Angular專案</li>
+<li>Github repo</li>
+</ul>
+<h2 id="Github-Settings"><a href="#Github-Settings" class="headerlink" title="Github Settings"></a>Github Settings</h2><p>這邊要先設定Personal access token讓Travis CI可以發佈新的branch</p>
+<p><code>Account &gt; Settings &gt; Personal access tokens</code></p>
+<p>新增一個token，權限控制選public_repo就好，建好之後把token先存下來，之後要丟給Travis CI</p>
+<h2 id="Travis-CI-Settings"><a href="#Travis-CI-Settings" class="headerlink" title="Travis CI Settings"></a>Travis CI Settings</h2><p>這邊的話要先連到自己的Github account，找到要整合的repo，勾選之後進到Settings裡面</p>
+<p>把<code>General &gt; Build only if .travis.yml is present</code>選到<em>on</em></p>
+<p><code>Environment Variables</code>這邊新增一個變數叫<em>GITHUB_TOKEN</em>，value就是剛剛從github取到的token</p>
+<p>這樣這邊就算設定好了</p>
+<h2 id="Project-Settings"><a href="#Project-Settings" class="headerlink" title="Project Settings"></a>Project Settings</h2><p>接下來就是要設置專案的CI設定</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>找到專案中的<code>package.json</code>，新增<code>build.prod</code>指令如下</p>
+<pre><code>{
+    ...
+    &quot;scripts&quot;: {
+        &quot;ng&quot;: &quot;ng&quot;,
+        &quot;start&quot;: &quot;ng serve&quot;,
+        &quot;build&quot;: &quot;ng build&quot;,
+        &quot;test&quot;: &quot;ng test&quot;,
+        &quot;lint&quot;: &quot;ng lint&quot;,
+        &quot;e2e&quot;: &quot;ng e2e&quot;,
+        &quot;build.prod&quot;: &quot;ng build --aot --prod --progress false --base-href \&quot;https://&lt;user-name&gt;.github.io/&lt;repository-name&gt;/\&quot;&quot;
+    },
+    ...
+}
+</code></pre><p>這邊要一定要設定<code>base-href</code>的參數，因為Angular app的原始設定會預設編成<code>https://&lt;user-name&gt;.github.io/</code>而不是<code>https://&lt;user-name&gt;.github.io/&lt;repository-name&gt;/</code></p>
+<h3 id="travis-yml"><a href="#travis-yml" class="headerlink" title=".travis.yml"></a>.travis.yml</h3><p>在專案的根目錄要新增一個<code>.travis.yml</code>的檔案，是給Travis CI的設定</p>
+<p>這邊參照<a href="https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token" target="_blank" rel="noopener">Travis docs</a>的設定，改成如下</p>
+<pre><code>language: node_js
+node_js:
+- &quot;6&quot;
+
+branches:
+only:
+    - master
+
+cache:
+directories:
+    - node_modules
+
+script:
+- npm run build.prod
+
+deploy:
+provider: pages
+skip_cleanup: true
+github_token: $GITHUB_TOKEN
+local_dir: dist
+on:
+    branch: master
+</code></pre><h2 id="Push-to-Github"><a href="#Push-to-Github" class="headerlink" title="Push to Github"></a>Push to Github</h2><p>全部設定完就可以先推到Github上，接下來Travis CI就會自動編譯Angular app到gh-pages的branch上。</p>
+<p>最後只要再到repo settings開啟Github pages，設定到gh-pages的branch，這樣就全部都設定完成了。之後只要code有變動push到Github上，Github pages上的內容也會跟著改動，這樣就不用每次編譯都要重推兩份code了。</p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Preconditions"><span class="toc-text">Preconditions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github-Settings"><span class="toc-text">Github Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Travis-CI-Settings"><span class="toc-text">Travis CI Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project-Settings"><span class="toc-text">Project Settings</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json"><span class="toc-text">package.json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#travis-yml"><span class="toc-text">.travis.yml</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Push-to-Github"><span class="toc-text">Push to Github</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Devops/">Devops</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/Angular/">Angular</a><span></span><a class="article-tag-link" href="/blog/tags/Github/">Github</a><span></span><a class="article-tag-link" href="/blog/tags/Github-pages/">Github pages</a><span></span><a class="article-tag-link" href="/blog/tags/Travis-CI/">Travis CI</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2017/11/10/Install C# extension's extra packages in vscode without network connection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Install C# extension extra packages in vscode without network connection
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/10/06/[Windows] 右鍵選單加入Powershell/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[Windows] 右鍵選單加入Powershell&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2017/11/06/用Travis CI自動發佈Angular app到gh-pages/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

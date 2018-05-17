@@ -2,12 +2,16 @@
 title: '防止vim產生un~檔案'
 date: 2017-03-23 19:41:00
 tags: [vim, ide, vimrc]
+categories: Linux
 ---
-## vimrc設定
 
 vim本身預設會在自己的資料夾下建立`.~`和`.un~`的檔案，目的是用來做更改紀錄和備份。  
 但有時候就覺得這檔案有點煩，要複製資料夾的時候會複製到也很不方便，所以就要去`vimrc`改config把他改掉
 	
+<!--More-->
+
+## vimrc設定
+    
 	set noundofile
     set nobackup
     set noswapfile

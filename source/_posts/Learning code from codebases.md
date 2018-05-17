@@ -2,12 +2,15 @@
 title: 'Learning code from codebases'
 date: 2017-10-03 13:11:00
 tags: [Learning, Code Skill, Github]
+categories: Personal
 ---
-# Learning code from codebases
 
 今天早上看到了一篇滿有趣的文章: [Interest Codebases](https://medium.com/@markpapadakis/interesting-codebases-159fec5a8cc)。
 
 內容分為兩個部分。  
+
+<!--More-->
+
 第一部分是作者在講述他喜歡從別人的code裡面看一些好的Code design, algorithms, tricks等等。  
 第二部分就是列出一些他覺得不錯的Codebases，並寫一些簡短的原因。  
 不過其實內容講述的有點少，剛好他有附上[HackerNews](https://news.ycombinator.com/item?id=15371597)上的連結，就也進去看了一下。

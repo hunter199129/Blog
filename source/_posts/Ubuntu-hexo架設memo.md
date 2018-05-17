@@ -1,11 +1,15 @@
 ---
-title: Ubuntu hexo架設memo
+title: hexo架設memo
 date: 2016-10-06 15:43:05
-tags: [hexo, blog, Ubuntu]
+tags: [hexo, blog]
+categories: Blog
 ---
+
 架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。
 
 還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。
+
+<!--More-->
 
 #### 遭遇到的問題
 1. Ubtunu上nodejs套件npm跟hexo對不上，解決的辦法就是讓node更新，下cli指令也可以，也不清楚我怎麼弄的，總之試了幾次就架好了。

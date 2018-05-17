@@ -1,12 +1,15 @@
 ---
-title: 'Install C# extension's extra packages in vscode without network connection'
+title: 'Install C# extension extra packages in vscode without network connection'
 date: 2017-11-10 15:29:00
 tags: [vscode]
+categories: Windows
 ---
 
 安裝完C#擴充套件之後，會有兩個檔案需要再另外下載
 
 如果vscode被防火牆擋住，又沒辦法設定proxy，每次重開vscode的時候都會去重載那兩個檔案
+
+<!--More-->
 
 然後一直失敗
 

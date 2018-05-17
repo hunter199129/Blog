@@ -2,10 +2,14 @@
 title: Ubuntu目錄中文改英文
 date: 2016-10-06 16:05:07
 tags: [Ubuntu]
+categories: Linux
 ---
-#### 這樣會比較方便在Terminal作業。
+
+這樣會比較方便在Terminal作業。
 
 雖然也是網路上的解法，而且也是個簡單的問題，不過就當作紀錄，以後要找也方便。
+
+<!--More-->
 
 在Terminal打
 

@@ -2,9 +2,12 @@
 title: 關於寫Blog
 date: 2017-04-03 14:32:00
 tags: [blog, writing, praticing, thoughts]
+categories: Blog
 ---
 
 最近在PTT上的soft_job版有在討論[[心得] 寫blog的好處](https://www.ptt.cc/bbs/Soft_Job/M.1490515107.A.62D.html)，看到很多的觀念很好也跟我之前開始寫Blog的想法不謀而合也有很多我沒思考過的點，又發現剛好我還沒寫關於這部分的想法，就想說那也來寫寫吧。
+
+<!--More-->
 
 其實在91的Blog文章[我為什麼鼓勵工程師寫 blog](https://dotblogs.com.tw/hatelove/2017/03/26/why-engineers-should-keep-blogging)中已經寫得很明確了，寫Blog有多種好處，其實就跟寫作一樣，其中最為重要的，就是關於表達能力的培養。
 

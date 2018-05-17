@@ -2,8 +2,12 @@
 title: '[ASP.NET] SqlDependency+SignalR memo'
 date: 2017-04-19 10:07:00
 tags: [ASP.NET, SqlDependency, SignalR, Work]
+categories: Coding
 ---
+
 近期老闆想弄一個像是**Dashboard**和**Messenger**的服務，所以我就趁勢研究了一下這東西在asp.net中該怎麼做，主要是透過兩個asp.net的元件: 
+
+<!--More-->
 
 * [SqlDependency](https://msdn.microsoft.com/zh-tw/library/62xk7953.aspx): 用Sql**監視**DB中的資料，若資料變更則觸發動作。
 

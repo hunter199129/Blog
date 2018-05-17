@@ -2,8 +2,12 @@
 title: '[Windows] 右鍵選單加入Powershell'
 date: 2017-10-06 16:00:00
 tags: [Windows, Regedit, Powershell, cmd]
+categories: Windows
 ---
+
 Windows的cmd一直都比Linux的難用很多，用起來就是一整個不習慣，最麻煩的就是要找路徑，雖然複製路徑很方便了，但是如果能直接右鍵打開不是更好？所以就找了方法去做這件事。
+
+<!--More-->
 
 ## 用Regedit編輯機碼
 

@@ -2,11 +2,14 @@
 title: '解決網頁混合內容(Mixed Content)的問題'
 date: 2017-11-14 09:06:00
 tags: [http, web, CSP]
+categories: Coding
 ---
 
 寫過前端的都知道，http跟https在同一個頁面上不能混用
 
 否則就會造成[混合內容(Mixed Content)](https://developer.mozilla.org/zh-TW/docs/Security/MixedContent)的問題
+
+<!--More-->
 
 這個問題說好解很好解，因為只要把網頁全部Request改成http或https其中一個就好了
 

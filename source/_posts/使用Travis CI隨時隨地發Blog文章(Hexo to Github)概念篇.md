@@ -2,10 +2,14 @@
 title: 使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇
 date: 2017-03-13 13:39:00
 tags: [hexo, Travis CI, Github]
+categories: Blog
 ---
+
 之前架好Hexo之後，沒事就可以很開心的用我的筆電無聊寫寫一些blog文，`hexo new`建template、寫好之後`hexo g -d`建立發佈，輕鬆方便。
 
 但是之後發現這會有一個問題，就是當筆電不在我身邊的時候我就沒辦法發佈文章了。除非我有我hexo框架和文章的原始碼，就算在家裡另一台電腦我也沒辦法做。所以就誕生了這篇文章。
+
+<!--More-->
 
 ## Problem Scope
 

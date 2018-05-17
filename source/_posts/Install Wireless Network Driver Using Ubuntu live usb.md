@@ -2,10 +2,14 @@
 title: 'Install Wireless Network Driver Using Ubuntu live usb'
 date: 2017-06-12 20:20:00
 tags: [Ubuntu, Installation, Wifi]
+categories: Linux
 ---
+
 經過上次心血來潮更新Ubuntu到17.10之後，遇到的問題只有越來越多。
 
 從剛開始開機會一直跳錯誤，到後來Software Center幾乎不能用，到最後每次開機都要去`/etc/resolv.conf`重設定一次DNS server，不然不能上網，最後只好認命重灌。
+
+<!--More-->
 
 中間也試了一下用看看Arch-base的[Manjaro](https://manjaro.github.io/)，雖然也不算難用，但就是不習慣。
 

@@ -2,10 +2,14 @@
 title: HDE面試-我人生中第一次英文面試
 date: 2016-10-27 00:12:46
 tags: [HDE, interview, internship, Japan]
+categories: Personal
 ---
 
-## 準備
 剛開始本來是想說讀讀英文讓自己習慣英文的口說，就看了一些空中英語，但之後覺得空中英語裡面的英文有點不這麼實用，所以就又想說直接找面試跟一些相關的英文來看就好了。所以下面有我參考的一些網站。
+
+<!--More-->
+
+## 準備
 
 首先是阿滴的youtube影片：
 - [英文面試五大必問問題與最佳應答](https://www.youtube.com/watch?v=AqpCPwlwEz8)

@@ -1,0 +1,21 @@
+# Header
+logo_text: Nobody Could've Know What You're Thinking # Add text logo instead of logo image
+menu:
+  Home: /
+  Archives: archives
+  Tags: tags
+  Categories: categories
+  Github: https://github.com/hunter199129
+  About Me: http://hunter199129.github.io
+
+# Content
+excerpt_link: Read More
+toc: true
+fancybox: true
+
+#comments
+disqus_shortname: hunter199129
+
+# Miscellaneous
+google_analytics:
+favicon: https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico

@@ -1,5 +1,5 @@
 ---
-title: 'Install C# extension extra packages in vscode without network connection'
+title: 'Install C_Sharp extension extra packages in vscode without network connection'
 date: 2017-11-10 15:29:00
 tags: [vscode]
 categories: Windows

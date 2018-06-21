@@ -7,7 +7,7 @@ categories: Linux
 
 1. 先安裝ibus chewing
 
-    sudo apt install ibus-chewing
+        sudo apt install ibus-chewing
 
 <!--More-->    
 

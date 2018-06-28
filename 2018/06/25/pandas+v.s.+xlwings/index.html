@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Load excel data to python, pandas vs. xlwings - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="開始搞 data 之後就知道 ETL 是多重要的東西 但是 ETL 的工具大部分都綁手綁腳的，所以就開始嘗試自己動手用 python 做 ETL">
+<meta name="keywords" content="python,data science,data engineering,pandas,xlwings">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Load excel data to python, pandas vs. xlwings">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/06/25/pandas+v.s.+xlwings/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="開始搞 data 之後就知道 ETL 是多重要的東西 但是 ETL 的工具大部分都綁手綁腳的，所以就開始嘗試自己動手用 python 做 ETL">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-06-28T00:16:55.697Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Load excel data to python, pandas vs. xlwings">
+<meta name="twitter:description" content="開始搞 data 之後就知道 ETL 是多重要的東西 但是 ETL 的工具大部分都綁手綁腳的，所以就開始嘗試自己動手用 python 做 ETL">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-pandas+v.s.+xlwings" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Load excel data to python, pandas vs. xlwings
+      <small class=article-detail-date-index>&nbsp; 2018-06-25</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2018/06/25/pandas+v.s.+xlwings/" class="article-date">
+  <time datetime="2018-06-25T15:42:00.000Z" itemprop="datePublished">2018-06-25</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Data-Science/">Data Science</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2018/06/25/pandas+v.s.+xlwings/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>開始搞 data 之後就知道 ETL 是多重要的東西</p>
+<p>但是 ETL 的工具大部分都綁手綁腳的，所以就開始嘗試自己動手用 python 做 ETL </p>
+<a id="more"></a>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>在沒用 python 之前，因為公司是用 SQL server<br>所以想當然爾， ETL 都是用 <a href="https://docs.microsoft.com/zh-tw/sql/integration-services/sql-server-integration-services?view=sql-server-2017" target="_blank" rel="noopener">SSIS</a> 來做</p>
+<p>但圖形化的工具有一個致命性的缺點，就是慢!<br>剛好最近想學一點 python 就順水推舟用 python 來做 ETL</p>
+<p>剛開始用 <a href="https://openpyxl.readthedocs.io/" target="_blank" rel="noopener">openpyxl</a> + <a href="https://www.sqlalchemy.org/" target="_blank" rel="noopener">SQLAlchemy</a> 來做讀 excel 在塞進資料庫<br>但是這兩個套件的效率都很低</p>
+<p>之後看了網路上其他人的效能測試，讀 excel 端就改用了 <a href="xlwings.org">xlwings</a><br>而寫入資料庫是用<a href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Windows" target="_blank" rel="noopener">pyodbc</a> ，比起 <em>SQLALchemy</em> 要每次把 model 建出來，速度提升不少</p>
+<p>這套我也用了不少次，但周末聽朋友推薦說都用 <a href="https://pandas.pydata.org/" target="_blank" rel="noopener">pandas</a> 來讀 excel ，就想說那就來比比看吧<br>況且在 <em>pandas</em> 底下，資料操作應該會比較方便<br><em>NOTE: pandas 讀 excel 的 module 是 <a href="https://xlrd.readthedocs.io/" target="_blank" rel="noopener">xlrd</a></em></p>
+<h2 id="Let’s-Begin"><a href="#Let’s-Begin" class="headerlink" title="Let’s Begin"></a>Let’s Begin</h2><p>這邊用的 data 是用比利時政府的資料: <a href="https://statbel.fgov.be/en/open-data/population-place-residence-nationality-marital-status-age-and-sex-8" target="_blank" rel="noopener">Population by place of residence, nationality, marital status, age and sex</a> 來做測試<br>畢竟不能用公司的資料，但要找跟公司資料相近性質和大小的 data 來做測試</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line"><span class="keyword">import</span> xlwings <span class="keyword">as</span> xw</span><br><span class="line"></span><br><span class="line">path = <span class="string">r'C:\Users\10512157\Desktop\TF_SOC_POP_STRUCT_2018.xlsx'</span></span><br></pre></td></tr></table></figure>
+<h2 id="Loading-data-from-pandas-and-measure-the-time-consumption"><a href="#Loading-data-from-pandas-and-measure-the-time-consumption" class="headerlink" title="Loading data from pandas and measure the time consumption"></a>Loading data from pandas and measure the time consumption</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">timer_start = timeit.default_timer()</span><br><span class="line"></span><br><span class="line">t = pd.read_excel(path)</span><br><span class="line"></span><br><span class="line">timer_end = timeit.default_timer()</span><br><span class="line">print(timer_end - timer_start)</span><br></pre></td></tr></table></figure>
+<pre><code>75.93760436134232
+</code></pre><h2 id="Loading-data-from-xlwings-and-measure-the-time-consumption"><a href="#Loading-data-from-xlwings-and-measure-the-time-consumption" class="headerlink" title="Loading data from xlwings and measure the time consumption"></a>Loading data from xlwings and measure the time consumption</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">timer_start = timeit.default_timer()</span><br><span class="line"></span><br><span class="line">app = xw.App(visible=<span class="keyword">False</span>)</span><br><span class="line">wb = app.books.open(path)</span><br><span class="line">sht = wb.sheets[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">timer_end = timeit.default_timer()</span><br><span class="line">print(timer_end - timer_start)</span><br></pre></td></tr></table></figure>
+<pre><code>17.660102651995146
+</code></pre><p>我們可以看到 <em>xlwings</em> 讀資料的速度明顯比 <em>pandas</em> 快上不少<br>資料的操作方法我這邊就不細比  </p>
+<p>這邊在測試的時候倒是發現一件有趣的事</p>
+<h2 id="Putting-data-from-xlwings-to-pandas-dataframe"><a href="#Putting-data-from-xlwings-to-pandas-dataframe" class="headerlink" title="Putting data from xlwings to pandas dataframe"></a>Putting data from xlwings to pandas dataframe</h2><p>我們嘗試把 <em>xlwings</em> 拉進來的資料塞到 <em>pandas</em> DataFrame<br><em>xlwings</em> 官方有提供 api 可以直接塞</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xw_to_pd = sht.range(<span class="string">'A:V'</span>).options(pd.DataFrame, index=<span class="keyword">False</span>).value</span><br></pre></td></tr></table></figure>
+<pre><code>.
+.
+.
+c:\users\10512157\appdata\local\continuum\anaconda3\lib\site-packages\win32com\client\dynamic.py in __getattr__(self, attr)
+    514                         debug_attr_print(&quot;Getting property Id 0x%x from OLE object&quot; % retEntry.dispid)
+    515                         try:
+--&gt; 516                                 ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+    517                         except pythoncom.com_error as details:
+    518                                 if details.hresult in ERRORS_BAD_CONTEXT:
+
+
+com_error: (-2147024882, &apos;存放裝置空間不足，無法完成此操作。&apos;, None, None)
+</code></pre><p>我們會發現他會出現 <em>存放裝置空間不足，無法完成此操作。</em> 的 error</p>
+<p>照這樣說 <em>pandas</em> 可以全部塞進去，所以是在 memory 存放有做優化囉<br>看起來是這樣沒錯，但是 <em>xlwings</em> 有一點小bug  </p>
+<p>我們單載入一列，然後來看一下載進來的資料筆數</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">f'pandas: <span class="subst">&#123;len(t)&#125;</span>'</span>)</span><br><span class="line">xw_to_pd = sht.range(<span class="string">'A:A'</span>).options(pd.DataFrame, index=<span class="keyword">False</span>).value</span><br><span class="line">print(<span class="string">f'xlwings to pandas: <span class="subst">&#123;len(xw_to_pd)&#125;</span>'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>pandas: 465418
+xlwings to pandas: 1048575
+</code></pre><p>咦? 怎麼兩個筆數不一樣多<br>看了資料名名才40萬筆， <em>xlwings</em> 怎麼會有100多萬筆</p>
+<p>再用原生的 <em>xlwings</em> api 抓看看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sht.range(<span class="string">'A1'</span>).current_region.last_cell.row</span><br></pre></td></tr></table></figure>
+<pre><code>465419
+</code></pre><p>真的40萬多筆阿!</p>
+<p>所以看來是轉到 <em>pandas</em> 的時候出錯了</p>
+<h2 id="Dig-deeper-in-xlwings"><a href="#Dig-deeper-in-xlwings" class="headerlink" title="Dig deeper in xlwings"></a>Dig deeper in xlwings</h2><p>這邊我們再用另一個方法來抓</p>
+<p>看看只抓40萬筆的時候是不是可以塞進去的</p>
+<p>這邊是 <em>xlwings</em> 抓資料更好的做法</p>
+<p>可以抓到 excel 的 range 之後存成指定範圍</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## find range of rows</span></span><br><span class="line">used_range_rows = (sht.api.UsedRange.Row, sht.api.UsedRange.Row + sht.api.UsedRange.Rows.Count) </span><br><span class="line"><span class="comment">## find range of columns</span></span><br><span class="line">used_range_cols = (sht.api.UsedRange.Column, sht.api.UsedRange.Column + sht.api.UsedRange.Columns.Count) </span><br><span class="line"></span><br><span class="line"><span class="comment">## assign range</span></span><br><span class="line">used_range = xw.Range(*zip(used_range_rows, used_range_cols))</span><br><span class="line">used_range.select()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xw_to_pd = sht.range(used_range).options(pd.DataFrame, index=<span class="keyword">False</span>).value</span><br></pre></td></tr></table></figure>
+<pre><code>.
+.
+.
+c:\users\10512157\appdata\local\continuum\anaconda3\lib\site-packages\win32com\client\dynamic.py in __getattr__(self, attr)
+    514                         debug_attr_print(&quot;Getting property Id 0x%x from OLE object&quot; % retEntry.dispid)
+    515                         try:
+--&gt; 516                                 ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+    517                         except pythoncom.com_error as details:
+    518                                 if details.hresult in ERRORS_BAD_CONTEXT:
+
+
+com_error: (-2147024882, &apos;存放裝置空間不足，無法完成此操作。&apos;, None, None)
+</code></pre><p>又出現存放空間不足的問題了</p>
+<p>看來只塞指定的資料也是進不去的…</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>以上述的試驗來看， <em>pandas</em> 完勝 <em>xlwings</em> ，唯一輸的地方只有讀資料的時候比較慢<br>但我認為應該是因為 <em>pandas</em> <strong>可能</strong>有先做資料壓縮，不過這也是要看 source code 才會知道</p>
+<p>但是在資料操作上 <em>pandas</em> 一定也是完勝的，所以除非不透過 <em>pandas</em><br>不然 <em>xlwings</em> 也是沒有必要的</p>
+<p>對了，順便再提個自己的 case study</p>
+<p>如果要直接把資料丟進 SQL Server 裡面，比起用 <em>xlwings+pyodbc</em> 塞資料<br>用 <em>SSIS</em> 或是 SQL Server 內建的匯入要快的多</p>
+<p>所以除非是要自動化，不然塞資料最快的方法還是用 <em>pandas</em> 先把資料轉成 csv file<br>再用 SQL Server 直接塞資料<br>就算是要自動化， <em>pandas</em> 多的那一分鐘也不會改變什麼</p>
+<p>結論還是 <strong>pandas 完勝</strong></p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Let’s-Begin"><span class="toc-text">Let’s Begin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loading-data-from-pandas-and-measure-the-time-consumption"><span class="toc-text">Loading data from pandas and measure the time consumption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loading-data-from-xlwings-and-measure-the-time-consumption"><span class="toc-text">Loading data from xlwings and measure the time consumption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Putting-data-from-xlwings-to-pandas-dataframe"><span class="toc-text">Putting data from xlwings to pandas dataframe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dig-deeper-in-xlwings"><span class="toc-text">Dig deeper in xlwings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Data-Science/">Data Science</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/data-engineering/">data engineering</a><span></span><a class="article-tag-link" href="/blog/tags/data-science/">data science</a><span></span><a class="article-tag-link" href="/blog/tags/pandas/">pandas</a><span></span><a class="article-tag-link" href="/blog/tags/python/">python</a><span></span><a class="article-tag-link" href="/blog/tags/xlwings/">xlwings</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018/05/29/Debian & Ubuntu 設定中文輸入法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Debian &amp; Ubuntu 設定中文輸入法&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/06/25/pandas+v.s.+xlwings/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

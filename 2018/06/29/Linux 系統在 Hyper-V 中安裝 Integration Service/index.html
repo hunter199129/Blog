@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hexo架設memo - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>Linux 系統在 Hyper-V 中安裝 Integration Service - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。 還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。">
-<meta name="keywords" content="hexo,blog">
+  <meta name="description" content="在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題 像是: 在桌面環境不能使用滑鼠、網路找不到 MAC 等等">
+<meta name="keywords" content="Hyper-V,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo架設memo">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2016/10/06/Ubuntu-hexo架設memo/index.html">
+<meta property="og:title" content="Linux 系統在 Hyper-V 中安裝 Integration Service">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。 還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。">
+<meta property="og:description" content="在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題 像是: 在桌面環境不能使用滑鼠、網路找不到 MAC 等等">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2018-06-29T07:40:07.979Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo架設memo">
-<meta name="twitter:description" content="架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。 還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。">
+<meta name="twitter:title" content="Linux 系統在 Hyper-V 中安裝 Integration Service">
+<meta name="twitter:description" content="在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題 像是: 在桌面環境不能使用滑鼠、網路找不到 MAC 等等">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-Ubuntu-hexo架設memo" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-Linux 系統在 Hyper-V 中安裝 Integration Service" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hexo架設memo
-      <small class=article-detail-date-index>&nbsp; 2016-10-06</small>
+      Linux 系統在 Hyper-V 中安裝 Integration Service
+      <small class=article-detail-date-index>&nbsp; 2018-06-29</small>
     </h1>
   
 
@@ -82,39 +82,37 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2016/10/06/Ubuntu-hexo架設memo/" class="article-date">
-  <time datetime="2016-10-06T15:43:05.000Z" itemprop="datePublished">2016-10-06</time>
+      <!--<a href="/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/" class="article-date">
+  <time datetime="2018-06-29T15:36:00.000Z" itemprop="datePublished">2018-06-29</time>
 </a>-->
       <!-- 
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+    <a class="article-category-link" href="/blog/categories/Devops/">Devops</a>
   </div>
 
 --><!-- by blair 160724 -->
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2016/10/06/Ubuntu-hexo架設memo/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。</p>
-<p>還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。</p>
+        <p>在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題</p>
+<p>像是: 在桌面環境不能使用滑鼠、網路找不到 MAC 等等</p>
 <a id="more"></a>
-<h4 id="遭遇到的問題"><a href="#遭遇到的問題" class="headerlink" title="遭遇到的問題"></a>遭遇到的問題</h4><ol>
-<li>Ubtunu上nodejs套件npm跟hexo對不上，解決的辦法就是讓node更新，下cli指令也可以，也不清楚我怎麼弄的，總之試了幾次就架好了。</li>
-<li>hexo new “post”的時候遇到權限問題。就算用sudo去new，雖然它說有建立檔案，但卻也看不到建立的檔案。解決辦法就是直接把hexo原本的資料夾砍掉，重新hexo init一個新的資料夾就好了。</li>
+<p>安裝的方法其實很簡單，以 CentOS 為例</p>
+<ol>
+<li>去 Microsoft 官網下載 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=55106" target="_blank" rel="noopener">Linux Integration Disk</a></li>
+<li>把 ISO 掛載到 Instance 上</li>
+<li>想辦法打開 Terminal (CentOS 可以用 <strong>Alt + F1</strong> 開啟選單)</li>
+<li><code>cd /media/CDROM</code></li>
+<li>找到 Linux 的版本，執行相對應資料夾下的 <code>install.sh</code> (CentOS 6.3 版就是找 <strong>RHEL63</strong> 的資料夾)</li>
+<li>重開機之後，就會發現一切正常了!</li>
 </ol>
-<h4 id="Reference-Sites"><a href="#Reference-Sites" class="headerlink" title="Reference Sites"></a>Reference Sites</h4><ul>
-<li><a href="http://div.io/topic/1691" target="_blank" rel="noopener">手把手教你使用Hexo + Github Pages搭建个人独立博客</a></li>
-<li><a href="https://hexo.io/zh-tw/docs/" target="_blank" rel="noopener">Hexo Doc</a></li>
-<li><a href="http://www.cnblogs.com/renkangke/archive/2013/05/31/conquerAndroid.html" target="_blank" rel="noopener">git push用法和常见问题分析 </a></li>
-<li><a href="https://wwssllabcd.github.io/blog/2014/12/22/how-to-install-hexo/" target="_blank" rel="noopener">Hexo 安裝教學、心得筆記 </a></li>
-<li><a href="http://blog.thepetertung.com/2016/07/28/how-to-use-hexo-to-build-your-blog-1/" target="_blank" rel="noopener">使用 Hexo 與 Github 架設自己的 Blog</a></li>
-</ul>
 
       
      <!-- by blair add this if sentence at 20160725 -->
@@ -123,17 +121,12 @@
     
     </div>
     
-      <div class="article-toc">
-        <h3>Contents</h3>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#遭遇到的問題"><span class="toc-text">遭遇到的問題</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reference-Sites"><span class="toc-text">Reference Sites</span></a></li></ol>
-      </div>
-    
     
       <footer class="article-footer">
         <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
         
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+    <a class="article-category-link" href="/blog/categories/Devops/">Devops</a>
   </div>
 
  <!-- by blair add 160724-->
@@ -142,7 +135,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/blog/">blog</a><span></span><a class="article-tag-link" href="/blog/tags/hexo/">hexo</a>
+    <a class="article-tag-link" href="/blog/tags/Hyper-V/">Hyper-V</a><span></span><a class="article-tag-link" href="/blog/tags/Linux/">Linux</a>
   </div>
 
 
@@ -153,14 +146,10 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2016/10/06/Ubuntu目錄中文改英文/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          Ubuntu目錄中文改英文
-        
-      </div>
-    </a>
   
+    <a href="/blog/2018/06/25/pandas+v.s.+xlwings/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Load excel data to python, pandas vs. xlwings&nbsp;<span>&gt;</span></div>
+    </a>
   
 </nav>
 
@@ -188,7 +177,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2016/10/06/Ubuntu-hexo架設memo/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/';
   
   (function(){
     var dsq = document.createElement('script');

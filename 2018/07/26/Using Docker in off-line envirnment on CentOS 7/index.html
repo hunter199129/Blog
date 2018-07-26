@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Ubuntu目錄中文改英文 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>Using Docker in off-line envirnment on CentOS 7 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="這樣會比較方便在Terminal作業。 雖然也是網路上的解法，而且也是個簡單的問題，不過就當作紀錄，以後要找也方便。">
-<meta name="keywords" content="Ubuntu">
+  <meta name="description" content="Sometimes we need to build server at the internal network environment. So, here’s the instruction how to build docker image to container in off-line environment.">
+<meta name="keywords" content="CentOS,docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu目錄中文改英文">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2016/10/06/Ubuntu目錄中文改英文/index.html">
+<meta property="og:title" content="Using Docker in off-line envirnment on CentOS 7">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="這樣會比較方便在Terminal作業。 雖然也是網路上的解法，而且也是個簡單的問題，不過就當作紀錄，以後要找也方便。">
+<meta property="og:description" content="Sometimes we need to build server at the internal network environment. So, here’s the instruction how to build docker image to container in off-line environment.">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2018-07-26T07:21:20.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu目錄中文改英文">
-<meta name="twitter:description" content="這樣會比較方便在Terminal作業。 雖然也是網路上的解法，而且也是個簡單的問題，不過就當作紀錄，以後要找也方便。">
+<meta name="twitter:title" content="Using Docker in off-line envirnment on CentOS 7">
+<meta name="twitter:description" content="Sometimes we need to build server at the internal network environment. So, here’s the instruction how to build docker image to container in off-line environment.">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-Ubuntu目錄中文改英文" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-Using Docker in off-line envirnment on CentOS 7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu目錄中文改英文
-      <small class=article-detail-date-index>&nbsp; 2016-10-06</small>
+      Using Docker in off-line envirnment on CentOS 7
+      <small class=article-detail-date-index>&nbsp; 2018-07-26</small>
     </h1>
   
 
@@ -82,32 +82,43 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2016/10/06/Ubuntu目錄中文改英文/" class="article-date">
-  <time datetime="2016-10-06T16:05:07.000Z" itemprop="datePublished">2016-10-06</time>
+      <!--<a href="/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/" class="article-date">
+  <time datetime="2018-07-26T15:14:00.000Z" itemprop="datePublished">2018-07-26</time>
 </a>-->
       <!-- 
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Linux/">Linux</a>
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
   </div>
 
 --><!-- by blair 160724 -->
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2016/10/06/Ubuntu目錄中文改英文/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>這樣會比較方便在Terminal作業。</p>
-<p>雖然也是網路上的解法，而且也是個簡單的問題，不過就當作紀錄，以後要找也方便。</p>
+        <p>Sometimes we need to build server at the internal network environment.</p>
+<p>So, here’s the instruction how to build docker image to container in off-line environment.</p>
 <a id="more"></a>
-<p>在Terminal打</p>
-<pre><code>LANG=C xdg-user-dirs-gtk-update
-</code></pre><p>這個指令然後會跳出一個視窗，選Update Names就可以了。</p>
-<p>這樣所有已經本地化的目錄名字都會變成英文，但留意之前保存在中文目錄下的檔案，是<strong>不會自行改變位置</strong>的，你需要手動將原來目錄下的檔案移至新目錄，例如將「圖片」下的內容移到 Pictures 目錄下。</p>
+<ol>
+<li>Follow the <a href="https://docs.docker.com/install/linux/docker-ce/binaries/#prerequisites" target="_blank" rel="noopener">offical guide</a></li>
+<li>Setup docker on google cloud engine instance, which can access docker hub</li>
+<li>Download image, for instance, hello-world</li>
+<li><pre><code>sudo docker pull hello-world
+</code></pre></li>
+<li><p>Save docker image as file</p>
+<pre><code>sudo docker save -o hello-world.docker hello-world
+</code></pre></li>
+<li><p>Transfer file to target server</p>
+</li>
+<li><p>Load file from target server</p>
+<pre><code>sudo docker load -i hello-world.docker
+</code></pre></li>
+</ol>
 
       
      <!-- by blair add this if sentence at 20160725 -->
@@ -121,7 +132,7 @@
         <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
         
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Linux/">Linux</a>
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
   </div>
 
  <!-- by blair add 160724-->
@@ -130,7 +141,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/Ubuntu/">Ubuntu</a>
+    <a class="article-tag-link" href="/blog/tags/CentOS/">CentOS</a><span></span><a class="article-tag-link" href="/blog/tags/docker/">docker</a>
   </div>
 
 
@@ -141,17 +152,9 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2016/10/27/HDE面試-我人生中第一次英文面試/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          HDE面試-我人生中第一次英文面試
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2016/10/06/Ubuntu-hexo架設memo/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo架設memo&nbsp;<span>&gt;</span></div>
+    <a href="/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux 系統在 Hyper-V 中安裝 Integration Service&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -180,7 +183,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2016/10/06/Ubuntu目錄中文改英文/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/';
   
   (function(){
     var dsq = document.createElement('script');

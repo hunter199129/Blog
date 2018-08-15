@@ -27,7 +27,7 @@ and then yum install all the things
 
 ## Setup Postgres Service
 
-    postgresql-setup initdb
+    /usr/pgsql-10/bin/postgresql-10-setup initdb
     systemctl enable postgresql.service
     systemctl start postgresql.service
 

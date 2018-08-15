@@ -2,7 +2,7 @@
 title: 'Install Postgresql on CentOS7'
 date: 2018-08-15 11:13:00
 tags: [Postgres, CentOS, Database]
-categories:Devops
+categories: Devops
 ---
 
 這次在Linux裝**postgres**的時候踩了一些小坑

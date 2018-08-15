@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
 <meta property="og:description" content="這次在Linux裝postgres的時候踩了一些小坑 所以就想說把這些資訊整理整理，以便之後查看">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2018-08-15T03:41:45.413Z">
+<meta property="og:updated_time" content="2018-08-15T05:07:40.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install Postgresql on CentOS7">
 <meta name="twitter:description" content="這次在Linux裝postgres的時候踩了一些小坑 所以就想說把這些資訊整理整理，以便之後查看">
@@ -113,7 +113,7 @@
 <li>postgresql10-server - <em>The programs needed to create and run a PostgreSQL server</em></li>
 </ul>
 <p>and then yum install all the things</p>
-<h2 id="Setup-Postgres-Service"><a href="#Setup-Postgres-Service" class="headerlink" title="Setup Postgres Service"></a>Setup Postgres Service</h2><pre><code>postgresql-setup initdb
+<h2 id="Setup-Postgres-Service"><a href="#Setup-Postgres-Service" class="headerlink" title="Setup Postgres Service"></a>Setup Postgres Service</h2><pre><code>/usr/pgsql-10/bin/postgresql-10-setup initdb
 systemctl enable postgresql.service
 systemctl start postgresql.service
 </code></pre><p>Now postgres server should be on and is accessible at local side (we’ll configure the server to let remote side accessible).</p>

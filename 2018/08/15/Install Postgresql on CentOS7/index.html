@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Install Postgresql on CentOS7 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="這次在Linux裝postgres的時候踩了一些小坑 所以就想說把這些資訊整理整理，以便之後查看">
+<meta name="keywords" content="Postgres,CentOS,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install Postgresql on CentOS7">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/08/15/Install Postgresql on CentOS7/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="這次在Linux裝postgres的時候踩了一些小坑 所以就想說把這些資訊整理整理，以便之後查看">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-08-15T03:41:45.413Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Install Postgresql on CentOS7">
+<meta name="twitter:description" content="這次在Linux裝postgres的時候踩了一些小坑 所以就想說把這些資訊整理整理，以便之後查看">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-Install Postgresql on CentOS7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Install Postgresql on CentOS7
+      <small class=article-detail-date-index>&nbsp; 2018-08-15</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2018/08/15/Install Postgresql on CentOS7/" class="article-date">
+  <time datetime="2018-08-15T11:13:00.000Z" itemprop="datePublished">2018-08-15</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Devops/">Devops</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2018/08/15/Install Postgresql on CentOS7/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>這次在Linux裝<strong>postgres</strong>的時候踩了一些小坑</p>
+<p>所以就想說把這些資訊整理整理，以便之後查看</p>
+<a id="more"></a>
+<h2 id="Download-Rpm-Package-and-Install"><a href="#Download-Rpm-Package-and-Install" class="headerlink" title="Download Rpm Package and Install"></a>Download Rpm Package and Install</h2><p>Refer to <a href="https://www.postgresql.org/download/linux/redhat/" target="_blank" rel="noopener">postgres official website</a>.<br><a href="https://yum.postgresql.org/rpmchart.php" target="_blank" rel="noopener">Here</a> can download postgres package</p>
+<p>I use Packages Groups: <em>PostgreSQL Database Server 10 PGDG</em></p>
+<ul>
+<li>postgresql10 - <em>PostgreSQL client programs and libraries</em></li>
+<li>postgresql10-contrib - <em>Contributed source and binaries distributed with PostgreSQL</em></li>
+<li>postgresql10-libs - <em>The shared libraries required for any PostgreSQL clients</em></li>
+<li>postgresql10-server - <em>The programs needed to create and run a PostgreSQL server</em></li>
+</ul>
+<p>and then yum install all the things</p>
+<h2 id="Setup-Postgres-Service"><a href="#Setup-Postgres-Service" class="headerlink" title="Setup Postgres Service"></a>Setup Postgres Service</h2><pre><code>postgresql-setup initdb
+systemctl enable postgresql.service
+systemctl start postgresql.service
+</code></pre><p>Now postgres server should be on and is accessible at local side (we’ll configure the server to let remote side accessible).</p>
+<h2 id="Login-to-Postgres-and-Set-postgres-Password"><a href="#Login-to-Postgres-and-Set-postgres-Password" class="headerlink" title="Login to Postgres and Set postgres Password"></a>Login to Postgres and Set postgres Password</h2><p>Postgres localhost login is default using ‘<strong>peer</strong>‘ method, so it doesn’t required password to login</p>
+<pre><code>sudo -u postgres psql
+</code></pre><p>It should be in psql client now, changing password command using</p>
+<pre><code>postgres=# ALTER USER postgres PASSWORD &apos;myPassword&apos;;
+ALTER ROLE
+</code></pre><p>after change the password using</p>
+<pre><code>\q
+</code></pre><p>to quit the psql client</p>
+<h2 id="About-Default-Login-approach-peer-and-ident"><a href="#About-Default-Login-approach-peer-and-ident" class="headerlink" title="About Default Login approach: peer and ident"></a>About Default Login approach: peer and ident</h2><blockquote>
+<p>Firstly, it is important to understand that for most Unix distributions, the default Postgres user neither requires nor uses a password for authentication. Instead, depending how Postgres was originally installed and what version you are using, the default authentication method will either be ident or peer.<br><strong>ident</strong> authentication uses the operating system’s identification server running at TCP port 113 to verify the user’s credentials.<br><strong>peer</strong> authentication on the other hand, is used for local connections and verifies that the logged in username of the operating system matches the username for the Postgres database.</p>
+</blockquote>
+<p>ref: <a href="https://chartio.com/resources/tutorials/how-to-set-the-default-user-password-in-postgresql/" target="_blank" rel="noopener">https://chartio.com/resources/tutorials/how-to-set-the-default-user-password-in-postgresql/</a></p>
+<h2 id="Access-Postgres-by-Pgadmin-from-remote"><a href="#Access-Postgres-by-Pgadmin-from-remote" class="headerlink" title="Access Postgres by Pgadmin from remote"></a>Access Postgres by Pgadmin from remote</h2><h3 id="Setting-pg-hba-conf"><a href="#Setting-pg-hba-conf" class="headerlink" title="Setting pg_hba.conf"></a>Setting pg_hba.conf</h3><p><strong>pg_hba.conf</strong> is under <code>/var/lib/pgsql/&lt;version_of_postgres&gt;/data/</code> in CentOS by default</p>
+<p>we need to change the <strong>ipv4 local connections</strong> item:</p>
+<pre><code>host    all             all             0.0.0.0/0               md5
+</code></pre><p>ip <code>0.0.0.0/0</code> will let any ip address can access the server<br>using <strong>md5</strong> to access postgres by login using password, check here <a href="https://www.postgresql.org/docs/9.1/static/auth-methods.html" target="_blank" rel="noopener">19.3. Authentication Methods</a></p>
+<h3 id="Setting-postgresql-conf"><a href="#Setting-postgresql-conf" class="headerlink" title="Setting postgresql.conf"></a>Setting postgresql.conf</h3><p>Open listen_addresses and port</p>
+<pre><code>listen_addresses = &apos;*&apos; 
+port = 5432
+</code></pre><p>after this your need to <strong>reboot</strong> the server, and using</p>
+<pre><code>netstat -nplt | grep 5432
+</code></pre><p>or </p>
+<pre><code>netstat -a | grep PGSQL
+</code></pre><p>to check if the port is listening by server</p>
+<h3 id="Setting-firewall"><a href="#Setting-firewall" class="headerlink" title="Setting firewall"></a>Setting firewall</h3><p>Use</p>
+<pre><code>sudo firewall-cmd --zone=public --permanent --add-port=5432/tcp
+</code></pre><p>to open tcp 5432 port permanently, to check the setting:</p>
+<pre><code>sudo firewall-cmd --zone=public --list-all
+</code></pre><hr>
+<p>now you should be able to access postgres by using pgadmin and not encounter</p>
+<blockquote>
+<p>could not connect to server: Connection refused (0x0000274C/10060)</p>
+</blockquote>
+<p>and </p>
+<blockquote>
+<p>could not connect to server: Connection refused (0x0000274D/10061)</p>
+</blockquote>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-Rpm-Package-and-Install"><span class="toc-text">Download Rpm Package and Install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Setup-Postgres-Service"><span class="toc-text">Setup Postgres Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Login-to-Postgres-and-Set-postgres-Password"><span class="toc-text">Login to Postgres and Set postgres Password</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#About-Default-Login-approach-peer-and-ident"><span class="toc-text">About Default Login approach: peer and ident</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-Postgres-by-Pgadmin-from-remote"><span class="toc-text">Access Postgres by Pgadmin from remote</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setting-pg-hba-conf"><span class="toc-text">Setting pg_hba.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Setting-postgresql-conf"><span class="toc-text">Setting postgresql.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Setting-firewall"><span class="toc-text">Setting firewall</span></a></li></ol></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Devops/">Devops</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/CentOS/">CentOS</a><span></span><a class="article-tag-link" href="/blog/tags/Database/">Database</a><span></span><a class="article-tag-link" href="/blog/tags/Postgres/">Postgres</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018/08/15/How to modify and commit changes to a docker image/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">How to modify and commit changes to a docker image&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/08/15/Install Postgresql on CentOS7/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -2,7 +2,7 @@
 title: '用Travis CI自動發佈Angular app到gh-pages'
 date: 2017-11-06 09:11:00
 tags: [Travis CI, Github, Github pages, Angular]
-categories: Devops
+categories: DevOps
 ---
 
 持續整合(continuous integrations)在現代軟體開發中是不可或缺的技術，而也有很多公司提供這方面的服務，其中跟Github最緊密的就是[Travis CI](travis-ci.org)了。

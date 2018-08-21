@@ -2,7 +2,7 @@
 title: 'Linux 系統在 Hyper-V 中安裝 Integration Service'
 date: 2018-06-29 15:36:00
 tags: [Hyper-V, Linux]
-categories: Devops
+categories: DevOps
 ---
 在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題
 

@@ -15,15 +15,15 @@ categories: DevOps
 
 ## Download and Unzip Kcfinder
 
-`<testlink-dir> = Bitnami\testlink-1.9.17-0\apps\testlink\htdocs\`
+`<testlink_dir> = Bitnami\testlink-1.9.17-0\apps\testlink\htdocs\`
 
-下載後解壓縮到 `<testlink-dir>\third_party` 的資料夾下 
+下載後解壓縮到 `<testlink_dir>\third_party` 的資料夾下 
 
 這邊注意要下載 2.5.1 版本，不要用太新的版本，會有 bug (測試 3.5.1 的時候遇到瀏覽器報錯)
 
 ## Configure ckeditor
 
-### *`<testlink-dir>\cfg\tl_ckeditor_config.js`*
+### *`<testlink_dir>\cfg\tl_ckeditor_config.js`*
 
 在最底加上設定
 
@@ -51,7 +51,7 @@ categories: DevOps
 
 這邊有兩種方法可以做，第一種比較安全
 
-#### 1. `<testlink-dir>/login.php`
+#### 1. `<testlink_dir>/login.php`
 
 更改
 
@@ -70,18 +70,18 @@ categories: DevOps
         $_SESSION['KCFINDER']['disabled'] = false;
         if ($argsObj->action == 'ajaxlogin') 
 
-#### 2. `<testlink-dir>/third_party/kcfinder/config.php`
+#### 2. `<testlink_dir>/third_party/kcfinder/config.php`
 
 將 `'disabled' => true` 改為 `'disabled' => false`
 
-### *`<testlink-dir>/third_party/kcfinder/config.php`*
+### *`<testlink_dir>/third_party/kcfinder/config.php`*
 
 這邊是設定更改 upload 的位置
 
     'uploadURL' => "/testlink/upload_area/",
     'uploadDir' => "../../upload_area",
 
-### *`<testlink-dir>/conf/htaccess.conf`*
+### *`<testlink_dir>/conf/htaccess.conf`*
 
 最後要設定 apache 允許 client 存取圖片的權限
 

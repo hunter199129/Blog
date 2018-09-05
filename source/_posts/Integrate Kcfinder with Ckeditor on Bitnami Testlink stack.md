@@ -19,9 +19,11 @@ categories: DevOps
 
 下載後解壓縮到 `<testlink-dir>\third_party` 的資料夾下 
 
+這邊注意要下載 2.5.1 版本，不要用太新的版本，會有 bug (測試 3.5.1 的時候遇到瀏覽器報錯)
+
 ## Configure ckeditor
 
-### - `<testlink-dir>\cfg\tl_ckeditor_config.js`
+### *`<testlink-dir>\cfg\tl_ckeditor_config.js`*
 
 在最底加上設定
 
@@ -72,14 +74,14 @@ categories: DevOps
 
 將 `'disabled' => true` 改為 `'disabled' => false`
 
-### - `<testlink-dir>/third_party/kcfinder/config.php`
+### *`<testlink-dir>/third_party/kcfinder/config.php`*
 
 這邊是設定更改 upload 的位置
 
     'uploadURL' => "/testlink/upload_area/",
     'uploadDir' => "../../upload_area",
 
-### - `<testlink-dir>/conf/htaccess.conf`
+### *`<testlink-dir>/conf/htaccess.conf`*
 
 最後要設定 apache 允許 client 存取圖片的權限
 

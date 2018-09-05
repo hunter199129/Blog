@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Integrate Kcfinder with Ckeditor on Bitnami Testlink stack - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Testlink 的內建文字編輯器是 Ckeditor 4 是 Open source 的，但它沒有上傳圖片的功能 所以要搭配他們公司的一個外掛 Ckfinder ，但這是要錢的，只能試用一段時間">
+<meta name="keywords" content="testlink,testcase management,bitnami,open source">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Integrate Kcfinder with Ckeditor on Bitnami Testlink stack">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/09/05/Integrate Kcfinder with Ckeditor on Bitnami Testlink stack/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="Testlink 的內建文字編輯器是 Ckeditor 4 是 Open source 的，但它沒有上傳圖片的功能 所以要搭配他們公司的一個外掛 Ckfinder ，但這是要錢的，只能試用一段時間">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-09-05T05:45:58.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Integrate Kcfinder with Ckeditor on Bitnami Testlink stack">
+<meta name="twitter:description" content="Testlink 的內建文字編輯器是 Ckeditor 4 是 Open source 的，但它沒有上傳圖片的功能 所以要搭配他們公司的一個外掛 Ckfinder ，但這是要錢的，只能試用一段時間">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-Integrate Kcfinder with Ckeditor on Bitnami Testlink stack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Integrate Kcfinder with Ckeditor on Bitnami Testlink stack
+      <small class=article-detail-date-index>&nbsp; 2018-09-05</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2018/09/05/Integrate Kcfinder with Ckeditor on Bitnami Testlink stack/" class="article-date">
+  <time datetime="2018-09-05T13:41:00.000Z" itemprop="datePublished">2018-09-05</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2018/09/05/Integrate Kcfinder with Ckeditor on Bitnami Testlink stack/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://testlink.org/" target="_blank" rel="noopener">Testlink</a> 的內建文字編輯器是 <a href="https://ckeditor.com/" target="_blank" rel="noopener">Ckeditor 4</a> 是 Open source 的，但它沒有上傳圖片的功能</p>
+<p>所以要搭配他們公司的一個外掛 <a href="https://ckeditor.com/ckeditor-4/ckfinder/" target="_blank" rel="noopener">Ckfinder</a> ，但這是要錢的，只能試用一段時間</p>
+<a id="more"></a>
+<p>因此就用了網路上有另一套叫做 <a href="https://kcfinder.sunhater.com/" target="_blank" rel="noopener">Kcfinder</a> ，基本上就是 Open source 的 <a href="https://ckeditor.com/ckeditor-4/ckfinder/" target="_blank" rel="noopener">Ckfinder</a> …</p>
+<h2 id="Download-and-Unzip-Kcfinder"><a href="#Download-and-Unzip-Kcfinder" class="headerlink" title="Download and Unzip Kcfinder"></a>Download and Unzip Kcfinder</h2><p><code>&lt;testlink-dir&gt; = Bitnami\testlink-1.9.17-0\apps\testlink\htdocs\</code></p>
+<p>下載後解壓縮到 <code>&lt;testlink-dir&gt;\third_party</code> 的資料夾下 </p>
+<h2 id="Configure-ckeditor"><a href="#Configure-ckeditor" class="headerlink" title="Configure ckeditor"></a>Configure ckeditor</h2><h3 id="lt-testlink-dir-gt-cfg-tl-ckeditor-config-js"><a href="#lt-testlink-dir-gt-cfg-tl-ckeditor-config-js" class="headerlink" title="&lt;testlink-dir&gt;\cfg\tl_ckeditor_config.js"></a><code>&lt;testlink-dir&gt;\cfg\tl_ckeditor_config.js</code></h3><p>在最底加上設定</p>
+<pre><code>config.filebrowserBrowseUrl = &apos;/testlink/third_party/kcfinder/browse.php?type=files&apos;;
+config.filebrowserImageBrowseUrl = &apos;/testlink/third_party/kcfinder/browse.php?type=images&apos;;
+config.filebrowserFlashBrowseUrl = &apos;/testlink/third_party/kcfinder/browse.php?type=flash&apos;;
+config.filebrowserUploadUrl = &apos;/testlink/third_party/kcfinder/upload.php?type=files&apos;;
+config.filebrowserImageUploadUrl = &apos;/testlink/third_party/kcfinder/upload.php?type=images&apos;;
+config.filebrowserFlashUploadUrl = &apos;/testlink/third_party/kcfinder/upload.php?type=flash&apos;;
+</code></pre><p>這邊要注意的是前面要加上 <code>/testlink</code> 讓 ckeditor 可以抓到 testlink 的位置</p>
+<p>而這部分的設定是已經寫好在 <code>Bitnami\testlink-1.9.17-0\apps\testlink\conf\httpd-prefix.conf</code> 裡面的</p>
+<p>有一段</p>
+<pre><code>Alias /testlink/ &quot;D:\Bitnami\testlink-1.9.17-0/apps/testlink/htdocs/&quot;
+Alias /testlink &quot;D:\Bitnami\testlink-1.9.17-0/apps/testlink/htdocs&quot;
+</code></pre><p>這個在之後設定 kcfinder 的時候也會用到(不用改，只是需要知道是為什麼要用 <code>/testlink</code>)</p>
+<h2 id="Configure-kcfinder"><a href="#Configure-kcfinder" class="headerlink" title="Configure kcfinder"></a>Configure kcfinder</h2><h3 id="Enable-kcfinder"><a href="#Enable-kcfinder" class="headerlink" title="Enable kcfinder"></a>Enable kcfinder</h3><p>這邊有兩種方法可以做，第一種比較安全</p>
+<h4 id="lt-testlink-dir-gt-login-php-安全"><a href="#lt-testlink-dir-gt-login-php-安全" class="headerlink" title="&lt;testlink-dir&gt;/login.php (安全)"></a><code>&lt;testlink-dir&gt;/login.php</code> (安全)</h4><p>更改</p>
+<pre><code>// Login successful, redirect to destination
+    logAuditEvent(TLS(&quot;audit_login_succeeded&quot;,$argsObj-&gt;login,
+                  $_SERVER[&apos;REMOTE_ADDR&apos;]),&quot;LOGIN&quot;,$_SESSION[&apos;currentUser&apos;]-&gt;dbID,&quot;users&quot;);
+
+    if ($argsObj-&gt;action == &apos;ajaxlogin&apos;) 
+</code></pre><p>為</p>
+<pre><code>// Login successful, redirect to destination
+    logAuditEvent(TLS(&quot;audit_login_succeeded&quot;,$argsObj-&gt;login,
+                  $_SERVER[&apos;REMOTE_ADDR&apos;]),&quot;LOGIN&quot;,$_SESSION[&apos;currentUser&apos;]-&gt;dbID,&quot;users&quot;);
+    $_SESSION[&apos;KCFINDER&apos;] = array();
+    $_SESSION[&apos;KCFINDER&apos;][&apos;disabled&apos;] = false;
+    if ($argsObj-&gt;action == &apos;ajaxlogin&apos;) 
+</code></pre><h4 id="lt-testlink-dir-gt-third-party-kcfinder-config-php-不安全"><a href="#lt-testlink-dir-gt-third-party-kcfinder-config-php-不安全" class="headerlink" title="&lt;testlink-dir&gt;/third_party/kcfinder/config.php (不安全)"></a><code>&lt;testlink-dir&gt;/third_party/kcfinder/config.php</code> (不安全)</h4><p>將 <code>&#39;disabled&#39; =&gt; true</code> 改為 <code>&#39;disabled&#39; =&gt; false</code></p>
+<h3 id="lt-testlink-dir-gt-third-party-kcfinder-config-php"><a href="#lt-testlink-dir-gt-third-party-kcfinder-config-php" class="headerlink" title="&lt;testlink-dir&gt;/third_party/kcfinder/config.php"></a><code>&lt;testlink-dir&gt;/third_party/kcfinder/config.php</code></h3><p>這邊是設定更改 upload 的位置</p>
+<pre><code>&apos;uploadURL&apos; =&gt; &quot;/testlink/upload_area/&quot;,
+&apos;uploadDir&apos; =&gt; &quot;../../upload_area&quot;,
+</code></pre><h3 id="lt-testlink-dir-gt-conf-htaccess-conf"><a href="#lt-testlink-dir-gt-conf-htaccess-conf" class="headerlink" title="&lt;testlink-dir&gt;/conf/htaccess.conf"></a><code>&lt;testlink-dir&gt;/conf/htaccess.conf</code></h3><p>最後要設定 apache 允許 client 存取圖片的權限</p>
+<pre><code>&lt;/Directory&gt;
+&lt;Directory &quot;D:/Bitnami/testlink-1.9.17-0/apps/testlink/htdocs/upload_area&quot;&gt;
+## no access to this folder
+order allow,deny
+deny from all
+
+&lt;/Directory&gt;
+</code></pre><p>把這邊的 <code>deny from all</code> 改為 <code>allow from all</code></p>
+<p>這樣就大功告成了</p>
+<p>中間 <code>/testlink</code> 的位置和最後的權限設定花了不少時間在 debug</p>
+<p>不過整體還是算整合的很好，所以也很快就可以架完了</p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-and-Unzip-Kcfinder"><span class="toc-text">Download and Unzip Kcfinder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-ckeditor"><span class="toc-text">Configure ckeditor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-cfg-tl-ckeditor-config-js"><span class="toc-text">&lt;testlink-dir&gt;\cfg\tl_ckeditor_config.js</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-kcfinder"><span class="toc-text">Configure kcfinder</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enable-kcfinder"><span class="toc-text">Enable kcfinder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-testlink-dir-gt-login-php-安全"><span class="toc-text">&lt;testlink-dir&gt;/login.php (安全)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-testlink-dir-gt-third-party-kcfinder-config-php-不安全"><span class="toc-text">&lt;testlink-dir&gt;/third_party/kcfinder/config.php (不安全)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-third-party-kcfinder-config-php"><span class="toc-text">&lt;testlink-dir&gt;/third_party/kcfinder/config.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-conf-htaccess-conf"><span class="toc-text">&lt;testlink-dir&gt;/conf/htaccess.conf</span></a></li></ol></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/bitnami/">bitnami</a><span></span><a class="article-tag-link" href="/blog/tags/open-source/">open source</a><span></span><a class="article-tag-link" href="/blog/tags/testcase-management/">testcase management</a><span></span><a class="article-tag-link" href="/blog/tags/testlink/">testlink</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018/09/05/How to modify and commit changes to a docker image/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">How to modify and commit changes to a docker image&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/09/05/Integrate Kcfinder with Ckeditor on Bitnami Testlink stack/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

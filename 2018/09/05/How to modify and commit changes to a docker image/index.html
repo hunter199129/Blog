@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Linux 系統在 Hyper-V 中安裝 Integration Service - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>How to modify and commit changes to a docker image - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題 像是: 在桌面環境不能使用滑鼠、網路找不到 MAC 等等">
-<meta name="keywords" content="Hyper-V,Linux">
+  <meta name="description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 系統在 Hyper-V 中安裝 Integration Service">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/index.html">
+<meta property="og:title" content="How to modify and commit changes to a docker image">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/09/05/How to modify and commit changes to a docker image/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題 像是: 在桌面環境不能使用滑鼠、網路找不到 MAC 等等">
+<meta property="og:description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2018-09-05T05:45:58.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 系統在 Hyper-V 中安裝 Integration Service">
-<meta name="twitter:description" content="在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題 像是: 在桌面環境不能使用滑鼠、網路找不到 MAC 等等">
+<meta name="twitter:title" content="How to modify and commit changes to a docker image">
+<meta name="twitter:description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-Linux 系統在 Hyper-V 中安裝 Integration Service" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-How to modify and commit changes to a docker image" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Linux 系統在 Hyper-V 中安裝 Integration Service
-      <small class=article-detail-date-index>&nbsp; 2018-06-29</small>
+      How to modify and commit changes to a docker image
+      <small class=article-detail-date-index>&nbsp; 2018-09-05</small>
     </h1>
   
 
@@ -82,8 +82,8 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/" class="article-date">
-  <time datetime="2018-06-29T15:36:00.000Z" itemprop="datePublished">2018-06-29</time>
+      <!--<a href="/blog/2018/09/05/How to modify and commit changes to a docker image/" class="article-date">
+  <time datetime="2018-09-05T05:45:58.415Z" itemprop="datePublished">2018-09-05</time>
 </a>-->
       <!-- 
   <div class="article-category">
@@ -94,32 +94,35 @@
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2018/09/05/How to modify and commit changes to a docker image/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在使用 Hyper-V 時，如果 Linux 沒有安裝 Integration Service 會有很大的問題</p>
-<p>像是: 在桌面環境不能使用滑鼠、網路找不到 MAC 等等</p>
+        <p>Customize image is the must if we’re using other’s docker image.</p>
+<p>Something like install new packages, drivers, plugins of application, or setting global variables, etc.</p>
 <a id="more"></a>
-<p>安裝的方法其實很簡單，以 CentOS 為例</p>
-<ol>
-<li>去 Microsoft 官網下載 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=55106" target="_blank" rel="noopener">Linux Integration Disk</a></li>
-<li>把 ISO 掛載到 Instance 上</li>
-<li>想辦法打開 Terminal (CentOS 可以用 <strong>Alt + F1</strong> 開啟選單)</li>
-<li><code>cd /media/CDROM</code></li>
-<li>找到 Linux 的版本，執行相對應資料夾下的 <code>install.sh</code> (CentOS 6.3 版就是找 <strong>RHEL63</strong> 的資料夾)</li>
-<li>重開機之後，就會發現一切正常了!</li>
-</ol>
-
+<p>so guide below is how you manipulate the docker image</p>
+<h2 id="Run-image-file-as-a-container"><a href="#Run-image-file-as-a-container" class="headerlink" title="Run image file as a container"></a>Run image file as a container</h2><pre><code>sudo docker run --name CONTAINER_NAME -p PORT:PORT -e TERM=xterm -d &lt;DOCKER_IMAGE&gt;
+</code></pre><h2 id="Use-command-in-container-environment"><a href="#Use-command-in-container-environment" class="headerlink" title="Use command in container environment"></a>Use command in container environment</h2><pre><code>sudo docker exec -it &lt;CONTAINER_ID&gt; bash
+</code></pre><h2 id="Install-packages-you-need"><a href="#Install-packages-you-need" class="headerlink" title="Install packages you need"></a>Install packages you need</h2><pre><code>apt install &lt;package&gt;
+pip install &lt;python-package&gt;
+</code></pre><h2 id="Commit-change-and-save-to-new-image"><a href="#Commit-change-and-save-to-new-image" class="headerlink" title="Commit change and save to new image"></a>Commit change and save to new image</h2><pre><code>sudo docker commit &lt;CONTAINER_ID&gt; superset-mssql
+</code></pre><h2 id="Check-image"><a href="#Check-image" class="headerlink" title="Check image"></a>Check image</h2><pre><code>sudo docker images
+</code></pre>
       
      <!-- by blair add this if sentence at 20160725 -->
       <br>
        <!-- by blair add 160724-->
     
     </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Run-image-file-as-a-container"><span class="toc-text">Run image file as a container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-command-in-container-environment"><span class="toc-text">Use command in container environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-packages-you-need"><span class="toc-text">Install packages you need</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Commit-change-and-save-to-new-image"><span class="toc-text">Commit change and save to new image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-image"><span class="toc-text">Check image</span></a></li></ol>
+      </div>
     
     
       <footer class="article-footer">
@@ -135,7 +138,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/Hyper-V/">Hyper-V</a><span></span><a class="article-tag-link" href="/blog/tags/Linux/">Linux</a>
+    <a class="article-tag-link" href="/blog/tags/docker/">docker</a>
   </div>
 
 
@@ -146,17 +149,17 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2018/09/05/Integrate Kcfinder with Ckeditor on Bitnami Testlink stack/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-title"><span>&lt;</span>&nbsp;
         
-          Using Docker in off-line envirnment on CentOS 7
+          Integrate Kcfinder with Ckeditor on Bitnami Testlink stack
         
       </div>
     </a>
   
   
-    <a href="/blog/2018/06/25/pandas+v.s.+xlwings/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Load excel data to python, pandas vs. xlwings&nbsp;<span>&gt;</span></div>
+    <a href="/blog/2018/08/15/Install Postgresql on CentOS7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Install Postgresql on CentOS7&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -185,7 +188,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/09/05/How to modify and commit changes to a docker image/';
   
   (function(){
     var dsq = document.createElement('script');

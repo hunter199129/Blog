@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
 <meta property="og:description" content="Testlink 的內建文字編輯器是 Ckeditor 4 是 Open source 的，但它沒有上傳圖片的功能 所以要搭配他們公司的一個外掛 Ckfinder ，但這是要錢的，只能試用一段時間">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2018-09-05T06:06:51.454Z">
+<meta property="og:updated_time" content="2018-09-05T06:12:04.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Integrate Kcfinder with Ckeditor on Bitnami Testlink stack">
 <meta name="twitter:description" content="Testlink 的內建文字編輯器是 Ckeditor 4 是 Open source 的，但它沒有上傳圖片的功能 所以要搭配他們公司的一個外掛 Ckfinder ，但這是要錢的，只能試用一段時間">
@@ -105,10 +105,10 @@
 <p>所以要搭配他們公司的一個外掛 <a href="https://ckeditor.com/ckeditor-4/ckfinder/" target="_blank" rel="noopener">Ckfinder</a> ，但這是要錢的，只能試用一段時間</p>
 <a id="more"></a>
 <p>因此就用了網路上有另一套叫做 <a href="https://kcfinder.sunhater.com/" target="_blank" rel="noopener">Kcfinder</a> ，基本上就是 Open source 的 <a href="https://ckeditor.com/ckeditor-4/ckfinder/" target="_blank" rel="noopener">Ckfinder</a> …</p>
-<h2 id="Download-and-Unzip-Kcfinder"><a href="#Download-and-Unzip-Kcfinder" class="headerlink" title="Download and Unzip Kcfinder"></a>Download and Unzip Kcfinder</h2><p><code>&lt;testlink-dir&gt; = Bitnami\testlink-1.9.17-0\apps\testlink\htdocs\</code></p>
-<p>下載後解壓縮到 <code>&lt;testlink-dir&gt;\third_party</code> 的資料夾下 </p>
+<h2 id="Download-and-Unzip-Kcfinder"><a href="#Download-and-Unzip-Kcfinder" class="headerlink" title="Download and Unzip Kcfinder"></a>Download and Unzip Kcfinder</h2><p><code>&lt;testlink_dir&gt; = Bitnami\testlink-1.9.17-0\apps\testlink\htdocs\</code></p>
+<p>下載後解壓縮到 <code>&lt;testlink_dir&gt;\third_party</code> 的資料夾下 </p>
 <p>這邊注意要下載 2.5.1 版本，不要用太新的版本，會有 bug (測試 3.5.1 的時候遇到瀏覽器報錯)</p>
-<h2 id="Configure-ckeditor"><a href="#Configure-ckeditor" class="headerlink" title="Configure ckeditor"></a>Configure ckeditor</h2><h3 id="lt-testlink-dir-gt-cfg-tl-ckeditor-config-js"><a href="#lt-testlink-dir-gt-cfg-tl-ckeditor-config-js" class="headerlink" title="&lt;testlink-dir&gt;\cfg\tl_ckeditor_config.js"></a><em><code>&lt;testlink-dir&gt;\cfg\tl_ckeditor_config.js</code></em></h3><p>在最底加上設定</p>
+<h2 id="Configure-ckeditor"><a href="#Configure-ckeditor" class="headerlink" title="Configure ckeditor"></a>Configure ckeditor</h2><h3 id="lt-testlink-dir-gt-cfg-tl-ckeditor-config-js"><a href="#lt-testlink-dir-gt-cfg-tl-ckeditor-config-js" class="headerlink" title="&lt;testlink_dir&gt;\cfg\tl_ckeditor_config.js"></a><em><code>&lt;testlink_dir&gt;\cfg\tl_ckeditor_config.js</code></em></h3><p>在最底加上設定</p>
 <pre><code>config.filebrowserBrowseUrl = &apos;/testlink/third_party/kcfinder/browse.php?type=files&apos;;
 config.filebrowserImageBrowseUrl = &apos;/testlink/third_party/kcfinder/browse.php?type=images&apos;;
 config.filebrowserFlashBrowseUrl = &apos;/testlink/third_party/kcfinder/browse.php?type=flash&apos;;
@@ -122,7 +122,7 @@ config.filebrowserFlashUploadUrl = &apos;/testlink/third_party/kcfinder/upload.p
 Alias /testlink &quot;D:\Bitnami\testlink-1.9.17-0/apps/testlink/htdocs&quot;
 </code></pre><p>這個在之後設定 kcfinder 的時候也會用到(不用改，只是需要知道是為什麼要用 <code>/testlink</code>)</p>
 <h2 id="Configure-kcfinder"><a href="#Configure-kcfinder" class="headerlink" title="Configure kcfinder"></a>Configure kcfinder</h2><h3 id="Enable-kcfinder"><a href="#Enable-kcfinder" class="headerlink" title="Enable kcfinder"></a>Enable kcfinder</h3><p>這邊有兩種方法可以做，第一種比較安全</p>
-<h4 id="1-lt-testlink-dir-gt-login-php"><a href="#1-lt-testlink-dir-gt-login-php" class="headerlink" title="1. &lt;testlink-dir&gt;/login.php"></a>1. <code>&lt;testlink-dir&gt;/login.php</code></h4><p>更改</p>
+<h4 id="1-lt-testlink-dir-gt-login-php"><a href="#1-lt-testlink-dir-gt-login-php" class="headerlink" title="1. &lt;testlink_dir&gt;/login.php"></a>1. <code>&lt;testlink_dir&gt;/login.php</code></h4><p>更改</p>
 <pre><code>// Login successful, redirect to destination
     logAuditEvent(TLS(&quot;audit_login_succeeded&quot;,$argsObj-&gt;login,
                   $_SERVER[&apos;REMOTE_ADDR&apos;]),&quot;LOGIN&quot;,$_SESSION[&apos;currentUser&apos;]-&gt;dbID,&quot;users&quot;);
@@ -135,11 +135,11 @@ Alias /testlink &quot;D:\Bitnami\testlink-1.9.17-0/apps/testlink/htdocs&quot;
     $_SESSION[&apos;KCFINDER&apos;] = array();
     $_SESSION[&apos;KCFINDER&apos;][&apos;disabled&apos;] = false;
     if ($argsObj-&gt;action == &apos;ajaxlogin&apos;) 
-</code></pre><h4 id="2-lt-testlink-dir-gt-third-party-kcfinder-config-php"><a href="#2-lt-testlink-dir-gt-third-party-kcfinder-config-php" class="headerlink" title="2. &lt;testlink-dir&gt;/third_party/kcfinder/config.php"></a>2. <code>&lt;testlink-dir&gt;/third_party/kcfinder/config.php</code></h4><p>將 <code>&#39;disabled&#39; =&gt; true</code> 改為 <code>&#39;disabled&#39; =&gt; false</code></p>
-<h3 id="lt-testlink-dir-gt-third-party-kcfinder-config-php"><a href="#lt-testlink-dir-gt-third-party-kcfinder-config-php" class="headerlink" title="&lt;testlink-dir&gt;/third_party/kcfinder/config.php"></a><em><code>&lt;testlink-dir&gt;/third_party/kcfinder/config.php</code></em></h3><p>這邊是設定更改 upload 的位置</p>
+</code></pre><h4 id="2-lt-testlink-dir-gt-third-party-kcfinder-config-php"><a href="#2-lt-testlink-dir-gt-third-party-kcfinder-config-php" class="headerlink" title="2. &lt;testlink_dir&gt;/third_party/kcfinder/config.php"></a>2. <code>&lt;testlink_dir&gt;/third_party/kcfinder/config.php</code></h4><p>將 <code>&#39;disabled&#39; =&gt; true</code> 改為 <code>&#39;disabled&#39; =&gt; false</code></p>
+<h3 id="lt-testlink-dir-gt-third-party-kcfinder-config-php"><a href="#lt-testlink-dir-gt-third-party-kcfinder-config-php" class="headerlink" title="&lt;testlink_dir&gt;/third_party/kcfinder/config.php"></a><em><code>&lt;testlink_dir&gt;/third_party/kcfinder/config.php</code></em></h3><p>這邊是設定更改 upload 的位置</p>
 <pre><code>&apos;uploadURL&apos; =&gt; &quot;/testlink/upload_area/&quot;,
 &apos;uploadDir&apos; =&gt; &quot;../../upload_area&quot;,
-</code></pre><h3 id="lt-testlink-dir-gt-conf-htaccess-conf"><a href="#lt-testlink-dir-gt-conf-htaccess-conf" class="headerlink" title="&lt;testlink-dir&gt;/conf/htaccess.conf"></a><em><code>&lt;testlink-dir&gt;/conf/htaccess.conf</code></em></h3><p>最後要設定 apache 允許 client 存取圖片的權限</p>
+</code></pre><h3 id="lt-testlink-dir-gt-conf-htaccess-conf"><a href="#lt-testlink-dir-gt-conf-htaccess-conf" class="headerlink" title="&lt;testlink_dir&gt;/conf/htaccess.conf"></a><em><code>&lt;testlink_dir&gt;/conf/htaccess.conf</code></em></h3><p>最後要設定 apache 允許 client 存取圖片的權限</p>
 <pre><code>&lt;/Directory&gt;
 &lt;Directory &quot;D:/Bitnami/testlink-1.9.17-0/apps/testlink/htdocs/upload_area&quot;&gt;
 ## no access to this folder
@@ -161,7 +161,7 @@ deny from all
     
       <div class="article-toc">
         <h3>Contents</h3>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-and-Unzip-Kcfinder"><span class="toc-text">Download and Unzip Kcfinder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-ckeditor"><span class="toc-text">Configure ckeditor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-cfg-tl-ckeditor-config-js"><span class="toc-text">&lt;testlink-dir&gt;\cfg\tl_ckeditor_config.js</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-kcfinder"><span class="toc-text">Configure kcfinder</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enable-kcfinder"><span class="toc-text">Enable kcfinder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-lt-testlink-dir-gt-login-php"><span class="toc-text">1. &lt;testlink-dir&gt;/login.php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-lt-testlink-dir-gt-third-party-kcfinder-config-php"><span class="toc-text">2. &lt;testlink-dir&gt;/third_party/kcfinder/config.php</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-third-party-kcfinder-config-php"><span class="toc-text">&lt;testlink-dir&gt;/third_party/kcfinder/config.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-conf-htaccess-conf"><span class="toc-text">&lt;testlink-dir&gt;/conf/htaccess.conf</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-and-Unzip-Kcfinder"><span class="toc-text">Download and Unzip Kcfinder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-ckeditor"><span class="toc-text">Configure ckeditor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-cfg-tl-ckeditor-config-js"><span class="toc-text">&lt;testlink_dir&gt;\cfg\tl_ckeditor_config.js</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-kcfinder"><span class="toc-text">Configure kcfinder</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enable-kcfinder"><span class="toc-text">Enable kcfinder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-lt-testlink-dir-gt-login-php"><span class="toc-text">1. &lt;testlink_dir&gt;/login.php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-lt-testlink-dir-gt-third-party-kcfinder-config-php"><span class="toc-text">2. &lt;testlink_dir&gt;/third_party/kcfinder/config.php</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-third-party-kcfinder-config-php"><span class="toc-text">&lt;testlink_dir&gt;/third_party/kcfinder/config.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-testlink-dir-gt-conf-htaccess-conf"><span class="toc-text">&lt;testlink_dir&gt;/conf/htaccess.conf</span></a></li></ol></li></ol>
       </div>
     
     

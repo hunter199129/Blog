@@ -21,7 +21,7 @@ categories: DevOps
 
 ## Configure ckeditor
 
-### `<testlink-dir>\cfg\tl_ckeditor_config.js`
+### - `<testlink-dir>\cfg\tl_ckeditor_config.js`
 
 在最底加上設定
 
@@ -49,7 +49,7 @@ categories: DevOps
 
 這邊有兩種方法可以做，第一種比較安全
 
-#### `<testlink-dir>/login.php` (安全)
+#### 1. `<testlink-dir>/login.php`
 
 更改
 
@@ -68,18 +68,18 @@ categories: DevOps
         $_SESSION['KCFINDER']['disabled'] = false;
         if ($argsObj->action == 'ajaxlogin') 
 
-#### `<testlink-dir>/third_party/kcfinder/config.php` (不安全)
+#### 2. `<testlink-dir>/third_party/kcfinder/config.php`
 
 將 `'disabled' => true` 改為 `'disabled' => false`
 
-### `<testlink-dir>/third_party/kcfinder/config.php`
+### - `<testlink-dir>/third_party/kcfinder/config.php`
 
 這邊是設定更改 upload 的位置
 
     'uploadURL' => "/testlink/upload_area/",
     'uploadDir' => "../../upload_area",
 
-### `<testlink-dir>/conf/htaccess.conf`
+### - `<testlink-dir>/conf/htaccess.conf`
 
 最後要設定 apache 允許 client 存取圖片的權限
 

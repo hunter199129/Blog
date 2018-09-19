@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Debian &amp; Ubuntu 設定中文輸入法 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>Make jupyter-lab ip accessable under CentOS 7 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="剛安裝完Linux，最先該做的事就是要安裝注音輸入法 不然總會覺得綁手綁腳的，要聽個歌都沒辦法搜尋…">
-<meta name="keywords" content="Debian,Ubuntu,ibus,input,新酷音,輸入法">
+  <meta name="description" content="Enabling client accessability for jupyter-lab">
+<meta name="keywords" content="anaconda,memo,jupyter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Debian &amp; Ubuntu 設定中文輸入法">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2018/05/29/Debian & Ubuntu 設定中文輸入法/index.html">
+<meta property="og:title" content="Make jupyter-lab ip accessable under CentOS 7">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/09/19/Make jupyter-lab ip accessable under CentOS 7/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="剛安裝完Linux，最先該做的事就是要安裝注音輸入法 不然總會覺得綁手綁腳的，要聽個歌都沒辦法搜尋…">
+<meta property="og:description" content="Enabling client accessability for jupyter-lab">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2018-09-19T06:19:53.473Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Debian &amp; Ubuntu 設定中文輸入法">
-<meta name="twitter:description" content="剛安裝完Linux，最先該做的事就是要安裝注音輸入法 不然總會覺得綁手綁腳的，要聽個歌都沒辦法搜尋…">
+<meta name="twitter:title" content="Make jupyter-lab ip accessable under CentOS 7">
+<meta name="twitter:description" content="Enabling client accessability for jupyter-lab">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-Debian &amp; Ubuntu 設定中文輸入法" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-Make jupyter-lab ip accessable under CentOS 7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Debian &amp; Ubuntu 設定中文輸入法
-      <small class=article-detail-date-index>&nbsp; 2018-05-29</small>
+      Make jupyter-lab ip accessable under CentOS 7
+      <small class=article-detail-date-index>&nbsp; 2018-09-19</small>
     </h1>
   
 
@@ -82,38 +82,32 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2018/05/29/Debian & Ubuntu 設定中文輸入法/" class="article-date">
-  <time datetime="2018-05-29T21:22:00.000Z" itemprop="datePublished">2018-05-29</time>
+      <!--<a href="/blog/2018/09/19/Make jupyter-lab ip accessable under CentOS 7/" class="article-date">
+  <time datetime="2018-09-19T14:15:00.000Z" itemprop="datePublished">2018-09-19</time>
 </a>-->
       <!-- 
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Linux/">Linux</a>
+    <a class="article-category-link" href="/blog/categories/Memo/">Memo</a>
   </div>
 
 --><!-- by blair 160724 -->
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2018/05/29/Debian & Ubuntu 設定中文輸入法/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2018/09/19/Make jupyter-lab ip accessable under CentOS 7/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>剛安裝完Linux，最先該做的事就是要安裝注音輸入法</p>
-<p>不然總會覺得綁手綁腳的，要聽個歌都沒辦法搜尋…</p>
-<a id="more"></a>    
-<ol>
-<li><p>先安裝ibus chewing</p>
-<pre><code>sudo apt install ibus-chewing
-</code></pre></li>
-<li><p>在Region &amp; Language裡設定Input Source<br>新增Chinese(chewing)</p>
-</li>
-<li><p>用<code>ibus-setup</code>設定輸入法細項</p>
-</li>
-</ol>
-
+        <p>Enabling client accessability for jupyter-lab</p>
+<a id="more"></a>
+<p>Modify the jupyter config</p>
+<pre><code>$ vim ~/.jupyter/jupyter_notebook_config.py
+</code></pre><p>then add </p>
+<pre><code>c.NotebookApp.ip = &apos;*&apos;
+</code></pre>
       
      <!-- by blair add this if sentence at 20160725 -->
       <br>
@@ -126,7 +120,7 @@
         <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
         
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Linux/">Linux</a>
+    <a class="article-category-link" href="/blog/categories/Memo/">Memo</a>
   </div>
 
  <!-- by blair add 160724-->
@@ -135,7 +129,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/Debian/">Debian</a><span></span><a class="article-tag-link" href="/blog/tags/Ubuntu/">Ubuntu</a><span></span><a class="article-tag-link" href="/blog/tags/ibus/">ibus</a><span></span><a class="article-tag-link" href="/blog/tags/input/">input</a><span></span><a class="article-tag-link" href="/blog/tags/新酷音/">新酷音</a><span></span><a class="article-tag-link" href="/blog/tags/輸入法/">輸入法</a>
+    <a class="article-tag-link" href="/blog/tags/anaconda/">anaconda</a><span></span><a class="article-tag-link" href="/blog/tags/jupyter/">jupyter</a><span></span><a class="article-tag-link" href="/blog/tags/memo/">memo</a>
   </div>
 
 
@@ -146,17 +140,9 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2018/06/25/pandas+v.s.+xlwings/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          Load excel data to python, pandas vs. xlwings
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2018/05/17/Hexo-theme-settings/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hexo theme settings&nbsp;<span>&gt;</span></div>
+    <a href="/blog/2018/09/19/Anaconda environment commands memo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Anaconda environment commands memo&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -185,7 +171,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2018/05/29/Debian &amp; Ubuntu 設定中文輸入法/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/09/19/Make jupyter-lab ip accessable under CentOS 7/';
   
   (function(){
     var dsq = document.createElement('script');

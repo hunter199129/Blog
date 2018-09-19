@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Using Docker in off-line envirnment on CentOS 7 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>How to modify and commit changes to a docker image - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Sometimes we need to build server at the internal network environment. So, here’s the instruction how to build docker image to container in off-line environment.">
-<meta name="keywords" content="docker,CentOS">
+  <meta name="description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Using Docker in off-line envirnment on CentOS 7">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/index.html">
+<meta property="og:title" content="How to modify and commit changes to a docker image">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/09/19/How to modify and commit changes to a docker image/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="Sometimes we need to build server at the internal network environment. So, here’s the instruction how to build docker image to container in off-line environment.">
+<meta property="og:description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2018-09-19T05:45:09.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Using Docker in off-line envirnment on CentOS 7">
-<meta name="twitter:description" content="Sometimes we need to build server at the internal network environment. So, here’s the instruction how to build docker image to container in off-line environment.">
+<meta name="twitter:title" content="How to modify and commit changes to a docker image">
+<meta name="twitter:description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-Using Docker in off-line envirnment on CentOS 7" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-How to modify and commit changes to a docker image" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Using Docker in off-line envirnment on CentOS 7
-      <small class=article-detail-date-index>&nbsp; 2018-07-26</small>
+      How to modify and commit changes to a docker image
+      <small class=article-detail-date-index>&nbsp; 2018-09-19</small>
     </h1>
   
 
@@ -82,8 +82,8 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/" class="article-date">
-  <time datetime="2018-07-26T15:14:00.000Z" itemprop="datePublished">2018-07-26</time>
+      <!--<a href="/blog/2018/09/19/How to modify and commit changes to a docker image/" class="article-date">
+  <time datetime="2018-09-19T05:45:09.272Z" itemprop="datePublished">2018-09-19</time>
 </a>-->
       <!-- 
   <div class="article-category">
@@ -94,38 +94,35 @@
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2018/09/19/How to modify and commit changes to a docker image/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Sometimes we need to build server at the internal network environment.</p>
-<p>So, here’s the instruction how to build docker image to container in off-line environment.</p>
+        <p>Customize image is the must if we’re using other’s docker image.</p>
+<p>Something like install new packages, drivers, plugins of application, or setting global variables, etc.</p>
 <a id="more"></a>
-<ol>
-<li>Follow the <a href="https://docs.docker.com/install/linux/docker-ce/binaries/#prerequisites" target="_blank" rel="noopener">offical guide</a></li>
-<li>Setup docker on google cloud engine instance, which can access docker hub</li>
-<li>Download image, for instance, hello-world</li>
-<li><pre><code>sudo docker pull hello-world
-</code></pre></li>
-<li><p>Save docker image as file</p>
-<pre><code>sudo docker save -o hello-world.docker hello-world
-</code></pre></li>
-<li><p>Transfer file to target server</p>
-</li>
-<li><p>Load file from target server</p>
-<pre><code>sudo docker load -i hello-world.docker
-</code></pre></li>
-</ol>
-
+<p>so guide below is how you manipulate the docker image</p>
+<h2 id="Run-image-file-as-a-container"><a href="#Run-image-file-as-a-container" class="headerlink" title="Run image file as a container"></a>Run image file as a container</h2><pre><code>sudo docker run --name CONTAINER_NAME -p PORT:PORT -e TERM=xterm -d &lt;DOCKER_IMAGE&gt;
+</code></pre><h2 id="Use-command-in-container-environment"><a href="#Use-command-in-container-environment" class="headerlink" title="Use command in container environment"></a>Use command in container environment</h2><pre><code>sudo docker exec -it &lt;CONTAINER_ID&gt; bash
+</code></pre><h2 id="Install-packages-you-need"><a href="#Install-packages-you-need" class="headerlink" title="Install packages you need"></a>Install packages you need</h2><pre><code>apt install &lt;package&gt;
+pip install &lt;python-package&gt;
+</code></pre><h2 id="Commit-change-and-save-to-new-image"><a href="#Commit-change-and-save-to-new-image" class="headerlink" title="Commit change and save to new image"></a>Commit change and save to new image</h2><pre><code>sudo docker commit &lt;CONTAINER_ID&gt; superset-mssql
+</code></pre><h2 id="Check-image"><a href="#Check-image" class="headerlink" title="Check image"></a>Check image</h2><pre><code>sudo docker images
+</code></pre>
       
      <!-- by blair add this if sentence at 20160725 -->
       <br>
        <!-- by blair add 160724-->
     
     </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Run-image-file-as-a-container"><span class="toc-text">Run image file as a container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-command-in-container-environment"><span class="toc-text">Use command in container environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-packages-you-need"><span class="toc-text">Install packages you need</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Commit-change-and-save-to-new-image"><span class="toc-text">Commit change and save to new image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-image"><span class="toc-text">Check image</span></a></li></ol>
+      </div>
     
     
       <footer class="article-footer">
@@ -141,7 +138,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/CentOS/">CentOS</a><span></span><a class="article-tag-link" href="/blog/tags/docker/">docker</a>
+    <a class="article-tag-link" href="/blog/tags/docker/">docker</a>
   </div>
 
 
@@ -152,17 +149,9 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2018/08/15/Install Postgresql on CentOS7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          Install Postgresql on CentOS7
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2018/06/29/Linux 系統在 Hyper-V 中安裝 Integration Service/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux 系統在 Hyper-V 中安裝 Integration Service&nbsp;<span>&gt;</span></div>
+    <a href="/blog/2018/09/05/Integrate Kcfinder with Ckeditor on Bitnami Testlink stack/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Integrate Kcfinder with Ckeditor on Bitnami Testlink stack&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -191,7 +180,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2018/07/26/Using Docker in off-line envirnment on CentOS 7/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/09/19/How to modify and commit changes to a docker image/';
   
   (function(){
     var dsq = document.createElement('script');

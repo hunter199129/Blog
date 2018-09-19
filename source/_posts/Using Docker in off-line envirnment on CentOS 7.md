@@ -1,5 +1,5 @@
 ---
-title: 'Using Docker in off-line envirnment on CentOS 7'
+title: 'Using Docker in off-line environment on CentOS 7'
 date: 2018-07-26 15:14:00
 tags: [CentOS, docker]
 categories: DevOps

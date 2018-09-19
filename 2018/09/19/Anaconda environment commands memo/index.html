@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>解決npm &quot;...error errno -4048...&quot;的問題 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>Anaconda environment commands memo - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="這個問題基本上會遇到的都是windows的使用者，不過說實在我也不太知道是什麼問題 但是這是新版的npm才會遇到的問題，看起來應該是個在windows上的bug">
-<meta name="keywords" content="npm,nodejs">
+  <meta name="description" content="This is a memo for anaconda env setting commands">
+<meta name="keywords" content="python,anaconda,memo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解決npm &quot;...error errno -4048...&quot;的問題">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2017/11/10/解決npm _...error errno -4048..._的問題/index.html">
+<meta property="og:title" content="Anaconda environment commands memo">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/09/19/Anaconda environment commands memo/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="這個問題基本上會遇到的都是windows的使用者，不過說實在我也不太知道是什麼問題 但是這是新版的npm才會遇到的問題，看起來應該是個在windows上的bug">
+<meta property="og:description" content="This is a memo for anaconda env setting commands">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2018-09-19T06:05:53.383Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解決npm &quot;...error errno -4048...&quot;的問題">
-<meta name="twitter:description" content="這個問題基本上會遇到的都是windows的使用者，不過說實在我也不太知道是什麼問題 但是這是新版的npm才會遇到的問題，看起來應該是個在windows上的bug">
+<meta name="twitter:title" content="Anaconda environment commands memo">
+<meta name="twitter:description" content="This is a memo for anaconda env setting commands">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-解決npm _...error errno -4048..._的問題" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-Anaconda environment commands memo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      解決npm &quot;...error errno -4048...&quot;的問題
-      <small class=article-detail-date-index>&nbsp; 2017-11-10</small>
+      Anaconda environment commands memo
+      <small class=article-detail-date-index>&nbsp; 2018-09-19</small>
     </h1>
   
 
@@ -82,41 +82,38 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2017/11/10/解決npm _...error errno -4048..._的問題/" class="article-date">
-  <time datetime="2017-11-10T15:40:00.000Z" itemprop="datePublished">2017-11-10</time>
+      <!--<a href="/blog/2018/09/19/Anaconda environment commands memo/" class="article-date">
+  <time datetime="2018-09-19T14:00:00.000Z" itemprop="datePublished">2018-09-19</time>
 </a>-->
       <!-- 
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+    <a class="article-category-link" href="/blog/categories/Memo/">Memo</a>
   </div>
 
 --><!-- by blair 160724 -->
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2017/11/10/解決npm _...error errno -4048..._的問題/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2018/09/19/Anaconda environment commands memo/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>這個問題基本上會遇到的都是windows的使用者，不過說實在我也不太知道是什麼問題</p>
-<p>但是這是新版的npm才會遇到的問題，看起來應該是個在windows上的bug</p>
+        <p>This is a memo for anaconda env setting commands</p>
 <a id="more"></a>
-<p>大略的error code如下:</p>
-<pre><code>...
-9453 error code EPERM
-29454 error errno -4048
-29455 error syscall scandir
-29456 error Error: EPERM: operation not permitted, scandir &apos;C:\Users\10512157\Desktop\test-one\node_modules\fsevents\node_modules&apos;
-...
-29457 error Please try running this command again as root/Administrator.
-</code></pre><p>所以要解決這個問題，只要把npm降版就好了</p>
-<p>npm降版的方式很簡單，直接對npm下<code>npm i -g npm@&lt;version&gt;</code></p>
-<p>這邊用win7只要降到<code>5.0.3</code>就可以用，win10我就不知道了</p>
-<p>看起來不是什麼大問題，但也花了我不少時間研究…</p>
+<h2 id="Create-env-offline"><a href="#Create-env-offline" class="headerlink" title="Create env offline"></a>Create env offline</h2><p>Installed packages python, pip, pandas</p>
+<pre><code>$ conda create --no-default-packages -n myEnv --offline python pip pandas
+</code></pre><p>NOTE: Install pip to split base env pip, which means pip install packages will only available for new env instead of global</p>
+<h2 id="Activate-Deactivate-env"><a href="#Activate-Deactivate-env" class="headerlink" title="Activate/Deactivate env"></a>Activate/Deactivate env</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows:"></a>Windows:</h3><pre><code>$ activate myEnv
 
+$ deactivate
+</code></pre><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux:"></a>Linux:</h3><pre><code>$ source activate myEnv
+
+$ source deactivate
+</code></pre><h2 id="Remove-env"><a href="#Remove-env" class="headerlink" title="Remove env"></a>Remove env</h2><pre><code>$ conda remove --name myEnv --all
+</code></pre>
       
      <!-- by blair add this if sentence at 20160725 -->
       <br>
@@ -124,12 +121,17 @@
     
     </div>
     
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-env-offline"><span class="toc-text">Create env offline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Activate-Deactivate-env"><span class="toc-text">Activate/Deactivate env</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows"><span class="toc-text">Windows:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-text">Linux:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-env"><span class="toc-text">Remove env</span></a></li></ol>
+      </div>
+    
     
       <footer class="article-footer">
         <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
         
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+    <a class="article-category-link" href="/blog/categories/Memo/">Memo</a>
   </div>
 
  <!-- by blair add 160724-->
@@ -138,7 +140,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/nodejs/">nodejs</a><span></span><a class="article-tag-link" href="/blog/tags/npm/">npm</a>
+    <a class="article-tag-link" href="/blog/tags/anaconda/">anaconda</a><span></span><a class="article-tag-link" href="/blog/tags/memo/">memo</a><span></span><a class="article-tag-link" href="/blog/tags/python/">python</a>
   </div>
 
 
@@ -149,17 +151,9 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2017/11/14/解決網頁混合內容(Mixed Content)的問題/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          解決網頁混合內容(Mixed Content)的問題
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2017/11/10/Install C_Sharp extension's extra packages in vscode without network connection/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Install C_Sharp extension extra packages in vscode without network connection&nbsp;<span>&gt;</span></div>
+    <a href="/blog/2018/09/19/Turn Python Code To Executable File Using PyInstaller/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Turn Python Code To Executable File Using PyInstaller&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -188,7 +182,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2017/11/10/解決npm _...error errno -4048..._的問題/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/09/19/Anaconda environment commands memo/';
   
   (function(){
     var dsq = document.createElement('script');

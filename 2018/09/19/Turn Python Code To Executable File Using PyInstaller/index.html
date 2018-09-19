@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Turn Python Code To Executable File Using PyInstaller - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python 是個很方便的 Script language，非常適合拿來做簡單的自動化流程或是程式存取 但是要讓他在沒有安裝 python 下的環境執行就有點麻煩了，這時候就需要 PyInstaller 套件的幫助">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Turn Python Code To Executable File Using PyInstaller">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/09/19/Turn Python Code To Executable File Using PyInstaller/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="Python 是個很方便的 Script language，非常適合拿來做簡單的自動化流程或是程式存取 但是要讓他在沒有安裝 python 下的環境執行就有點麻煩了，這時候就需要 PyInstaller 套件的幫助">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-09-19T06:05:53.383Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Turn Python Code To Executable File Using PyInstaller">
+<meta name="twitter:description" content="Python 是個很方便的 Script language，非常適合拿來做簡單的自動化流程或是程式存取 但是要讓他在沒有安裝 python 下的環境執行就有點麻煩了，這時候就需要 PyInstaller 套件的幫助">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-Turn Python Code To Executable File Using PyInstaller" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Turn Python Code To Executable File Using PyInstaller
+      <small class=article-detail-date-index>&nbsp; 2018-09-19</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2018/09/19/Turn Python Code To Executable File Using PyInstaller/" class="article-date">
+  <time datetime="2018-09-19T13:50:00.000Z" itemprop="datePublished">2018-09-19</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2018/09/19/Turn Python Code To Executable File Using PyInstaller/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python 是個很方便的 Script language，非常適合拿來做簡單的自動化流程或是程式存取</p>
+<p>但是要讓他在沒有安裝 python 下的環境執行就有點麻煩了，這時候就需要 <a href="https://www.pyinstaller.org/" target="_blank" rel="noopener">PyInstaller</a> 套件的幫助</p>
+<a id="more"></a>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>PyInstaller 是一個可以將 python 轉為 exe 的套件，當然這也不是唯一一個</p>
+<p>其他還有 <a href="http://www.py2exe.org/" target="_blank" rel="noopener">py2exe</a>, <a href="https://cx-freeze.readthedocs.io/" target="_blank" rel="noopener">cz_freeze</a> 等等，但用起來都沒有 PyInstaller 來的簡單</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>要使用 PyInstaller 一開始直接先用 pip 安裝</p>
+<pre><code>$ pip install pyinstaller
+</code></pre><p>裝好了之後就可以直接在 command line 使用了</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>使用方法很簡單，就直接下</p>
+<pre><code>$ pyinstaller &lt;your_code.py&gt;
+</code></pre><p>就會把編譯好的 exe 放到 dist 資料夾下</p>
+<p>然後一些參數的介紹可以用</p>
+<pre><code>$ pyinstaller -h
+</code></pre><p>比較常用的參數</p>
+<ul>
+<li><strong>-F</strong>: one file</li>
+<li><strong>-i &lt;icon_path&gt;</strong>: add icon</li>
+</ul>
+<h2 id="About-dependency"><a href="#About-dependency" class="headerlink" title="About dependency"></a>About dependency</h2><p>我在用的時候把 pandas 整個包進來，結果程式出來的大小大概是 200 MB 左右 (用到 pandas 的地方只有簡單的讀 csv 跟 簡單的資料處理)</p>
+<p>用了各種方法都壓不下來，像是把 <code>import pandas</code> 改成 <code>from pandas import read_csv, Dataframe</code> 或是建新的 python env (因為 StackOverflow 有人說是因為 anaconda 的關係)</p>
+<p>最後就直接重寫，不包 pandas 。 大小就直接降到 9 MB</p>
+<p>所以如果沒必要用到的套件就盡量不要包，不然就會多很多不必要的使用空間，也會降低執行速度</p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install"><span class="toc-text">Install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#About-dependency"><span class="toc-text">About dependency</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/python/">python</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/09/19/Anaconda environment commands memo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Anaconda environment commands memo
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/09/19/How to modify and commit changes to a docker image/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">How to modify and commit changes to a docker image&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/09/19/Turn Python Code To Executable File Using PyInstaller/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

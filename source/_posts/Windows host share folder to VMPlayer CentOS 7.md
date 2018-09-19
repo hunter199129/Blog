@@ -1,5 +1,5 @@
 ---
-title: Windows host share folder to VMPlayer CentOS 7'
+title: Windows host share folder to VMPlayer CentOS 7
 date: 2018-09-19 16:02:00
 tags: [CentOS, Windows, vmware, memo]
 categories: Memo

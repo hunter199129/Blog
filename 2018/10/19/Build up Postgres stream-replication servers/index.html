@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Build up Postgres stream-replication servers.md - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Postgres 的 Stream Replication 是內建的強大功能 不過設定的時候踩了一些坑，記錄一下步驟 不過 WAL 強大的功能還沒有用到，之後再把 WAL 的功能試一試">
+<meta name="keywords" content="Postgres,docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build up Postgres stream-replication servers.md">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/10/19/Build up Postgres stream-replication servers/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="Postgres 的 Stream Replication 是內建的強大功能 不過設定的時候踩了一些坑，記錄一下步驟 不過 WAL 強大的功能還沒有用到，之後再把 WAL 的功能試一試">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-10-19T07:49:27.556Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Build up Postgres stream-replication servers.md">
+<meta name="twitter:description" content="Postgres 的 Stream Replication 是內建的強大功能 不過設定的時候踩了一些坑，記錄一下步驟 不過 WAL 強大的功能還沒有用到，之後再把 WAL 的功能試一試">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/webfonts/ptserif/main.css" rel="stylesheet" type="text/css">
+  <link href="/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-Build up Postgres stream-replication servers" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Build up Postgres stream-replication servers.md
+      <small class="article-detail-date-index">&nbsp; 2018-10-19</small>
+    </h1>
+  
+
+
+        <div class="page-title"></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2018/10/19/Build up Postgres stream-replication servers/" class="article-date">
+  <time datetime="2018-10-19T15:37:00.000Z" itemprop="datePublished">2018-10-19</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Database/">Database</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2018/10/19/Build up Postgres stream-replication servers/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Postgres 的 Stream Replication 是內建的強大功能</p>
+<p>不過設定的時候踩了一些坑，記錄一下步驟</p>
+<p>不過 WAL 強大的功能還沒有用到，之後再把 WAL 的功能試一試</p>
+<a id="more"></a>
+<p>要設定的主要有幾個檔案:</p>
+<ol>
+<li><strong>postgresql.conf</strong> : postgresql 主要的設定檔</li>
+<li><strong>pg_hba.conf</strong> : 要連進 postgresql 的方式</li>
+<li><strong>recovery.conf</strong> : 設定 slave node 最重要的file， master node 不需設定這個檔案</li>
+</ol>
+<p>可以利用 sample file 更改設定， sample file 的位置通常在 <code>/usr/share/postgres/</code></p>
+<p>若是用 docker image 可以用以下指令把 config 拉到 host 中</p>
+<pre><code>docker run -i --rm postgres cat /usr/share/postgresql/postgresql.conf.sample &gt; my-postgres.conf
+</code></pre><h2 id="Basic-settings"><a href="#Basic-settings" class="headerlink" title="Basic settings"></a>Basic settings</h2><h3 id="postgresql-conf"><a href="#postgresql-conf" class="headerlink" title="postgresql.conf"></a>postgresql.conf</h3><p>更改下列參數</p>
+<h4 id="For-master-node"><a href="#For-master-node" class="headerlink" title="For master node:"></a>For master node:</h4><pre><code># 讓任何 ip 都可以存取
+listen_addresses = &apos;*&apos;
+
+wal_level = replica
+
+# 開啟 archive mode 並設定 archive 位置
+archive_mode = on
+archive_command = &apos;cp -a &quot;%p&quot; /var/lib/postgresql/archivedir/&quot;%f&quot;&apos;  
+
+# wal senders 的數量限制
+max_wal_senders = 5
+# wal segements 大小限制
+wal_keep_segments = 32
+</code></pre><h4 id="For-slave-node"><a href="#For-slave-node" class="headerlink" title="For slave node:"></a>For slave node:</h4><pre><code>listen_addresses = &apos;*&apos;
+
+wal_level = replica
+
+# 允許 recovery 時 query
+hot_standby = on
+max_standby_archive_delay = 30s
+max_standby_streaming_delay = 30s
+</code></pre><blockquote>
+<p>Note: 若是需要建構多台，可以作模組化，只要在最後加上檔案名稱即可</p>
+</blockquote>
+<p>例如建一個 <code>slave.conf</code> 然後再在 <code>postgresql.conf</code> 最後加上</p>
+<pre><code>include = &apos;slave.conf&apos;
+</code></pre><h3 id="pg-hba-conf"><a href="#pg-hba-conf" class="headerlink" title="pg_hba.conf"></a>pg_hba.conf</h3><p>Add</p>
+<pre><code>host    all             all             all                     md5
+host    replication     postgres        all                     md5
+</code></pre><blockquote>
+<p>Note: replication database 跟 all 是分開的，所以一定要有</p>
+</blockquote>
+<h3 id="recovery-conf"><a href="#recovery-conf" class="headerlink" title="recovery.conf"></a>recovery.conf</h3><p>只有 Slave node 需要</p>
+<p>建新檔案或是去改 <code>recovery.conf.sample</code> 都可以，因為只有三行</p>
+<pre><code>standby_mode = on
+# 連到 master node 的 connection string
+primary_conninfo = &apos;host=172.17.0.3 port=5432 user=postgres password=postgres&apos; 
+# 這邊建好 master node 時需要給 replication slot 對應的東西就是這個 slot name
+primary_slot_name = &apos;pg_slave_1&apos;
+</code></pre><h2 id="Build-master-node"><a href="#Build-master-node" class="headerlink" title="Build master node"></a>Build master node</h2><p>用以上的設定建好 master node 重開之後，建立 replication slot</p>
+<p>用 psql 下 sql command</p>
+<pre><code>$ sudo -u postgres psql
+## 對應到上面 slave configuration 的 slot name
+postgres=# SELECT * FROM pg_create_physical_replication_slot(&apos;pg_slave_1&apos;);
+</code></pre><h2 id="Build-slave-node"><a href="#Build-slave-node" class="headerlink" title="Build slave node"></a>Build slave node</h2><p>Conf 檔設定完之後先不要開啟 server ，要先用<code>pg_basebackup</code> 去 sync master 的資料，否則會出現資料狀態不一致的 Error</p>
+<pre><code>## 記得先 check directory 的位置是否正確
+pg_basebackup -h 172.17.0.3 -p 5432 -D /var/lib/postgresql/data -P -U postgres -X stream
+chown -R postgres:postgres /var/lib/postgresql/data
+chmod -R 0700 /var/lib/postgresql/data
+</code></pre><p>開啟 server 後就可以 check master and slave 是否同步了</p>
+<h2 id="checking-commands"><a href="#checking-commands" class="headerlink" title="checking commands"></a>checking commands</h2><ul>
+<li><p>On master:</p>
+<p>select pg_current_wal_lsn();</p>
+</li>
+<li><p>On slave:</p>
+<p>select pg_last_wal_replay_lsn();</p>
+</li>
+</ul>
+<h2 id="using-docker"><a href="#using-docker" class="headerlink" title="using docker"></a>using docker</h2><h3 id="primary"><a href="#primary" class="headerlink" title="primary:"></a>primary:</h3><pre><code>docker run -d --name postgres-5432 -p 5432:5432 -e POSTGRES_PASSWORD=postgres -v &quot;$PWD/postgres-5432.conf&quot;:/etc/postgresql/postgresql.conf postgres -c &apos;config_file=/etc/postgresql/postgresql.conf&apos;
+
+echo &quot;host    replication     postgres        all                     md5&quot; &gt;&gt; /var/lib/postgresql/data/pg_hba.conf
+
+pg_ctl restart
+
+SELECT * FROM pg_create_physical_replication_slot(&apos;pg_slave_1&apos;);
+</code></pre><h3 id="slave"><a href="#slave" class="headerlink" title="slave:"></a>slave:</h3><pre><code>docker run -d --name postgres-5433 -p 5433:5433 -e POSTGRES_PASSWORD=postgres \
+-v &quot;$PWD/postgres-5433.conf&quot;:/etc/postgresql/postgresql.conf \
+-v &quot;$PWD/recovery.conf&quot;:/etc/postgresql/recovery.conf \
+postgres -c &apos;config_file=/etc/postgresql/postgresql.conf&apos;
+
+pg_basebackup -h 172.17.0.3 -p 5432 -D /var/lib/postgresql/main -P -U postgres -X stream
+
+chown -R postgres:postgres /var/lib/postgresql/main
+chmod -R 0700 /var/lib/postgresql/main
+
+cp /etc/postgresql/recovery.conf /var/lib/postgresql/main/recovery.conf
+cp -rf /var/lib/postgresql/main/* /var/lib/postgresql/data
+</code></pre>
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-settings"><span class="toc-text">Basic settings</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#postgresql-conf"><span class="toc-text">postgresql.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#For-master-node"><span class="toc-text">For master node:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#For-slave-node"><span class="toc-text">For slave node:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pg-hba-conf"><span class="toc-text">pg_hba.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#recovery-conf"><span class="toc-text">recovery.conf</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-master-node"><span class="toc-text">Build master node</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-slave-node"><span class="toc-text">Build slave node</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#checking-commands"><span class="toc-text">checking commands</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#using-docker"><span class="toc-text">using docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#primary"><span class="toc-text">primary:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#slave"><span class="toc-text">slave:</span></a></li></ol></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Database/">Database</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/Postgres/">Postgres</a><span></span><a class="article-tag-link" href="/blog/tags/docker/">docker</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018/10/19/How to modify and commit changes to a docker image/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">How to modify and commit changes to a docker image&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/10/19/Build up Postgres stream-replication servers/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

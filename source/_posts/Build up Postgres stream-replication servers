@@ -31,7 +31,7 @@ Postgres 的 Stream Replication 是內建的強大功能
 
 更改下列參數
 
-#### For master node:
+#### For master node
 
     # 讓任何 ip 都可以存取
     listen_addresses = '*'
@@ -47,7 +47,7 @@ Postgres 的 Stream Replication 是內建的強大功能
     # wal segements 大小限制
     wal_keep_segments = 32
 
-#### For slave node:
+#### For slave node
 
     listen_addresses = '*'
 
@@ -118,7 +118,7 @@ Conf 檔設定完之後先不要開啟 server ，要先用`pg_basebackup` 去 sy
 
 ## using docker
 
-### primary:
+### primary
 
     docker run -d --name postgres-5432 -p 5432:5432 -e POSTGRES_PASSWORD=postgres -v "$PWD/postgres-5432.conf":/etc/postgresql/postgresql.conf postgres -c 'config_file=/etc/postgresql/postgresql.conf'
 
@@ -128,7 +128,7 @@ Conf 檔設定完之後先不要開啟 server ，要先用`pg_basebackup` 去 sy
 
     SELECT * FROM pg_create_physical_replication_slot('pg_slave_1');
 
-### slave:
+### slave
 
     docker run -d --name postgres-5433 -p 5433:5433 -e POSTGRES_PASSWORD=postgres \
     -v "$PWD/postgres-5433.conf":/etc/postgresql/postgresql.conf \

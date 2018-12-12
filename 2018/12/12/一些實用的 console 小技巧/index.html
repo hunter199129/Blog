@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>一些實用的 console 小技巧 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Console 是網頁開發不可或缺的工具，但我們對 console 的用法大多都只用了 console.log 這邊記錄一些讓 console 更實用的小技巧，以下的 code 就直接打開 F12 試看看吧！">
+<meta name="keywords" content="javascript,browser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些實用的 console 小技巧">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2018/12/12/一些實用的 console 小技巧/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="Console 是網頁開發不可或缺的工具，但我們對 console 的用法大多都只用了 console.log 這邊記錄一些讓 console 更實用的小技巧，以下的 code 就直接打開 F12 試看看吧！">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-12-12T03:03:25.103Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一些實用的 console 小技巧">
+<meta name="twitter:description" content="Console 是網頁開發不可或缺的工具，但我們對 console 的用法大多都只用了 console.log 這邊記錄一些讓 console 更實用的小技巧，以下的 code 就直接打開 F12 試看看吧！">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/webfonts/ptserif/main.css" rel="stylesheet" type="text/css">
+  <link href="/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-一些實用的 console 小技巧" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一些實用的 console 小技巧
+      <small class="article-detail-date-index">&nbsp; 2018-12-12</small>
+    </h1>
+  
+
+
+        <div class="page-title"></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2018/12/12/一些實用的 console 小技巧/" class="article-date">
+  <time datetime="2018-12-12T09:01:00.000Z" itemprop="datePublished">2018-12-12</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2018/12/12/一些實用的 console 小技巧/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Console 是網頁開發不可或缺的工具，但我們對 console 的用法大多都只用了 <code>console.log</code></p>
+<p>這邊記錄一些讓 console 更實用的小技巧，以下的 code 就直接打開 F12 試看看吧！</p>
+<a id="more"></a>
+<h2 id="console-group-amp-console-groupEnd"><a href="#console-group-amp-console-groupEnd" class="headerlink" title="console.group &amp; console.groupEnd"></a>console.group &amp; console.groupEnd</h2><ul>
+<li><p>Usage: 將 <code>console.log</code> 分層</p>
+<pre><code>console.group(&apos;lev-1&apos;);
+console.log(&apos;level 1 now&apos;);
+console.group(&apos;lev-2&apos;);
+console.log(&apos;level 2 now&apos;);
+console.groupEnd();
+console.log(&apos;return to level 1&apos;);
+console.groupEnd();
+console.log(&apos;return to level 0&apos;);
+</code></pre></li>
+</ul>
+<h2 id="console-trace"><a href="#console-trace" class="headerlink" title="console.trace"></a>console.trace</h2><ul>
+<li><p>Usage: 觀察現在呼叫的 function</p>
+<pre><code>function foo() {
+  function bar() {
+    console.trace();
+  }
+  bar();
+}
+foo();
+</code></pre></li>
+</ul>
+<h2 id="console-time"><a href="#console-time" class="headerlink" title="console.time"></a>console.time</h2><ul>
+<li><p>Usage: 計算時間</p>
+<pre><code>console.time(&apos;myTimer&apos;); // function 內不可加名稱
+for(i=0; i&lt;100; i++);
+console.timeEnd(&apos;myTimer&apos;);
+</code></pre></li>
+</ul>
+<h2 id="console-clear"><a href="#console-clear" class="headerlink" title="console.clear"></a>console.clear</h2><ul>
+<li><p>Usage: 清空 console</p>
+<pre><code>console.clear();
+</code></pre></li>
+</ul>
+<h2 id="console-memory"><a href="#console-memory" class="headerlink" title="console.memory"></a>console.memory</h2><ul>
+<li><p>Usage: 觀察 JS 使用 memory 的狀況</p>
+<pre><code>console.memory;
+</code></pre></li>
+</ul>
+<h2 id="console-table"><a href="#console-table" class="headerlink" title="console.table"></a>console.table</h2><ul>
+<li><p>Usage: 用 table 的方式呈現 array</p>
+</li>
+<li><p>2-D array</p>
+<pre><code>var people = [[&quot;John&quot;, &quot;Smith&quot;], [&quot;Jane&quot;, &quot;Doe&quot;], [&quot;Emily&quot;, &quot;Jones&quot;]]
+console.table(people);
+</code></pre></li>
+<li><p>Array of objects</p>
+<pre><code>function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+var john = new Person(&quot;John&quot;, &quot;Smith&quot;);
+var jane = new Person(&quot;Jane&quot;, &quot;Doe&quot;);
+var emily = new Person(&quot;Emily&quot;, &quot;Jones&quot;);
+
+console.table([john, jane, emily]);
+</code></pre></li>
+<li><p>Objects of properties</p>
+<pre><code>var family = {};
+
+family.mother = new Person(&quot;Jane&quot;, &quot;Smith&quot;);
+family.father = new Person(&quot;John&quot;, &quot;Smith&quot;);
+family.daughter = new Person(&quot;Emily&quot;, &quot;Smith&quot;);
+
+console.table(family);
+</code></pre></li>
+</ul>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#console-group-amp-console-groupEnd"><span class="toc-text">console.group &amp; console.groupEnd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#console-trace"><span class="toc-text">console.trace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#console-time"><span class="toc-text">console.time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#console-clear"><span class="toc-text">console.clear</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#console-memory"><span class="toc-text">console.memory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#console-table"><span class="toc-text">console.table</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/browser/">browser</a><span></span><a class="article-tag-link" href="/blog/tags/javascript/">javascript</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018/12/12/How to modify and commit changes to a docker image/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">How to modify and commit changes to a docker image&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2018/12/12/一些實用的 console 小技巧/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

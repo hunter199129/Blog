@@ -127,17 +127,17 @@ Note: 都是以debian/ubuntu based的為主
 
 - [✔️ oh-my-zsh](https://ohmyz.sh/)
 
-  - install zsh
+  1. install zsh
 
-              sudo apt install zsh
+          sudo apt install zsh
 
-  - install oh-my-zsh
+  2. install oh-my-zsh
 
-              sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+          sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-  - change default bash
+  3. change default bash
   
-              chsh -s $(which zsh)
+          chsh -s $(which zsh)
 
 - [✔️ tmux](https://github.com/tmux/tmux)
 

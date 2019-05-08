@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
 <meta property="og:description" content="開始搞 data 之後就知道 ETL 是多重要的東西 但是 ETL 的工具大部分都綁手綁腳的，所以就開始嘗試自己動手用 python 做 ETL">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2018-12-12T03:03:25.103Z">
+<meta property="og:updated_time" content="2019-05-08T09:06:25.490Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Load excel data to python, pandas vs. xlwings">
 <meta name="twitter:description" content="開始搞 data 之後就知道 ETL 是多重要的東西 但是 ETL 的工具大部分都綁手綁腳的，所以就開始嘗試自己動手用 python 做 ETL">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-pandas+v.s.+xlwings" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-pandas+v.s.+xlwings" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -113,12 +113,12 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line"><span class="keyword">import</span> xlwings <span class="keyword">as</span> xw</span><br><span class="line"></span><br><span class="line">path = <span class="string">r'C:\Users\10512157\Desktop\TF_SOC_POP_STRUCT_2018.xlsx'</span></span><br></pre></td></tr></table></figure>
 <h2 id="Loading-data-from-pandas-and-measure-the-time-consumption"><a href="#Loading-data-from-pandas-and-measure-the-time-consumption" class="headerlink" title="Loading data from pandas and measure the time consumption"></a>Loading data from pandas and measure the time consumption</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">timer_start = timeit.default_timer()</span><br><span class="line"></span><br><span class="line">t = pd.read_excel(path)</span><br><span class="line"></span><br><span class="line">timer_end = timeit.default_timer()</span><br><span class="line">print(timer_end - timer_start)</span><br></pre></td></tr></table></figure>
 <pre><code>75.93760436134232
-</code></pre><h2 id="Loading-data-from-xlwings-and-measure-the-time-consumption"><a href="#Loading-data-from-xlwings-and-measure-the-time-consumption" class="headerlink" title="Loading data from xlwings and measure the time consumption"></a>Loading data from xlwings and measure the time consumption</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">timer_start = timeit.default_timer()</span><br><span class="line"></span><br><span class="line">app = xw.App(visible=<span class="keyword">False</span>)</span><br><span class="line">wb = app.books.open(path)</span><br><span class="line">sht = wb.sheets[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">timer_end = timeit.default_timer()</span><br><span class="line">print(timer_end - timer_start)</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Loading-data-from-xlwings-and-measure-the-time-consumption"><a href="#Loading-data-from-xlwings-and-measure-the-time-consumption" class="headerlink" title="Loading data from xlwings and measure the time consumption"></a>Loading data from xlwings and measure the time consumption</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">timer_start = timeit.default_timer()</span><br><span class="line"></span><br><span class="line">app = xw.App(visible=<span class="literal">False</span>)</span><br><span class="line">wb = app.books.open(path)</span><br><span class="line">sht = wb.sheets[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">timer_end = timeit.default_timer()</span><br><span class="line">print(timer_end - timer_start)</span><br></pre></td></tr></table></figure>
 <pre><code>17.660102651995146
 </code></pre><p>我們可以看到 <em>xlwings</em> 讀資料的速度明顯比 <em>pandas</em> 快上不少<br>資料的操作方法我這邊就不細比  </p>
 <p>這邊在測試的時候倒是發現一件有趣的事</p>
 <h2 id="Putting-data-from-xlwings-to-pandas-dataframe"><a href="#Putting-data-from-xlwings-to-pandas-dataframe" class="headerlink" title="Putting data from xlwings to pandas dataframe"></a>Putting data from xlwings to pandas dataframe</h2><p>我們嘗試把 <em>xlwings</em> 拉進來的資料塞到 <em>pandas</em> DataFrame<br><em>xlwings</em> 官方有提供 api 可以直接塞</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xw_to_pd = sht.range(<span class="string">'A:V'</span>).options(pd.DataFrame, index=<span class="keyword">False</span>).value</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xw_to_pd = sht.range(<span class="string">'A:V'</span>).options(pd.DataFrame, index=<span class="literal">False</span>).value</span><br></pre></td></tr></table></figure>
 <pre><code>.
 .
 .
@@ -134,7 +134,7 @@ com_error: (-2147024882, &apos;存放裝置空間不足，無法完成此操作�
 </code></pre><p>我們會發現他會出現 <em>存放裝置空間不足，無法完成此操作。</em> 的 error</p>
 <p>照這樣說 <em>pandas</em> 可以全部塞進去，所以是在 memory 存放有做優化囉<br>看起來是這樣沒錯，但是 <em>xlwings</em> 有一點小bug  </p>
 <p>我們單載入一列，然後來看一下載進來的資料筆數</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">f'pandas: <span class="subst">&#123;len(t)&#125;</span>'</span>)</span><br><span class="line">xw_to_pd = sht.range(<span class="string">'A:A'</span>).options(pd.DataFrame, index=<span class="keyword">False</span>).value</span><br><span class="line">print(<span class="string">f'xlwings to pandas: <span class="subst">&#123;len(xw_to_pd)&#125;</span>'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">f'pandas: <span class="subst">&#123;len(t)&#125;</span>'</span>)</span><br><span class="line">xw_to_pd = sht.range(<span class="string">'A:A'</span>).options(pd.DataFrame, index=<span class="literal">False</span>).value</span><br><span class="line">print(<span class="string">f'xlwings to pandas: <span class="subst">&#123;len(xw_to_pd)&#125;</span>'</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>pandas: 465418
 xlwings to pandas: 1048575
 </code></pre><p>咦? 怎麼兩個筆數不一樣多<br>看了資料名名才40萬筆， <em>xlwings</em> 怎麼會有100多萬筆</p>
@@ -148,7 +148,7 @@ xlwings to pandas: 1048575
 <p>這邊是 <em>xlwings</em> 抓資料更好的做法</p>
 <p>可以抓到 excel 的 range 之後存成指定範圍</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## find range of rows</span></span><br><span class="line">used_range_rows = (sht.api.UsedRange.Row, sht.api.UsedRange.Row + sht.api.UsedRange.Rows.Count) </span><br><span class="line"><span class="comment">## find range of columns</span></span><br><span class="line">used_range_cols = (sht.api.UsedRange.Column, sht.api.UsedRange.Column + sht.api.UsedRange.Columns.Count) </span><br><span class="line"></span><br><span class="line"><span class="comment">## assign range</span></span><br><span class="line">used_range = xw.Range(*zip(used_range_rows, used_range_cols))</span><br><span class="line">used_range.select()</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xw_to_pd = sht.range(used_range).options(pd.DataFrame, index=<span class="keyword">False</span>).value</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xw_to_pd = sht.range(used_range).options(pd.DataFrame, index=<span class="literal">False</span>).value</span><br></pre></td></tr></table></figure>
 <pre><code>.
 .
 .
@@ -236,7 +236,7 @@ com_error: (-2147024882, &apos;存放裝置空間不足，無法完成此操作�
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 Andy Li&nbsp;
+      &copy; 2019 Andy Li&nbsp;
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
     </div>
   </div>

@@ -9,9 +9,10 @@ categories: Linux
 
 不然每次重灌都要重找一次，有點麻煩...
 
-Note: 都是以debian/ubuntu based的為主
-
 <!--More-->
+
+Note: 都是以debian/ubuntu based的為主
+Note2: ✔ 代表必須
 
 ## Applications
 

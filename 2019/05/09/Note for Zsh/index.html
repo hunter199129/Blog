@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
 <meta property="og:description" content="My Zsh Note">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2019-05-09T06:27:33.666Z">
+<meta property="og:updated_time" content="2019-05-09T07:37:31.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Note for Zsh">
 <meta name="twitter:description" content="My Zsh Note">
@@ -103,28 +103,28 @@
       
         <p>My Zsh Note</p>
 <a id="more"></a>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><h2 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h2><h3 id="zsh-autosuggestions-Auto-complete"><a href="#zsh-autosuggestions-Auto-complete" class="headerlink" title="zsh-autosuggestions: Auto complete"></a><a href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener">zsh-autosuggestions</a>: Auto complete</h3><ol>
-<li><p>Clone this repository into $ZSH_CUSTOM/plugins (by default ~/.oh-my-zsh/custom/plugins)</p>
-<pre><code>git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-</code></pre></li>
-<li><p>Add the plugin to the list of plugins for Oh My Zsh to load (inside ~/.zshrc):</p>
-<pre><code>echo plugins=(zsh-autosuggestions) &gt;&gt; ~/.zshrc
-</code></pre></li>
-<li><p>Start a new terminal session.</p>
-</li>
-</ol>
-<h2 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h2><h3 id="Spaceship-ZSH"><a href="#Spaceship-ZSH" class="headerlink" title="Spaceship ZSH"></a><a href="https://github.com/denysdovhan/spaceship-prompt" target="_blank" rel="noopener">Spaceship ZSH</a></h3><ol>
-<li><p>Clone this repo:</p>
-<pre><code>git clone https://github.com/denysdovhan/spaceship-prompt.git &quot;$ZSH_CUSTOM/themes/spaceship-prompt&quot;
-</code></pre></li>
-<li><p>Symlink spaceship.zsh-theme to your oh-my-zsh custom themes directory:</p>
-<pre><code>ln -s &quot;$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme&quot; &quot;$ZSH_CUSTOM/themes/spaceship.zsh-theme&quot;
-</code></pre></li>
-<li><p>Set ZSH_THEME=”spaceship” in your .zshrc.</p>
-<pre><code>sed -i &apos;s/robbyrussell/spaceship/g&apos; ~/.zshrc
-</code></pre></li>
-</ol>
+<h2 id="Installation-Guide"><a href="#Installation-Guide" class="headerlink" title="Installation Guide"></a>Installation Guide</h2><pre><code># 1. install zsh
+sudo apt install zsh
 
+# 2. install oh-my-zsh
+sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+</code></pre><h2 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h2><h3 id="zsh-autosuggestions-Auto-complete"><a href="#zsh-autosuggestions-Auto-complete" class="headerlink" title="zsh-autosuggestions: Auto complete"></a><a href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener">zsh-autosuggestions</a>: Auto complete</h3><pre><code># 1. Clone this repository into $ZSH_CUSTOM/plugins (by default ~/.oh-my-zsh/custom/plugins)
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# 2. Add the plugin to the list of plugins for Oh My Zsh to load (inside ~/.zshrc):
+sed -i &apos;/plugins=(git)/a plugins=(zsh-autosuggestions)&apos; ~/.zshrc
+echo &quot;plugins=(zsh-autosuggestions)&quot; &gt;&gt; ~/.zshrc
+</code></pre><h2 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h2><h3 id="Spaceship-ZSH"><a href="#Spaceship-ZSH" class="headerlink" title="Spaceship ZSH"></a><a href="https://github.com/denysdovhan/spaceship-prompt" target="_blank" rel="noopener">Spaceship ZSH</a></h3><pre><code># 1. Clone this repo:
+git clone https://github.com/denysdovhan/spaceship-prompt.git &quot;$ZSH_CUSTOM/themes/spaceship-prompt&quot;
+
+# 2. Symlink spaceship.zsh-theme to your oh-my-zsh custom themes directory:
+ln -s &quot;$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme&quot; &quot;$ZSH_CUSTOM/themes/spaceship.zsh-theme&quot;
+
+# 3. Set ZSH_THEME=&quot;spaceship&quot; in your .zshrc.
+sed -i &apos;s/robbyrussell/spaceship/g&apos; ~/.zshrc
+</code></pre><h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><p>P.S. To change default bash</p>
+<pre><code>chsh -s $(which zsh)
+</code></pre>
       
      <!-- by blair add this if sentence at 20160725 -->
       <br>
@@ -134,7 +134,7 @@
     
       <div class="article-toc">
         <h3>Contents</h3>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Plugins"><span class="toc-text">Plugins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zsh-autosuggestions-Auto-complete"><span class="toc-text">zsh-autosuggestions: Auto complete</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Themes"><span class="toc-text">Themes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spaceship-ZSH"><span class="toc-text">Spaceship ZSH</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation-Guide"><span class="toc-text">Installation Guide</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Plugins"><span class="toc-text">Plugins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zsh-autosuggestions-Auto-complete"><span class="toc-text">zsh-autosuggestions: Auto complete</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Themes"><span class="toc-text">Themes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spaceship-ZSH"><span class="toc-text">Spaceship ZSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other"><span class="toc-text">Other</span></a></li></ol>
       </div>
     
     

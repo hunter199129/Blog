@@ -26,6 +26,8 @@ Note2: ✔ 代表必須
 
         sudo apt install snapd
 
+- [Cerebro](https://cerebroapp.com/): Open-source productivity booster with a brain / MacOS-Spotlight alternative.
+
 ### Account
 
 - [✔️ Bitwarden](https://bitwarden.com)
@@ -62,10 +64,6 @@ Note2: ✔ 代表必須
 
 - [Franz](https://meetfranz.com/)
 
-### Download
-
-- [MegaSync](https://mega.nz/#sync)
-
 ### Editor
 
 - [✔️ vim](https://www.vim.org)
@@ -83,11 +81,39 @@ Note2: ✔ 代表必須
 
 - [ranger](https://ranger.github.io/): A VIM-inspired filemanager for the console
 
+### File Sharing
+
+- [MegaSync](https://mega.nz/#sync)
+
+- [ffsend](https://github.com/timvisee/ffsend)
+
+        sudo snap install ffsend
+
 ### Gaming
 
 - [✔️ Steam](https://store.steampowered.com/)
 
         sudo apt install steam
+
+- [NetHack](https://www.nethack.org/)
+
+- [0 A.D.](https://play0ad.com/): A free, open-source game of ancient warfare
+
+- [UnknownHorizons](http://unknown-horizons.org/): A 2D realtime strategy simulation with an emphasis on economy and city building. Multiplayer currently broken.
+
+- [Simutrans](https://www.simutrans.com/): Simutrans is a freeware and open-source transportation simulator
+
+- [Solarus](https://www.solarus-games.org/): A 2D game engine written in C++, and executing games made in Lua.
+
+- [FLARE](http://flarerpg.org/): Singleplayer Diablo clone with beautiful original graphics.
+
+- [Tales of Maj'Eyal](https://te4.org/): Tales of Maj’Eyal (ToME) is a free, open source roguelike RPG, featuring tactical turn-based combat and advanced character building.
+
+### Images
+
+- [Feh](https://feh.finalrewind.org/): lightweight and fast image viewer.
+
+- [Shotwell](https://wiki.gnome.org/Apps/Shotwell): Shotwell is a photo manager for GNOME 3.
 
 ### Input
 
@@ -108,9 +134,13 @@ Note2: ✔ 代表必須
 
         sudo apt install audacious
 
+- [Kaku](https://kaku.rocks): Kaku is a highly integrated music player supports different online platform like YouTube, SoundCloud, Vimeo and more. 
+
 ### Note Taking
 
 - [Notable](https://github.com/notable/notable)
+
+- [Boostnote]: Boostnote is an open source note-taking app made for programmers just like you.
 
 ### System & Command Line Utility
 
@@ -124,21 +154,15 @@ Note2: ✔ 代表必須
 
 - [Stacer](https://oguzhaninan.github.io/Stacer-Web/)
 
+- [Y-PPA-Manager](https://launchpad.net/y-ppa-manager)
+
+- [Etcher](https://www.balena.io/etcher/) Flash OS images to SD cards & USB drives, safely and easily.
+
 ### Terminal
 
 - [✔️ oh-my-zsh](https://ohmyz.sh/)
 
-  1. install zsh
-
-          sudo apt install zsh
-
-  2. install oh-my-zsh
-
-          sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-  3. change default bash
-  
-          chsh -s $(which zsh)
+    > [Note for Zsh](https://hunter199129.github.io/blog/2019/05/09/Note%20for%20Zsh/)
 
 - [✔️ tmux](https://github.com/tmux/tmux)
 
@@ -151,10 +175,6 @@ Note2: ✔ 代表必須
 - [TLDR pages](https://tldr.sh/): Simplified and community-driven man pages
 
         sudo npm install -g tldr
-
-- [ffsend](https://github.com/timvisee/ffsend)
-
-        sudo snap install ffsend
 
 - [ripgrep (rg)](https://github.com/BurntSushi/ripgrep): More powerful grep
 
@@ -175,6 +195,8 @@ Note2: ✔ 代表必須
 ## Others
 
 ### Customization
+
+- [Daily-Reddit-Wallpaper](https://ssimunic.github.io/Daily-Reddit-Wallpaper/)
 
 - [OpenDesktop](https://www.opendesktop.org)
 

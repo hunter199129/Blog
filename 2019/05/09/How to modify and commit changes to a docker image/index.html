@@ -3,20 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>hexo架設memo - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>How to modify and commit changes to a docker image - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。 還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。">
-<meta name="keywords" content="hexo,blog">
+  <meta name="description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo架設memo">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2016/10/06/Ubuntu-hexo架設memo/index.html">
+<meta property="og:title" content="How to modify and commit changes to a docker image">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2019/05/09/How to modify and commit changes to a docker image/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。 還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。">
+<meta property="og:description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2019-05-09T06:27:33.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo架設memo">
-<meta name="twitter:description" content="架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。 還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。">
+<meta name="twitter:title" content="How to modify and commit changes to a docker image">
+<meta name="twitter:description" content="Customize image is the must if we’re using other’s docker image. Something like install new packages, drivers, plugins of application, or setting global variables, etc.">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-Ubuntu-hexo架設memo" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-How to modify and commit changes to a docker image" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hexo架設memo
-      <small class="article-detail-date-index">&nbsp; 2016-10-06</small>
+      How to modify and commit changes to a docker image
+      <small class="article-detail-date-index">&nbsp; 2019-05-09</small>
     </h1>
   
 
@@ -82,40 +82,36 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2016/10/06/Ubuntu-hexo架設memo/" class="article-date">
-  <time datetime="2016-10-06T15:43:05.000Z" itemprop="datePublished">2016-10-06</time>
+      <!--<a href="/blog/2019/05/09/How to modify and commit changes to a docker image/" class="article-date">
+  <time datetime="2019-05-09T06:27:33.666Z" itemprop="datePublished">2019-05-09</time>
 </a>-->
       <!-- 
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
   </div>
 
 --><!-- by blair 160724 -->
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2016/10/06/Ubuntu-hexo架設memo/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2019/05/09/How to modify and commit changes to a docker image/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>架設的途中有遇到一些小問題，但因為問題都不大，所以很快就能解決了。</p>
-<p>還有一部份是theme的問題，想說晚點再調好了，畢竟主要是用來寫東西的，那些比較雜的東西有時間再玩。</p>
+        <p>Customize image is the must if we’re using other’s docker image.</p>
+<p>Something like install new packages, drivers, plugins of application, or setting global variables, etc.</p>
 <a id="more"></a>
-<h4 id="遭遇到的問題"><a href="#遭遇到的問題" class="headerlink" title="遭遇到的問題"></a>遭遇到的問題</h4><ol>
-<li>Ubtunu上nodejs套件npm跟hexo對不上，解決的辦法就是讓node更新，下cli指令也可以，也不清楚我怎麼弄的，總之試了幾次就架好了。</li>
-<li>hexo new “post”的時候遇到權限問題。就算用sudo去new，雖然它說有建立檔案，但卻也看不到建立的檔案。解決辦法就是直接把hexo原本的資料夾砍掉，重新hexo init一個新的資料夾就好了。</li>
-</ol>
-<h4 id="Reference-Sites"><a href="#Reference-Sites" class="headerlink" title="Reference Sites"></a>Reference Sites</h4><ul>
-<li><a href="http://div.io/topic/1691" target="_blank" rel="noopener">手把手教你使用Hexo + Github Pages搭建个人独立博客</a></li>
-<li><a href="https://hexo.io/zh-tw/docs/" target="_blank" rel="noopener">Hexo Doc</a></li>
-<li><a href="http://www.cnblogs.com/renkangke/archive/2013/05/31/conquerAndroid.html" target="_blank" rel="noopener">git push用法和常见问题分析 </a></li>
-<li><a href="https://wwssllabcd.github.io/blog/2014/12/22/how-to-install-hexo/" target="_blank" rel="noopener">Hexo 安裝教學、心得筆記 </a></li>
-<li><a href="http://blog.thepetertung.com/2016/07/28/how-to-use-hexo-to-build-your-blog-1/" target="_blank" rel="noopener">使用 Hexo 與 Github 架設自己的 Blog</a></li>
-</ul>
-
+<p>so guide below is how you manipulate the docker image</p>
+<h2 id="Run-image-file-as-a-container"><a href="#Run-image-file-as-a-container" class="headerlink" title="Run image file as a container"></a>Run image file as a container</h2><pre><code>sudo docker run --name CONTAINER_NAME -p PORT:PORT -e TERM=xterm -d &lt;DOCKER_IMAGE&gt;
+</code></pre><h2 id="Use-command-in-container-environment"><a href="#Use-command-in-container-environment" class="headerlink" title="Use command in container environment"></a>Use command in container environment</h2><pre><code>sudo docker exec -it &lt;CONTAINER_ID&gt; bash
+</code></pre><h2 id="Install-packages-you-need"><a href="#Install-packages-you-need" class="headerlink" title="Install packages you need"></a>Install packages you need</h2><pre><code>apt install &lt;package&gt;
+pip install &lt;python-package&gt;
+</code></pre><h2 id="Commit-change-and-save-to-new-image"><a href="#Commit-change-and-save-to-new-image" class="headerlink" title="Commit change and save to new image"></a>Commit change and save to new image</h2><pre><code>sudo docker commit &lt;CONTAINER_ID&gt; superset-mssql
+</code></pre><h2 id="Check-image"><a href="#Check-image" class="headerlink" title="Check image"></a>Check image</h2><pre><code>sudo docker images
+</code></pre>
       
      <!-- by blair add this if sentence at 20160725 -->
       <br>
@@ -125,7 +121,7 @@
     
       <div class="article-toc">
         <h3>Contents</h3>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#遭遇到的問題"><span class="toc-text">遭遇到的問題</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reference-Sites"><span class="toc-text">Reference Sites</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Run-image-file-as-a-container"><span class="toc-text">Run image file as a container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-command-in-container-environment"><span class="toc-text">Use command in container environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-packages-you-need"><span class="toc-text">Install packages you need</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Commit-change-and-save-to-new-image"><span class="toc-text">Commit change and save to new image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-image"><span class="toc-text">Check image</span></a></li></ol>
       </div>
     
     
@@ -133,7 +129,7 @@
         <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
         
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Blog/">Blog</a>
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
   </div>
 
  <!-- by blair add 160724-->
@@ -142,7 +138,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/blog/">blog</a><span></span><a class="article-tag-link" href="/blog/tags/hexo/">hexo</a>
+    <a class="article-tag-link" href="/blog/tags/docker/">docker</a>
   </div>
 
 
@@ -153,14 +149,18 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2016/10/06/Ubuntu目錄中文改英文/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2019/05/09/Note for Zsh/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-title"><span>&lt;</span>&nbsp;
         
-          Ubuntu目錄中文改英文
+          Note for Zsh
         
       </div>
     </a>
   
+  
+    <a href="/blog/2019/05/08/Linux Applications I use/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux Applications I use&nbsp;<span>&gt;</span></div>
+    </a>
   
 </nav>
 
@@ -188,7 +188,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2016/10/06/Ubuntu-hexo架設memo/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2019/05/09/How to modify and commit changes to a docker image/';
   
   (function(){
     var dsq = document.createElement('script');

@@ -3,20 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Lubuntu上新酷音的問題 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>Note for Zsh - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="因為家裡的這台筆電比較舊了，所以就想說換一個輕一點的系統來用用。">
-<meta name="keywords" content="Ubuntu,新酷音,輸入法">
+  <meta name="description" content="My Zsh Note">
+<meta name="keywords" content="Linux,zsh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lubuntu上新酷音的問題">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2017/03/09/Lubuntu上新酷音的問題/index.html">
+<meta property="og:title" content="Note for Zsh">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2019/05/09/Note for Zsh/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="因為家裡的這台筆電比較舊了，所以就想說換一個輕一點的系統來用用。">
+<meta property="og:description" content="My Zsh Note">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2019-05-09T06:27:33.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lubuntu上新酷音的問題">
-<meta name="twitter:description" content="因為家裡的這台筆電比較舊了，所以就想說換一個輕一點的系統來用用。">
+<meta name="twitter:title" content="Note for Zsh">
+<meta name="twitter:description" content="My Zsh Note">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-Lubuntu上新酷音的問題" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-Note for Zsh" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Lubuntu上新酷音的問題
-      <small class="article-detail-date-index">&nbsp; 2017-03-09</small>
+      Note for Zsh
+      <small class="article-detail-date-index">&nbsp; 2019-05-09</small>
     </h1>
   
 
@@ -82,8 +82,8 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2017/03/09/Lubuntu上新酷音的問題/" class="article-date">
-  <time datetime="2017-03-09T13:39:00.000Z" itemprop="datePublished">2017-03-09</time>
+      <!--<a href="/blog/2019/05/09/Note for Zsh/" class="article-date">
+  <time datetime="2019-05-09T14:20:00.000Z" itemprop="datePublished">2019-05-09</time>
 </a>-->
       <!-- 
   <div class="article-category">
@@ -94,27 +94,36 @@
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2017/03/09/Lubuntu上新酷音的問題/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2019/05/09/Note for Zsh/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>因為家裡的這台筆電比較舊了，所以就想說換一個輕一點的系統來用用。</p>
+        <p>My Zsh Note</p>
 <a id="more"></a>
-<p>剛開始本來是安裝elementary os上來的，但是因為eOS上的graphic driver好像不太支援，加上這台(inspiron-14-3452)是用Intel的內顯，偏偏Intel又沒有支援eOS的安裝程式，所以就直接改用Lubuntu。</p>
-<p>遇到的問題是新酷音的輸入法會有一個黑框在底下，所以就去找了解法：</p>
-<blockquote>
-<p>從偏好設定 &gt; LXSession的預設應用程式</p>
-</blockquote>
-<blockquote>
-<p>點選自動啟動把FcitxQt IMPanel啟用取消勾選</p>
-</blockquote>
-<blockquote>
-<p>最後重新登入</p>
-</blockquote>
-<p>這樣就解決了，順手紀錄一下，因為之後非常有可能還會用到！</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><h2 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h2><h3 id="zsh-autosuggestions-Auto-complete"><a href="#zsh-autosuggestions-Auto-complete" class="headerlink" title="zsh-autosuggestions: Auto complete"></a><a href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener">zsh-autosuggestions</a>: Auto complete</h3><ol>
+<li><p>Clone this repository into $ZSH_CUSTOM/plugins (by default ~/.oh-my-zsh/custom/plugins)</p>
+<pre><code>git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+</code></pre></li>
+<li><p>Add the plugin to the list of plugins for Oh My Zsh to load (inside ~/.zshrc):</p>
+<pre><code>echo plugins=(zsh-autosuggestions) &gt;&gt; ~/.zshrc
+</code></pre></li>
+<li><p>Start a new terminal session.</p>
+</li>
+</ol>
+<h2 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h2><h3 id="Spaceship-ZSH"><a href="#Spaceship-ZSH" class="headerlink" title="Spaceship ZSH"></a><a href="https://github.com/denysdovhan/spaceship-prompt" target="_blank" rel="noopener">Spaceship ZSH</a></h3><ol>
+<li><p>Clone this repo:</p>
+<pre><code>git clone https://github.com/denysdovhan/spaceship-prompt.git &quot;$ZSH_CUSTOM/themes/spaceship-prompt&quot;
+</code></pre></li>
+<li><p>Symlink spaceship.zsh-theme to your oh-my-zsh custom themes directory:</p>
+<pre><code>ln -s &quot;$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme&quot; &quot;$ZSH_CUSTOM/themes/spaceship.zsh-theme&quot;
+</code></pre></li>
+<li><p>Set ZSH_THEME=”spaceship” in your .zshrc.</p>
+<pre><code>sed -i &apos;s/robbyrussell/spaceship/g&apos; ~/.zshrc
+</code></pre></li>
+</ol>
 
       
      <!-- by blair add this if sentence at 20160725 -->
@@ -122,6 +131,11 @@
        <!-- by blair add 160724-->
     
     </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Plugins"><span class="toc-text">Plugins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zsh-autosuggestions-Auto-complete"><span class="toc-text">zsh-autosuggestions: Auto complete</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Themes"><span class="toc-text">Themes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spaceship-ZSH"><span class="toc-text">Spaceship ZSH</span></a></li></ol></li></ol>
+      </div>
     
     
       <footer class="article-footer">
@@ -137,7 +151,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/Ubuntu/">Ubuntu</a><span></span><a class="article-tag-link" href="/blog/tags/新酷音/">新酷音</a><span></span><a class="article-tag-link" href="/blog/tags/輸入法/">輸入法</a>
+    <a class="article-tag-link" href="/blog/tags/Linux/">Linux</a><span></span><a class="article-tag-link" href="/blog/tags/zsh/">zsh</a>
   </div>
 
 
@@ -148,17 +162,9 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2017/03/13/使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          使用Travis CI隨時隨地發Blog文章(Hexo to Github)概念篇
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2016/11/29/Youtube-api-practice-nbahl/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Youtube api practice: nbahl&nbsp;<span>&gt;</span></div>
+    <a href="/blog/2019/05/09/How to modify and commit changes to a docker image/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">How to modify and commit changes to a docker image&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -187,7 +193,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2017/03/09/Lubuntu上新酷音的問題/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2019/05/09/Note for Zsh/';
   
   (function(){
     var dsq = document.createElement('script');

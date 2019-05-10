@@ -22,7 +22,7 @@ Note2: ✔ 代表必須
 
 - [✔️ Nodejs](https://nodejs.org)
 
-        sudo apt-get install nodejs npm
+  use [nvm](https://github.com/nvm-sh/nvm) (recommended)
 
 - [✔️ Snap](https://snapcraft.io)
 

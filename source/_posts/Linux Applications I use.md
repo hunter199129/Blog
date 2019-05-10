@@ -11,7 +11,7 @@ categories: Linux
 
 <!--More-->
 
-Note: 都是以debian/ubuntu based的為主
+Note: 都是以debian/ubuntu based的為主  
 Note2: ✔ 代表必須
 
 ## Applications
@@ -155,8 +155,6 @@ Note2: ✔ 代表必須
         sudo apt install neofetch
 
 - [Stacer](https://oguzhaninan.github.io/Stacer-Web/)
-
-- [Y-PPA-Manager](https://launchpad.net/y-ppa-manager)
 
 - [Etcher](https://www.balena.io/etcher/) Flash OS images to SD cards & USB drives, safely and easily.
 

@@ -142,7 +142,7 @@ Note2: ✔ 代表必須
 
 - [Notable](https://github.com/notable/notable)
 
-- [Boostnote]: Boostnote is an open source note-taking app made for programmers just like you.
+- [Boostnote](https://boostnote.io/): Boostnote is an open source note-taking app made for programmers just like you.
 
 ### System & Command Line Utility
 

@@ -115,7 +115,11 @@ Note2: ✔ 代表必須
 
 - [Feh](https://feh.finalrewind.org/): lightweight and fast image viewer.
 
+        sudo apt install feh
+
 - [Shotwell](https://wiki.gnome.org/Apps/Shotwell): Shotwell is a photo manager for GNOME 3.
+
+        sudo apt install shotwell shotwell-common
 
 ### Input
 

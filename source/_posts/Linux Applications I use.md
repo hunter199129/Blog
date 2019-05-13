@@ -79,7 +79,7 @@ Note2: ✔ 代表必須
 
 - [✔️ 7-zip](https://www.7-zip.org/)
 
-        sudo apt install p7zip-full
+        sudo apt install p7zip-full p7zip-rar
 
 - [ranger](https://ranger.github.io/): A VIM-inspired filemanager for the console
 

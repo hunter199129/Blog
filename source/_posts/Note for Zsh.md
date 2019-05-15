@@ -41,6 +41,16 @@ My Zsh Note
     # 3. Set ZSH_THEME="spaceship" in your .zshrc.
     sed -i 's/robbyrussell/spaceship/g' ~/.zshrc
 
+## Font
+
+Install Font via [awesome-terminal-fonts](https://github.com/gabrielelana/awesome-terminal-fonts)
+
+    # 1. Clone the repo
+    git clone https://github.com/gabrielelana/awesome-terminal-fonts.git
+
+    # 2. install using the script
+    sudo bash awesome-terminal-fonts/install.sh
+    
 ## Other
 
 P.S. To change default bash

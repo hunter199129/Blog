@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
 <meta property="og:description" content="Here demostrate how to build a simple private docker registry and get image from it Which is very useful in limited network envornment">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2019-05-17T03:56:55.805Z">
+<meta property="og:updated_time" content="2019-05-17T05:07:33.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build and Use a Simple Private Docker Registry">
 <meta name="twitter:description" content="Here demostrate how to build a simple private docker registry and get image from it Which is very useful in limited network envornment">
@@ -131,7 +131,18 @@ $ docker push 192.168.0.1/hello-world:my-version
 <pre><code>$ docker pull &lt;ip&gt;:&lt;port&gt;/&lt;image&gt;[:tag]
 </code></pre></li>
 </ol>
-
+<h2 id="Graphical-User-Interface"><a href="#Graphical-User-Interface" class="headerlink" title="Graphical User Interface"></a>Graphical User Interface</h2><p>I use <a href="https://hub.docker.com/r/parabuzzle/craneoperator/" target="_blank" rel="noopener">crane</a> as GUI, because it’s ease to use, no complex feature like the others.</p>
+<p>Just easily run it as a container</p>
+<pre><code>docker run -d \
+  -p 80:80 \
+  -e REGISTRY_HOST=registry.yourdomain.com \
+  -e REGISTRY_PORT=443 \
+  -e REGISTRY_PROTOCOL=https \
+  -e SSL_VERIFY=false \
+  -e ALLOW_REGISTRY_LOGIN=true \
+  -e REGISTRY_ALLOW_DELETE=true \
+  parabuzzle/craneoperator:latest
+</code></pre>
       
      <!-- by blair add this if sentence at 20160725 -->
       <br>
@@ -141,7 +152,7 @@ $ docker push 192.168.0.1/hello-world:my-version
     
       <div class="article-toc">
         <h3>Contents</h3>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-registry-server"><span class="toc-text">Build registry server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-security-setting"><span class="toc-text">Configure security setting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Push-image-to-registry-server"><span class="toc-text">Push image to registry server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pull-image-from-remote"><span class="toc-text">Pull image from remote</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-registry-server"><span class="toc-text">Build registry server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-security-setting"><span class="toc-text">Configure security setting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Push-image-to-registry-server"><span class="toc-text">Push image to registry server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pull-image-from-remote"><span class="toc-text">Pull image from remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graphical-User-Interface"><span class="toc-text">Graphical User Interface</span></a></li></ol>
       </div>
     
     

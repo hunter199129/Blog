@@ -1,6 +1,6 @@
 ---
 title: 'How to modify and commit changes to a docker image'
-date: 2018-07-27 -9:30:00
+date: 2018-07-27 9:30:00
 tags: [docker]
 categories: DevOps
 ---

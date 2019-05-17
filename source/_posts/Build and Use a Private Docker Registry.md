@@ -54,3 +54,19 @@ Could add volumn to keep images in the host rather than registry container.
 2. Pull the image from registry
 
         $ docker pull <ip>:<port>/<image>[:tag]
+
+## Graphical User Interface
+
+I use [crane](https://hub.docker.com/r/parabuzzle/craneoperator/) as GUI, because it's ease to use, no complex feature like the others.
+
+Just easily run it as a container
+
+    docker run -d \
+      -p 80:80 \
+      -e REGISTRY_HOST=registry.yourdomain.com \
+      -e REGISTRY_PORT=443 \
+      -e REGISTRY_PROTOCOL=https \
+      -e SSL_VERIFY=false \
+      -e ALLOW_REGISTRY_LOGIN=true \
+      -e REGISTRY_ALLOW_DELETE=true \
+      parabuzzle/craneoperator:latest

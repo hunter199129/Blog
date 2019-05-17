@@ -1,0 +1,56 @@
+---
+title: 'Build and Use a Simple Private Docker Registry'
+date: 2019-05-17 11:53:00
+tags: [docker, registry]
+categories: DevOps
+---
+
+Here demostrate how to build a simple private docker registry and get image from it
+
+Which is very useful in limited network envornment
+
+<!--More-->
+
+## Build registry server
+
+    $ docker run -d -p 5000:5000 --name registry registry
+
+Could add volumn to keep images in the host rather than registry container.
+
+    -v /home/<user>/storage:/var/lib/registry
+
+## Configure security setting
+
+1. Add a new file `daemon.json` to `/etc/docker/`
+
+    $ vim /etc/docker/daemon.json
+
+    {
+      "live-restore": true,
+      "insecure-registries": ["192.168.0.1:5000"]
+    }
+
+[live-restore](https://docs.docker.com/config/containers/live-restore/) (optional): When docker daemon is down, containers will stay alive.
+
+2. Restart docker daemon.
+
+## Push image to registry server
+
+    # Must tag first before push
+    $ docker tag <image>[:tag] <ip>:<port>/<image>[:tag]
+    
+    # Push to registry
+    $ docker push <ip>:<port>/<image>[:tag]
+
+### example 
+
+    $ docker tag hello-world:nanoserver 192.168.0.1/hello-world:my-version
+    $ docker push 192.168.0.1/hello-world:my-version
+
+## Pull image from remote
+
+1. You will also need to set the [security setting](#configure-security-setting) which is mentioned above.
+
+2. Pull the image from registry
+
+        $ docker pull <ip>:<port>/<image>[:tag]

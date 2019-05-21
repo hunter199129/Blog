@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
 <meta property="og:description" content="Here demostrate how to build a simple private docker registry and get image from it Which is very useful in limited network envornment">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2019-05-21T06:55:53.927Z">
+<meta property="og:updated_time" content="2019-05-21T06:59:53.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build and Use a Simple Private Docker Registry">
 <meta name="twitter:description" content="Here demostrate how to build a simple private docker registry and get image from it Which is very useful in limited network envornment">
@@ -148,6 +148,20 @@ $ docker push 192.168.0.1/hello-world:my-version
   -e ALLOW_REGISTRY_LOGIN=true \
   -e REGISTRY_ALLOW_DELETE=true \
   parabuzzle/craneoperator:latest
+</code></pre><h2 id="Delete-image"><a href="#Delete-image" class="headerlink" title="Delete image"></a>Delete image</h2><p>Use the script of <a href="https://gist.github.com/jaytaylor/86d5efaddda926a25fa68c263830dac1" target="_blank" rel="noopener">jaytaylor’s gist</a></p>
+<pre><code>registry=&apos;localhost:5000&apos;
+name=&apos;my-image&apos;
+curl -v -sSL -X DELETE &quot;http://${registry}/v2/${name}/manifests/$(
+    curl -sSL -I \
+        -H &quot;Accept: application/vnd.docker.distribution.manifest.v2+json&quot; \
+        &quot;http://${registry}/v2/${name}/manifests/$(
+            curl -sSL &quot;http://${registry}/v2/${name}/tags/list&quot; | jq -r &apos;.tags[0]&apos;
+        )&quot; \
+    | awk &apos;$1 == &quot;Docker-Content-Digest:&quot; { print $2 }&apos; \
+    | tr -d $&apos;\r&apos; \
+)&quot;
+</code></pre><p>Garbage cleanup after deleted the image</p>
+<pre><code>docker exec -it docker-registry bin/registry garbage-collect /etc/docker/registry/config.yml
 </code></pre>
       
      <!-- by blair add this if sentence at 20160725 -->
@@ -158,7 +172,7 @@ $ docker push 192.168.0.1/hello-world:my-version
     
       <div class="article-toc">
         <h3>Contents</h3>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-registry-server"><span class="toc-text">Build registry server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-security-setting"><span class="toc-text">Configure security setting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Push-image-to-registry-server"><span class="toc-text">Push image to registry server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pull-image-from-remote"><span class="toc-text">Pull image from remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graphical-User-Interface"><span class="toc-text">Graphical User Interface</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-registry-server"><span class="toc-text">Build registry server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-security-setting"><span class="toc-text">Configure security setting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Push-image-to-registry-server"><span class="toc-text">Push image to registry server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#example"><span class="toc-text">example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pull-image-from-remote"><span class="toc-text">Pull image from remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graphical-User-Interface"><span class="toc-text">Graphical User Interface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delete-image"><span class="toc-text">Delete image</span></a></li></ol>
       </div>
     
     

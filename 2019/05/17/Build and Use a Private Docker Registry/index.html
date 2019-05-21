@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
 <meta property="og:description" content="Here demostrate how to build a simple private docker registry and get image from it Which is very useful in limited network envornment">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2019-05-17T05:09:49.743Z">
+<meta property="og:updated_time" content="2019-05-21T06:55:53.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build and Use a Simple Private Docker Registry">
 <meta name="twitter:description" content="Here demostrate how to build a simple private docker registry and get image from it Which is very useful in limited network envornment">
@@ -107,11 +107,17 @@
 <h2 id="Build-registry-server"><a href="#Build-registry-server" class="headerlink" title="Build registry server"></a>Build registry server</h2><pre><code>$ docker run -d -p 5000:5000 --name registry registry
 </code></pre><p>Could add volumn to keep images in the host rather than registry container.</p>
 <pre><code>-v /home/&lt;user&gt;/storage:/var/lib/registry
+</code></pre><p>To enable delete images</p>
+<pre><code>-e REGISTRY_STORAGE_DELETE_ENABLED=true
 </code></pre><h2 id="Configure-security-setting"><a href="#Configure-security-setting" class="headerlink" title="Configure security setting"></a>Configure security setting</h2><ol>
 <li><p>Add a new file <code>daemon.json</code> to <code>/etc/docker/</code></p>
-<p> $ vim /etc/docker/daemon.json</p>
-<p> {<br>   “live-restore”: true,<br>   “insecure-registries”: [“192.168.0.1:5000”]<br> }</p>
-</li>
+<pre><code>$ vim /etc/docker/daemon.json
+
+{
+  &quot;live-restore&quot;: true,
+  &quot;insecure-registries&quot;: [&quot;192.168.0.1:5000&quot;]
+}
+</code></pre></li>
 </ol>
 <p><a href="https://docs.docker.com/config/containers/live-restore/" target="_blank" rel="noopener">live-restore</a> (optional): When docker daemon is down, containers will stay alive.</p>
 <ol start="2">

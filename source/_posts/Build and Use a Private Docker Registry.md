@@ -19,16 +19,20 @@ Could add volumn to keep images in the host rather than registry container.
 
     -v /home/<user>/storage:/var/lib/registry
 
+To enable delete images
+
+    -e REGISTRY_STORAGE_DELETE_ENABLED=true
+
 ## Configure security setting
 
 1. Add a new file `daemon.json` to `/etc/docker/`
 
-    $ vim /etc/docker/daemon.json
+        $ vim /etc/docker/daemon.json
 
-    {
-      "live-restore": true,
-      "insecure-registries": ["192.168.0.1:5000"]
-    }
+        {
+          "live-restore": true,
+          "insecure-registries": ["192.168.0.1:5000"]
+        }
 
 [live-restore](https://docs.docker.com/config/containers/live-restore/) (optional): When docker daemon is down, containers will stay alive.
 

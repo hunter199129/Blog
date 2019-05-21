@@ -74,3 +74,23 @@ Just easily run it as a container
       -e ALLOW_REGISTRY_LOGIN=true \
       -e REGISTRY_ALLOW_DELETE=true \
       parabuzzle/craneoperator:latest
+
+## Delete image
+
+Use the script of [jaytaylor's gist](https://gist.github.com/jaytaylor/86d5efaddda926a25fa68c263830dac1)
+
+    registry='localhost:5000'
+    name='my-image'
+    curl -v -sSL -X DELETE "http://${registry}/v2/${name}/manifests/$(
+        curl -sSL -I \
+            -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+            "http://${registry}/v2/${name}/manifests/$(
+                curl -sSL "http://${registry}/v2/${name}/tags/list" | jq -r '.tags[0]'
+            )" \
+        | awk '$1 == "Docker-Content-Digest:" { print $2 }' \
+        | tr -d $'\r' \
+    )"
+    
+Garbage cleanup after deleted the image
+ 
+    docker exec -it docker-registry bin/registry garbage-collect /etc/docker/registry/config.yml

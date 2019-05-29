@@ -129,6 +129,9 @@ Note2: ✔ 代表必須
 
   >[Debian & Ubuntu 設定中文輸入法](https://hunter199129.github.io/blog/2018/05/29/Debian%20&%20Ubuntu%20設定中文輸入法/)
 
+### Misc
+
+- [Sweet Home 3D](http://www.sweethome3d.com/): a free interior design application that helps you draw the plan of your house, arrange furniture on it and visit the results in 3D.
 
 ### Music
 

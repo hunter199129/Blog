@@ -83,6 +83,8 @@ Note2: ✔ 代表必須
 
 - [ranger](https://ranger.github.io/): A VIM-inspired filemanager for the console
 
+- [AVFS](http://avf.sourceforge.net/): AVFS is a system, which enables all programs to look inside archived or compressed files, or access remote files without recompiling the programs or changing the kernel. 
+
 ### File Sharing
 
 - [MegaSync](https://mega.nz/#sync)

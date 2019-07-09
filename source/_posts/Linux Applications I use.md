@@ -66,6 +66,10 @@ Note2: ✔ 代表必須
 
 - [Franz](https://meetfranz.com/)
 
+### Download
+
+- [Motrix](https://motrix.app/): A full-featured download manager
+
 ### Editor
 
 - [✔️ vim](https://www.vim.org)

@@ -214,3 +214,7 @@ Note2: ✔ 代表必須
 - [OpenDesktop](https://www.opendesktop.org)
 
 REF: [Awesome-Linux-Software](https://github.com/luong-komorebi/Awesome-Linux-Software)
+
+### Font
+
+- [FontConfig](https://www.fontconfig.org)

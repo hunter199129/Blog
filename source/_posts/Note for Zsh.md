@@ -51,6 +51,8 @@ Install Font via [awesome-terminal-fonts](https://github.com/gabrielelana/awesom
     # 2. install using the script
     sudo bash awesome-terminal-fonts/install.sh
     
+or using [powerline/fonts](https://github.com/powerline/fonts) if there's no font is appropriate
+
 ## Other
 
 P.S. To change default bash

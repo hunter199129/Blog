@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>在內網環境架設 Docker Redmine - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Docker 在內網環境真的很難弄，只能 pull images 其他的軟體或套件都要自己拉下來處理… 部門之前架了 Redmine 覺得很好用，現在因為某些需求須要更新版本，所以之前的東西都要全部重 build 一次 之前的做法太不方便了，所以這次想了新的方法 -&amp;gt; 改 Docker image">
+<meta name="keywords" content="docker,redmine,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在內網環境架設 Docker Redmine">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2019/10/31/在內網環境架設 Docker Redmine/index.html">
+<meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
+<meta property="og:description" content="Docker 在內網環境真的很難弄，只能 pull images 其他的軟體或套件都要自己拉下來處理… 部門之前架了 Redmine 覺得很好用，現在因為某些需求須要更新版本，所以之前的東西都要全部重 build 一次 之前的做法太不方便了，所以這次想了新的方法 -&amp;gt; 改 Docker image">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2019-10-31T01:43:17.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在內網環境架設 Docker Redmine">
+<meta name="twitter:description" content="Docker 在內網環境真的很難弄，只能 pull images 其他的軟體或套件都要自己拉下來處理… 部門之前架了 Redmine 覺得很好用，現在因為某些需求須要更新版本，所以之前的東西都要全部重 build 一次 之前的做法太不方便了，所以這次想了新的方法 -&amp;gt; 改 Docker image">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
+  
+  <link href="/blog/webfonts/ptserif/main.css" rel="stylesheet" type="text/css">
+  <link href="/blog/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <!-- blair add baidu tongji start... @2017.10.03 -->
+<!-- blair add baidu tongji end ! @2017.10.03 -->
+
+<header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/blog/">Nobody Could&#39;ve Know What You&#39;re Thinking</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/blog/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/blog/categories">Categories</a>
+        
+          <a class="main-nav-link" href="https://github.com/hunter199129">Github</a>
+        
+          <a class="main-nav-link" href="http://hunter199129.github.io">About Me</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hunter199129.github.io/blog"></form>
+        </div>
+      </nav> -->
+    </div>
+  </div>
+</header>
+
+    <br>
+    <section id="main" class="outer"><article id="post-在內網環境架設 Docker Redmine" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在內網環境架設 Docker Redmine
+      <small class=article-detail-date-index>&nbsp; 2019-10-31</small>
+    </h1>
+  
+
+
+        <div class=page-title></div>
+        <br>
+      </header>
+    
+    <div class="article-meta">
+      <!--<a href="/blog/2019/10/31/在內網環境架設 Docker Redmine/" class="article-date">
+  <time datetime="2019-10-31T08:33:00.000Z" itemprop="datePublished">2019-10-31</time>
+</a>-->
+      <!-- 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
+  </div>
+
+--><!-- by blair 160724 -->
+      <!-- by blair
+      
+        <div class="article-comment-link-wrap">
+          <a href="https://hunter199129.github.io/blog/2019/10/31/在內網環境架設 Docker Redmine/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+      -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Docker 在內網環境真的很難弄，只能 pull images 其他的軟體或套件都要自己拉下來處理…</p>
+<p>部門之前架了 Redmine 覺得很好用，現在因為某些需求須要更新版本，所以之前的東西都要全部重 build 一次</p>
+<p>之前的做法太不方便了，所以這次想了新的方法 -&gt; 改 Docker image</p>
+<a id="more"></a>
+<h2 id="Base-Redmine-Image"><a href="#Base-Redmine-Image" class="headerlink" title="Base Redmine Image"></a>Base Redmine Image</h2><p>這邊用的是 <a href="https://github.com/sameersbn/docker-redmine" target="_blank" rel="noopener">sameersbn/docker-redmine</a><br>一方面是之前就是用他的 Image，另外就是之前用過就他這個版本最方便<br>所以就用他的版本來改成我們需要的<br>就先 fork 一份到自己的 Github 上</p>
+<h2 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h2><p>要弄這個最麻煩的就是要裝套件，主要就是因為有些套件在裝的時候要去外面抓 Ruby 的 gem，也就是 library<br>所以都要先裝好在 image 裡面才行  </p>
+<h3 id="Gemfile"><a href="#Gemfile" class="headerlink" title="Gemfile"></a>Gemfile</h3><p>在 Repo 裡加上一個 Gemfile，讓 Ruby 知道要去抓哪些 gems，那我們又怎麼知道要抓哪些 gems?<br>就要去每個要裝的套件裡面，找出 <code>Gemfile</code> (或是有些會寫 <code>Gemfile_for_test</code>)，把它整合到一份 <code>Gemfile</code> 裡面</p>
+<p>在 <code>Dockerfile</code> 的部分就要加上設定安裝這些套件，用的是 Ruby 的套件管理軟體 <a href="http://bundler.io" target="_blank" rel="noopener">Bundler</a><br>原本的 image 已經幫我們裝好了 <code>gem install --no-document bundler</code></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">COPY</span> Gemfile .</span><br><span class="line"><span class="keyword">RUN</span> bundle config --global silence_root_warning 1 \</span><br><span class="line">&amp;&amp; bundle install</span><br></pre></td></tr></table></figure>
+<p>第二行的作用是 bundler 用 root 安裝會有警告，會導致 build image 失敗</p>
+<h3 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h3><p>有些 gems 在安裝的時候會有相依軟體的問題，像是 <code>pg</code> 會需要裝 postgres 在 linux 裡面才可以<br>這些就在 <code>Dockerfile</code> 把這些需要的軟體先裝上去</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">RUN</span> apt update \</span><br><span class="line">&amp;&amp; apt -y install libmysqlclient-dev libpq-dev libmagick++-dev \</span><br><span class="line">&amp;&amp; apt -y install software-properties-common \</span><br><span class="line">&amp;&amp; add-apt-repository ppa:libreoffice/ppa \</span><br><span class="line">&amp;&amp; apt update  | grep packages \</span><br><span class="line">&amp;&amp; apt -y install libreoffice --no-install-recommends \</span><br><span class="line">&amp;&amp; apt -y install unzip</span><br></pre></td></tr></table></figure>
+<h2 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t="test/redmine" .</span><br></pre></td></tr></table></figure>
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>最後這些都灌進去了也不能先把套件裝在 plugins 的資料夾下<br>因為這個 Image 要裝到 <code>/home/redmine/data/plugins</code> 才會安裝套件，如果先直接丟到裡面套件會讀取不到<br>所以要等開過 Redmine 一次之後(資料夾被建出來)，才可以裝套件進去<br>因為需要用到的 gems 都放進去了，所以套件裝進去就可以直接使用了</p>
+<p>附上 Repo: <a href="https://github.com/hunter199129/docker-redmine" target="_blank" rel="noopener">https://github.com/hunter199129/docker-redmine</a></p>
+
+      
+     <!-- by blair add this if sentence at 20160725 -->
+      <br>
+       <!-- by blair add 160724-->
+    
+    </div>
+    
+      <div class="article-toc">
+        <h3>Contents</h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Base-Redmine-Image"><span class="toc-text">Base Redmine Image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Plugins"><span class="toc-text">Plugins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gemfile"><span class="toc-text">Gemfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Software"><span class="toc-text">Software</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Build"><span class="toc-text">Build</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Note"><span class="toc-text">Note</span></a></li></ol>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
+  </div>
+
+ <!-- by blair add 160724-->
+        <!--
+        <div style="width:100px; height:30px;"></div> by blair add 160724
+        -->
+        
+  <div class="article-tag">
+    <a class="article-tag-link" href="/blog/tags/docker/">docker</a><span></span><a class="article-tag-link" href="/blog/tags/linux/">linux</a><span></span><a class="article-tag-link" href="/blog/tags/redmine/">redmine</a>
+  </div>
+
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2019/05/17/Build and Use a Private Docker Registry/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Build and Use a Simple Private Docker Registry&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Andy Li&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
+    </div>
+  </div>
+</footer>
+
+    
+<script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
+  var disqus_shortname = 'hunter199129';
+  
+  var disqus_url = 'https://hunter199129.github.io/blog/2019/10/31/在內網環境架設 Docker Redmine/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/blog/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

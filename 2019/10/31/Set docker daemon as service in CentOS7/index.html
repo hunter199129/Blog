@@ -3,20 +3,20 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>解決npm &quot;...error errno -4048...&quot;的問題 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
+  <title>Set docker daemon as service in CentOS7 - Nobody Could&#39;ve Know What You&#39;re Thinking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="這個問題基本上會遇到的都是windows的使用者，不過說實在我也不太知道是什麼問題 但是這是新版的npm才會遇到的問題，看起來應該是個在windows上的bug">
-<meta name="keywords" content="npm,nodejs">
+  <meta name="description" content="Note: You must run as root">
+<meta name="keywords" content="docker,CentOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解決npm &quot;...error errno -4048...&quot;的問題">
-<meta property="og:url" content="https://hunter199129.github.io/blog/2017/11/10/解決npm _...error errno -4048..._的問題/index.html">
+<meta property="og:title" content="Set docker daemon as service in CentOS7">
+<meta property="og:url" content="https://hunter199129.github.io/blog/2019/10/31/Set docker daemon as service in CentOS7/index.html">
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
-<meta property="og:description" content="這個問題基本上會遇到的都是windows的使用者，不過說實在我也不太知道是什麼問題 但是這是新版的npm才會遇到的問題，看起來應該是個在windows上的bug">
+<meta property="og:description" content="Note: You must run as root">
 <meta property="og:locale" content="Chinese">
 <meta property="og:updated_time" content="2019-10-31T06:31:24.542Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解決npm &quot;...error errno -4048...&quot;的問題">
-<meta name="twitter:description" content="這個問題基本上會遇到的都是windows的使用者，不過說實在我也不太知道是什麼問題 但是這是新版的npm才會遇到的問題，看起來應該是個在windows上的bug">
+<meta name="twitter:title" content="Set docker daemon as service in CentOS7">
+<meta name="twitter:description" content="Note: You must run as root">
   
   
     <link rel="icon" href="https://raw.githubusercontent.com/hunter199129/favicon/master/guitar.ico">
@@ -63,7 +63,7 @@
 </header>
 
     <br>
-    <section id="main" class="outer"><article id="post-解決npm _...error errno -4048..._的問題" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-Set docker daemon as service in CentOS7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -71,8 +71,8 @@
         
   
     <h1 class="article-title" itemprop="name">
-      解決npm &quot;...error errno -4048...&quot;的問題
-      <small class=article-detail-date-index>&nbsp; 2017-11-10</small>
+      Set docker daemon as service in CentOS7
+      <small class=article-detail-date-index>&nbsp; 2019-10-31</small>
     </h1>
   
 
@@ -82,40 +82,29 @@
       </header>
     
     <div class="article-meta">
-      <!--<a href="/blog/2017/11/10/解決npm _...error errno -4048..._的問題/" class="article-date">
-  <time datetime="2017-11-10T15:40:00.000Z" itemprop="datePublished">2017-11-10</time>
+      <!--<a href="/blog/2019/10/31/Set docker daemon as service in CentOS7/" class="article-date">
+  <time datetime="2019-10-31T14:26:00.000Z" itemprop="datePublished">2019-10-31</time>
 </a>-->
       <!-- 
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
   </div>
 
 --><!-- by blair 160724 -->
       <!-- by blair
       
         <div class="article-comment-link-wrap">
-          <a href="https://hunter199129.github.io/blog/2017/11/10/解決npm _...error errno -4048..._的問題/#disqus_thread" class="article-comment-link">Comments</a>
+          <a href="https://hunter199129.github.io/blog/2019/10/31/Set docker daemon as service in CentOS7/#disqus_thread" class="article-comment-link">Comments</a>
         </div>
       
       -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>這個問題基本上會遇到的都是windows的使用者，不過說實在我也不太知道是什麼問題</p>
-<p>但是這是新版的npm才會遇到的問題，看起來應該是個在windows上的bug</p>
+        <p>Note: You must run as <code>root</code></p>
 <a id="more"></a>
-<p>大略的error code如下:</p>
-<pre><code>...
-9453 error code EPERM
-29454 error errno -4048
-29455 error syscall scandir
-29456 error Error: EPERM: operation not permitted, scandir &apos;C:\Users\10512157\Desktop\test-one\node_modules\fsevents\node_modules&apos;
-...
-29457 error Please try running this command again as root/Administrator.
-</code></pre><p>所以要解決這個問題，只要把npm降版就好了</p>
-<p>npm降版的方式很簡單，直接對npm下<code>npm i -g npm@&lt;version&gt;</code></p>
-<p>這邊用win7只要降到<code>5.0.3</code>就可以用，win10我就不知道了</p>
-<p>看起來不是什麼大問題，但也花了我不少時間研究…</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/systemd/system</span><br><span class="line">wget https://raw.githubusercontent.com/moby/moby/master/contrib/init/systemd/docker.service</span><br><span class="line">wget https://raw.githubusercontent.com/moby/moby/master/contrib/init/systemd/docker.socket</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> check status</span><br><span class="line">sudo systemctl status docker</span><br><span class="line"><span class="meta">#</span> auto start when boots</span><br><span class="line">sudo systemctl enable docker</span><br><span class="line"><span class="meta">#</span> manually start</span><br><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.docker.com/config/daemon/systemd/#manually-create-the-systemd-unit-files" target="_blank" rel="noopener">https://docs.docker.com/config/daemon/systemd/#manually-create-the-systemd-unit-files</a></p>
 
       
      <!-- by blair add this if sentence at 20160725 -->
@@ -129,7 +118,7 @@
         <!-- <div class="well" style="width:100px; height:30px;"></div>  by blair-->
         
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Coding/">Coding</a>
+    <a class="article-category-link" href="/blog/categories/DevOps/">DevOps</a>
   </div>
 
  <!-- by blair add 160724-->
@@ -138,7 +127,7 @@
         -->
         
   <div class="article-tag">
-    <a class="article-tag-link" href="/blog/tags/nodejs/">nodejs</a><span></span><a class="article-tag-link" href="/blog/tags/npm/">npm</a>
+    <a class="article-tag-link" href="/blog/tags/CentOS/">CentOS</a><span></span><a class="article-tag-link" href="/blog/tags/docker/">docker</a>
   </div>
 
 
@@ -149,17 +138,9 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2017/11/14/解決網頁混合內容(Mixed Content)的問題/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          解決網頁混合內容(Mixed Content)的問題
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2017/11/10/Install C_Sharp extension's extra packages in vscode without network connection/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Install C_Sharp extension extra packages in vscode without network connection&nbsp;<span>&gt;</span></div>
+    <a href="/blog/2019/10/31/在內網環境架設 Docker Redmine/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在內網環境架設 Docker Redmine&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -188,7 +169,7 @@
 <script type="text/javascript"> <!-- add by blair 0724 type=text/javascript -->
   var disqus_shortname = 'hunter199129';
   
-  var disqus_url = 'https://hunter199129.github.io/blog/2017/11/10/解決npm _...error errno -4048..._的問題/';
+  var disqus_url = 'https://hunter199129.github.io/blog/2019/10/31/Set docker daemon as service in CentOS7/';
   
   (function(){
     var dsq = document.createElement('script');

@@ -43,15 +43,19 @@ My Zsh Note
 
 ## Font
 
-Install Font via [awesome-terminal-fonts](https://github.com/gabrielelana/awesome-terminal-fonts)
+- **NEW UPDATE AT 20210621**
+    - use [nerd fonts](https://github.com/ryanoasis/nerd-fonts) for all fonts install
 
-    # 1. Clone the repo
-    git clone https://github.com/gabrielelana/awesome-terminal-fonts.git
+- Old method below  
+    Install Font via [awesome-terminal-fonts](https://github.com/gabrielelana/awesome-terminal-fonts)
 
-    # 2. install using the script
-    sudo bash awesome-terminal-fonts/install.sh
-    
-or using [powerline/fonts](https://github.com/powerline/fonts) if there's no font is appropriate
+        # 1. Clone the repo
+        git clone https://github.com/gabrielelana/awesome-terminal-fonts.git
+
+        # 2. install using the script
+        sudo bash awesome-terminal-fonts/install.sh
+
+    or using [powerline/fonts](https://github.com/powerline/fonts) if there's no font is appropriate
 
 ## Other
 

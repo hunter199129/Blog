@@ -39,14 +39,16 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm i
 
-      # Runs a set of commands using the runners shell
+      # Deploy hexo blog website.
       - name: Deploy
+        id: deploy
+        uses: sma11black/hexo-action@v1.0.3
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          user_name: hunter199129
+          user_email: hunter199129@gmail.com
+          commit_msg: ${{ github.event.head_commit.message }}  # (or delete this input setting to use hexo default settings)
+      # Use the output from the `deploy` step(use for test action)
+      - name: Get the output
         run: |
-          git clone --branch master https://github.com/hunter199129/blog.git public
-          npm run build
-          cd public
-          git config user.name "hunter199129"
-          git config user.email "hunter199129@gmail.com"
-          git add --all .
-          git commit -m "Auto Build by Github Action"
-          git push https://${{ secrets.DEPLOY_KEY }}@github.com/hunter199129/blog.git master
+          echo "${{ steps.deploy.outputs.notify }}"

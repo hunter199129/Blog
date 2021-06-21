@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Nobody Could&#39;ve Know What You&#39;re Thinking">
 <meta property="og:description" content="My Zsh Note">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2019-10-31T06:31:24.542Z">
+<meta property="og:updated_time" content="2021-06-21T15:10:50.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Note for Zsh">
 <meta name="twitter:description" content="My Zsh Note">
@@ -122,13 +122,21 @@ ln -s &quot;$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme&quot; &quot;
 
 # 3. Set ZSH_THEME=&quot;spaceship&quot; in your .zshrc.
 sed -i &apos;s/robbyrussell/spaceship/g&apos; ~/.zshrc
-</code></pre><h2 id="Font"><a href="#Font" class="headerlink" title="Font"></a>Font</h2><p>Install Font via <a href="https://github.com/gabrielelana/awesome-terminal-fonts" target="_blank" rel="noopener">awesome-terminal-fonts</a></p>
+</code></pre><h2 id="Font"><a href="#Font" class="headerlink" title="Font"></a>Font</h2><ul>
+<li><p><strong>NEW UPDATE AT 20210621</strong></p>
+<ul>
+<li>use <a href="https://github.com/ryanoasis/nerd-fonts" target="_blank" rel="noopener">nerd fonts</a> for all fonts install</li>
+</ul>
+</li>
+<li><p>Old method below<br>  Install Font via <a href="https://github.com/gabrielelana/awesome-terminal-fonts" target="_blank" rel="noopener">awesome-terminal-fonts</a></p>
 <pre><code># 1. Clone the repo
 git clone https://github.com/gabrielelana/awesome-terminal-fonts.git
 
 # 2. install using the script
 sudo bash awesome-terminal-fonts/install.sh
-</code></pre><p>or using <a href="https://github.com/powerline/fonts" target="_blank" rel="noopener">powerline/fonts</a> if there’s no font is appropriate</p>
+</code></pre><p>  or using <a href="https://github.com/powerline/fonts" target="_blank" rel="noopener">powerline/fonts</a> if there’s no font is appropriate</p>
+</li>
+</ul>
 <h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><p>P.S. To change default bash</p>
 <pre><code>chsh -s $(which zsh)
 </code></pre>
@@ -198,7 +206,7 @@ sudo bash awesome-terminal-fonts/install.sh
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 Andy Li&nbsp;
+      &copy; 2021 Andy Li&nbsp;
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/52binge/hexo-theme-blairos">blairos</a>
     </div>
   </div>
